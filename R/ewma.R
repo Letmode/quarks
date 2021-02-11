@@ -1,3 +1,10 @@
+#' Exponentially weighted moving average
+#'
+#' Estimates volatilities of a return series by means of an exponentially weighted moving average.
+#'
+#' @param x a numeric vector of asset returns.
+#' @param lambda decay parameter for calculation of weights; default is 0.94.
+#'
 #'@export
 
 ewma = function(x, lambda = 0.94){
