@@ -15,6 +15,13 @@ hsim(x, p = 0.95, method = c("age", "basic"), lambda = 0.98)
 
 \item{lambda}{decay parameter for calculation of weights; default is 0.98.}
 }
+\value{
+returns a list with the following elements:
+\describe{
+\item{VaR}{Calculated Value at Risk}
+\item{ES}{Calculated Expected Shortfall}
+}
+}
 \description{
 Calculates Value at Risk and Expected Shortfall by means of plain and age weighted historical simulation
 }

@@ -1,8 +1,7 @@
 Package: quarks
 Type: Package
 Title: Simple methods for calculating Value at Risk and Expected Shortfall
-Version: 0.1.0
-Author: Sebastian Letmathe
+Version: 1.0.0
 Maintainer: The package maintainer <sebastian.letmathe@uni-paderborn.de>
 Description: This package provides the possibility to calulate Value at Risk (VaR) and Expected Shortfall (ES) 
   by means of various types of historical simulation. Currently, plain, aged and volatility weighted simulation is
@@ -13,3 +12,7 @@ LazyData: true
 RoxygenNote: 7.1.1
 Imports: 
     stats
+Authors@R: person("Sebastian", "Letmathe", role = c("aut", "cre"),
+           email = "sebastian.letmathe@uni-paderborn.de",
+           comment = "Paderborn University, Germany")
+  
