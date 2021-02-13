@@ -1,19 +1,25 @@
-Package: quarks
 Type: Package
-Title: Simple methods for calculating Value at Risk and Expected Shortfall
+Package: quarks
+Title: Simple Methods for Calculating Value at Risk and Expected
+    Shortfall
 Version: 1.0.0
-Maintainer: The package maintainer <sebastian.letmathe@uni-paderborn.de>
-Description: This package provides the possibility to calulate Value at Risk (VaR) and Expected Shortfall (ES) 
-  by means of various types of historical simulation. Currently, plain, aged and volatility weighted historical simulation
-  is implemented in this package. Volatility weighting is carried out via an exponentially weighted moving average (EWMA).
+Authors@R: 
+    person(given = "Sebastian",
+           family = "Letmathe",
+           role = c("aut", "cre"),
+           email = "sebastian.letmathe@uni-paderborn.de",
+           comment = "Paderborn University, Germany")
+Description: Enables the user to calculate Value at Risk (VaR)
+    and Expected Shortfall (ES) by means of various types of historical
+    simulation. Currently, plain-, aged- and volatility-weighted
+    historical simulation are implemented in this package. Volatility
+    weighting is carried out via an exponentially weighted moving average
+    (EWMA).
 License: GPL-3
+Depends: 
+    R (>= 2.10)
+Imports: 
+    stats
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
-Imports: 
-    stats
-Authors@R: person("Sebastian", "Letmathe", role = c("aut", "cre"),
-           email = "sebastian.letmathe@uni-paderborn.de",
-           comment = "Paderborn University, Germany")
-Depends: 
-    R (>= 2.10)
