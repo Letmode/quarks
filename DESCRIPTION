@@ -4,8 +4,8 @@ Title: Simple methods for calculating Value at Risk and Expected Shortfall
 Version: 1.0.0
 Maintainer: The package maintainer <sebastian.letmathe@uni-paderborn.de>
 Description: This package provides the possibility to calulate Value at Risk (VaR) and Expected Shortfall (ES) 
-  by means of various types of historical simulation. Currently, plain, aged and volatility weighted simulation is
-  implemented in this package. Volatility weighting is carried out via an exponentially weighted moving average (EWMA).
+  by means of various types of historical simulation. Currently, plain, aged and volatility weighted historical simulation
+  is implemented in this package. Volatility weighting is carried out via an exponentially weighted moving average (EWMA).
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -15,4 +15,5 @@ Imports:
 Authors@R: person("Sebastian", "Letmathe", role = c("aut", "cre"),
            email = "sebastian.letmathe@uni-paderborn.de",
            comment = "Paderborn University, Germany")
-  
+Depends: 
+    R (>= 2.10)

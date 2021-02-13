@@ -7,10 +7,21 @@
 ewma(x, lambda = 0.94)
 }
 \arguments{
-\item{x}{a numeric vector of asset returns.}
+\item{x}{a numeric vector of asset returns}
 
-\item{lambda}{decay parameter for calculation of weights; default is 0.94.}
+\item{lambda}{decay factor for the calculation of weights; default is 0.94}
+}
+\value{
+Returns a numerical vector \emph{vol} that contains the computed volatilities.
 }
 \description{
 Estimates volatilities of a return series by means of an exponentially weighted moving average.
+}
+\examples{
+prices <- DAX30$price.close
+returns <- diff(log(prices))
+date <- DAX30$ref.date[-1]
+cvar <- ewma(x = returns, lambda = 0.94)
+csig <- sqrt(cvar)
+plot(date, csig, type = "l", main = "conditional standard deviations for the DAX30 return series")
 }
