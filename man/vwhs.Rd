@@ -14,8 +14,9 @@ vwhs(x, p = 0.95, lambda = 0.94)
 \item{lambda}{decay factor for the calculation of weights; default is 0.94}
 }
 \description{
-Calculates univariate Value at Risk and Expected Shortfall by means of volatility weighted historical simulation. Volatilities
-are estimated with an exponentially weighed moving average.
+Calculates univariate Value at Risk and Expected Shortfall by means
+of volatility weighted historical simulation. Volatility are
+estimated with an exponentially weighed moving average.
 }
 \examples{
 prices <- DAX30$price.close

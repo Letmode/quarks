@@ -18,10 +18,10 @@ rollcast(
 
 \item{p}{confidence level for VaR calculation; default is 0.95\%}
 
-\item{method}{method to be used for calculation; default is "plain"}
+\item{method}{method to be used for calculation; default is 'plain'}
 
-\item{lambda}{decay factor for the calculation of weights; default is 0.94 for \emph{method = "age"}
-and 0.98 for \emph{method = "vwhs"}}
+\item{lambda}{decay factor for the calculation of weights; default is 0.94
+for \emph{method = 'age'} and 0.98 for \emph{method = 'vwhs'}}
 
 \item{nout}{number of observations for out-of-sample forecasts}
 
@@ -30,13 +30,16 @@ and 0.98 for \emph{method = "vwhs"}}
 \value{
 Returns a list with the following elements:
 \describe{
-\item{VaR}{numerical vector containing out-of sample forecasts of Value at Risk}
-\item{ES}{numerical vector containing out-of sample forecasts of Expected Shortfall}
+\item{VaR}{numerical vector containing out-of-sample forecasts of Value at
+Risk}
+\item{ES}{numerical vector containing out-of-sample forecasts of Expected
+Shortfall}
 }
 }
 \description{
 Computes rolling one-step forecasts of Value at Risk and Expected Shortfall
-by means of plain-, age-weighted- and volatility-weighted historical simulation.
+by means of plain-, age-weighted- and volatility-weighted historical
+simulation.
 }
 \examples{
 
@@ -47,21 +50,27 @@ nout <- 250 # number of obs. for out-of-sample forecasting
 retout <- returns[(n - nout + 1):n]
 
 
-### Example 1 - plain historical simulation ###
-results1 <- rollcast(x = returns, p = 0.99, method = "plain") # VWHS with plain hist. simulation
-matplot(1:nout, cbind(-retout, results1$VaR, results1$ES), type = "lll",
-        xlab = "number of out-of-sample obs.", ylab = "losses, VaR and ES",
-        main = "Plain HS - 99\% VaR and ES for the DAX30 return series")
+### Example 1 - plain historical simulation
+results1 <- rollcast(x = returns, p = 0.99, method = 'plain')
+matplot(1:nout, cbind(-retout, results1$VaR, results1$ES),
+  type = 'lll',
+  xlab = 'number of out-of-sample obs.', ylab = 'losses, VaR and ES',
+  main = 'Plain HS - 99\% VaR and ES for the DAX30 return series'
+)
 
-### Example 2 - age weighted historical simulation ###
-results2 <- rollcast(x = returns, p = 0.99, method = "age") # VWHS with plain hist. simulation
-matplot(1:nout, cbind(-retout, results2$VaR, results2$ES), type = "lll",
-        xlab = "number of out-of-sample obs.", ylab = "losses, VaR and ES",
-        main = "Age weighted HS - 99\% VaR and ES for the DAX30 return series")
+### Example 2 - age weighted historical simulation
+results2 <- rollcast(x = returns, p = 0.99, method = 'age')
+matplot(1:nout, cbind(-retout, results2$VaR, results2$ES),
+  type = 'lll',
+  xlab = 'number of out-of-sample obs.', ylab = 'losses, VaR and ES',
+  main = 'Age weighted HS - 99\% VaR and ES for the DAX30 return series'
+)
 
-### Example 3 - volatility weighted historical simulation ###
-results3 <- rollcast(x = returns, p = 0.99, method = "vwhs") # VWHS with plain hist. simulation
-matplot(1:nout, cbind(-retout, results3$VaR, results3$ES), type = "lll",
-        xlab = "number of out-of-sample obs.", ylab = "losses, VaR and ES",
-        main = "Vol. weighted HS - 99\% VaR and ES for the DAX30 return series")
+### Example 3 - volatility weighted historical simulation
+results3 <- rollcast(x = returns, p = 0.99, method = 'vwhs')
+matplot(1:nout, cbind(-retout, results3$VaR, results3$ES),
+  type = 'lll',
+  xlab = 'number of out-of-sample obs.', ylab = 'losses, VaR and ES',
+  main = 'Vol. weighted HS - 99\% VaR and ES for the DAX30 return series'
+)
 }

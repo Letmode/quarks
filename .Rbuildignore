@@ -3,3 +3,5 @@
 ^LICENSE\.md$
 ^Codekiste$
 ^data-raw$
+^cran-comments\.md$
+^README\.Rmd$

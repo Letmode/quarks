@@ -11,7 +11,7 @@ hs(x, p = 0.95, method = c("age", "plain"), lambda = 0.98)
 
 \item{p}{confidence level for VaR calculation; default is 0.95\%}
 
-\item{method}{method to be used for calculation; default is "plain"}
+\item{method}{method to be used for calculation; default is 'plain'}
 
 \item{lambda}{decay factor for the calculation of weights; default is 0.98}
 }
@@ -23,11 +23,12 @@ Returns a list with the following elements:
 }
 }
 \description{
-Computes Value at Risk and Expected Shortfall by means of plain and age weighted historical simulation
+Computes Value at Risk and Expected Shortfall by means of plain and age
+weighted historical simulation
 }
 \examples{
 prices <- DAX30$price.close
 returns <- diff(log(prices))
-hs(x = returns, p = 0.95, method = "plain") # plain historical simulation
-hs(x = returns, p = 0.95, method = "age", lambda = 0.98) # age weighted historical simulation
+hs(x = returns, p = 0.95, method = 'plain')
+hs(x = returns, p = 0.95, method = 'age', lambda = 0.98)
 }
