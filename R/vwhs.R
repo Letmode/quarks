@@ -7,32 +7,36 @@
 #' @param p confidence level for VaR calculation; default is 0.95\%
 #' @param lambda decay factor for the calculation of weights; default is 0.94
 #'
-#'@export
+#' @export
 #' @examples
 #' prices <- DAX30$price.close
 #' returns <- diff(log(prices))
 #' vwhs(x = returns, p = 0.95, lambda = 0.94)
-
-
-vwhs <- function(x, p = 0.95, lambda = 0.94){
+vwhs <- function(x, p = 0.95, lambda = 0.94) {
   if (length(x) <= 1 || !all(!is.na(x)) || !is.numeric(x)) {
-    stop("A numeric vector of length > 1 and without NAs must be passed to",
-         " 'x'.")
+    stop(
+      "A numeric vector of length > 1 and without NAs must be passed to",
+      " 'x'."
+    )
   }
   if (length(p) != 1 || is.na(p) || !is.numeric(p) ||
-      (p <= 0)) {
-    stop("The argument 'p' must be a single non-NA double value with ",
-         "0 < p < l.")
+    (p <= 0)) {
+    stop(
+      "The argument 'p' must be a single non-NA double value with ",
+      "0 < p < l."
+    )
   }
   if (length(lambda) != 1 || is.na(lambda) || !is.numeric(lambda) ||
-      (lambda < 0)) {
-    stop("The argument 'lambda' must be a single non-NA double value with ",
-         "0 < lambda < 1.")
+    (lambda < 0)) {
+    stop(
+      "The argument 'lambda' must be a single non-NA double value with ",
+      "0 < lambda < 1."
+    )
   }
   n <- length(x)
   cvar <- ewma(x, lambda = lambda)
   csig <- sqrt(cvar)
-  xz <- x  / csig
+  xz <- x / csig
   loss <- -(xz * csig[n])
   VaR <- stats::quantile(loss, p)
   ES <- mean(loss[loss >= VaR])

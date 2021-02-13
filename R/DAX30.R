@@ -16,5 +16,5 @@
 #'   \item{ret.adjusted.prices}{returns obtained from the adj. closing prices}
 #'   \item{ret.closing.prices}{returns obtained from the closing prices}
 #' }
-#'@source The data was obtained from Yahoo Finance.
+#' @source The data was obtained from Yahoo Finance.
 "DAX30"
