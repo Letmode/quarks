@@ -21,10 +21,10 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 The goal of `quarks` is to enable the user to compute Value at Risk (VaR) and Expected Shortfall (ES)
-by means of various types of historical simulation. Currently plain-, age-weighted- and volatility-weighted-
-historical simulation is implemented in `quarks`. Volatility weighting is carried out via an exponentially 
-weighted moving average (EWMA). In future versions of `quarks` volatility filtering by means of GARCH-type models
-will be considered.
+by means of various types of historical simulation. Currently plain historical simulation as well as
+age and volatility-weighted historical simulation is implemented in `quarks`. Volatility weighting is
+carried out via an exponentially weighted moving average (EWMA). In future versions of `quarks` 
+volatility filtering by means of GARCH-type models will be considered.
 
 ## Installation
 
