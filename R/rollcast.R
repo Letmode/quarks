@@ -54,19 +54,25 @@
 #'   main = 'Vol. weighted HS - 99% VaR and ES for the DAX30 return series'
 #' )
 
-rollcast <- function(x, p = 0.95, method = c("plain", "age", "vwhs"), lambda = c(0.94, 0.98), nout = 250, nwin = 250) {
+rollcast <- function(x, p = 0.95, method = c("plain", "age", "vwhs"),
+                     lambda = c(0.94, 0.98), nout = 250, nwin = 250) {
     if (length(x) <= 1 || !all(!is.na(x)) || !is.numeric(x)) {
-        stop("A numeric vector of length > 1 and without NAs must be passed to", " 'x'.")
+        stop("A numeric vector of length > 1 and without NAs must be passed to",
+             " 'x'.")
     }
     if (length(p) != 1 || is.na(p) || !is.numeric(p) || (p <= 0)) {
-        stop("The argument 'p' must be a single non-NA double value with ", "0 < p < l.")
+        stop("The argument 'p' must be a single non-NA double value with ",
+             "0 < p < l.")
     }
-    if (!(length(method) %in% c(1, 3)) || !all(!is.na(method)) || !is.character(method) || !method %in% c("plain", "age", 
-        "vwhs")) {
-        stop("A single character value must be passed to 'method'.", "Valid choices are 'plain', 'age' or 'vwhs'.")
+    if (!(length(method) %in% c(1, 3)) || !all(!is.na(method)) ||
+        !is.character(method) || !method %in% c("plain", "age", "vwhs")) {
+        stop("A single character value must be passed to 'method'.",
+             "Valid choices are 'plain', 'age' or 'vwhs'.")
     }
-    if (!(length(lambda) %in% c(1, 2)) || !all(!is.na(lambda)) || !is.numeric(lambda) || (all(lambda < 0))) {
-        stop("The argument 'lambda' must be a single non-NA double value with ", "0 < lambda < 1.")
+    if (!(length(lambda) %in% c(1, 2)) || !all(!is.na(lambda)) ||
+        !is.numeric(lambda) || (all(lambda < 0))) {
+        stop("The argument 'lambda' must be a single non-NA double value with ",
+             "0 < lambda < 1.")
     }
     if (length(nout) != 1 || is.na(nout) || !is.numeric(nout) || (nout <= 0)) {
         stop("The argument 'nout' must be a single non-NA integer value.")
@@ -74,13 +80,13 @@ rollcast <- function(x, p = 0.95, method = c("plain", "age", "vwhs"), lambda = c
     if (length(nwin) != 1 || is.na(nwin) || !is.numeric(nwin) || (nwin <= 0)) {
         stop("The argument 'nwin' must be a single non-NA integer value.")
     }
-    if (all(method == c("age", "plain"))) 
+    if (all(method == c("age", "plain")))
         method <- "plain"
-    if (all(lambda == c(0.94, 0.98)) && method == "age") 
+    if (all(lambda == c(0.94, 0.98)) && method == "age")
         lambda <- 0.98
-    if (all(lambda == c(0.94, 0.98)) && method == "vwhs") 
+    if (all(lambda == c(0.94, 0.98)) && method == "vwhs")
         lambda <- 0.94
-    
+
     n <- length(x)
     nin <- n - nout
     xin <- x[1:nin]
@@ -90,19 +96,22 @@ rollcast <- function(x, p = 0.95, method = c("plain", "age", "vwhs"), lambda = c
     if (method == "plain") {
         fcasts[1, ] <- hs(xstart, p = p, method = method)
         for (i in 2:nout) {
-            fcasts[i, ] <- hs(c(xstart[i:nwin], xout[1:(i - 1)]), p = p, method = method)
+            fcasts[i, ] <- hs(c(xstart[i:nwin], xout[1:(i - 1)]), p = p,
+                              method = method)
         }
     }
     if (method == "age") {
         fcasts[1, ] <- hs(xstart, p = p, method = method, lambda = lambda)
         for (i in 2:nout) {
-            fcasts[i, ] <- hs(c(xstart[i:nwin], xout[1:(i - 1)]), p = p, method = method, lambda = lambda)
+            fcasts[i, ] <- hs(c(xstart[i:nwin], xout[1:(i - 1)]), p = p,
+                              method = method, lambda = lambda)
         }
     }
     if (method == "vwhs") {
         fcasts[1, ] <- vwhs(xstart, p = p, lambda = lambda)
         for (i in 2:nout) {
-            fcasts[i, ] <- vwhs(c(xstart[i:nwin], xout[1:(i - 1)]), p = p, lambda = lambda)
+            fcasts[i, ] <- vwhs(c(xstart[i:nwin], xout[1:(i - 1)]), p = p,
+                                lambda = lambda)
         }
     }
     VaR <- fcasts[, 1]
