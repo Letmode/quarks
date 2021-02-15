@@ -22,13 +22,10 @@
 
 ewma <- function(x, lambda = 0.94) {
     if (length(x) <= 1 || !all(!is.na(x)) || !is.numeric(x)) {
-        stop("A numeric vector of length > 1 and without NAs must be passed to",
-             " 'x'.")
+        stop("A numeric vector of length > 1 and without NAs must be passed to", " 'x'.")
     }
-    if (length(lambda) != 1 || is.na(lambda) || !is.numeric(lambda) ||
-        (lambda < 0)) {
-      stop("The argument 'lambda' must be a single non-NA double value with ",
-           "0 < lambda < 1.")
+    if (length(lambda) != 1 || is.na(lambda) || !is.numeric(lambda) || (lambda < 0)) {
+        stop("The argument 'lambda' must be a single non-NA double value with ", "0 < lambda < 1.")
     }
     n <- length(x)
     vol <- rep(NA, n)

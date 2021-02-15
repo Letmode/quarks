@@ -23,28 +23,24 @@
 
 hs <- function(x, p = 0.95, method = c("age", "plain"), lambda = 0.98) {
     if (length(x) <= 1 || !all(!is.na(x)) || !is.numeric(x)) {
-        stop("A numeric vector of length > 1 and without NAs must be passed to",
-             " 'x'.")
+        stop("A numeric vector of length > 1 and without NAs must be passed to", " 'x'.")
     }
     if (length(p) != 1 || is.na(p) || !is.numeric(p) || (p <= 0)) {
-        stop("The argument 'p' must be a single non-NA double value with ",
-             "0 < p < l.")
+        stop("The argument 'p' must be a single non-NA double value with ", "0 < p < l.")
     }
-    if (length(lambda) != 1 || is.na(lambda) || !is.numeric(lambda) ||
-        (lambda < 0)) {
-        stop("The argument 'lambda' must be a single non-NA double value with ",
-             "0 < lambda < 1.")
+    if (length(lambda) != 1 || is.na(lambda) || !is.numeric(lambda) || (lambda < 0)) {
+        stop("The argument 'lambda' must be a single non-NA double value with ", "0 < lambda < 1.")
     }
-
-    if (all(method == c("age", "plain")))
+    
+    if (all(method == c("age", "plain"))) 
         method <- "plain"
-
+    
     if (method == "plain") {
         l <- sort(-x)
         VaR <- stats::quantile(l, p, na.rm = TRUE)
         ES <- mean(l[l >= VaR[1]])
     }
-
+    
     if (method == "age") {
         n <- length(x)
         w <- lambda^((1:n) - 1) * (1 - lambda)/(1 - lambda^n)
