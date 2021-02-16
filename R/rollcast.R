@@ -1,16 +1,17 @@
 #' Rolling one-step forecasts of Value at Risk and Expected Shortfall
 #'
 #' Computes rolling one-step forecasts of Value at Risk and Expected Shortfall
-#' by means of plain-, age-weighted- and volatility-weighted historical
-#' simulation.
+#' by means of plain historical simulation as well as age- and volatility-
+#' weighted historical simulation.
 #'
 #' @param x a numeric vector of asset returns
 #' @param p confidence level for VaR calculation; default is 0.95\%
 #' @param method method to be used for calculation; default is 'plain'
 #' @param lambda decay factor for the calculation of weights; default is 0.94
 #' for \emph{method = 'age'} and 0.98 for \emph{method = 'vwhs'}
-#' @param nout number of observations for out-of-sample forecasts
-#' @param nwin window size for rolling one-step forecasting
+#' @param nout number of observations for out-of-sample forecasts; default is
+#' 250
+#' @param nwin window size for rolling one-step forecasting; default is 500
 #'
 #' @export
 #'
@@ -55,7 +56,7 @@
 #' )
 
 rollcast <- function(x, p = 0.95, method = c("plain", "age", "vwhs"),
-                     lambda = c(0.94, 0.98), nout = 250, nwin = 250) {
+                     lambda = c(0.94, 0.98), nout = 250, nwin = 500) {
     if (length(x) <= 1 || !all(!is.na(x)) || !is.numeric(x)) {
         stop("A numeric vector of length > 1 and without NAs must be passed to",
              " 'x'.")
@@ -74,11 +75,12 @@ rollcast <- function(x, p = 0.95, method = c("plain", "age", "vwhs"),
         stop("The argument 'lambda' must be a single non-NA double value with ",
              "0 < lambda < 1.")
     }
-    if (length(nout) != 1 || is.na(nout) || !is.numeric(nout) || (nout <= 0)) {
+    if (length(nout) != 1 || is.na(nout) || !is.numeric(nout) || (nout < 0)) {
         stop("The argument 'nout' must be a single non-NA integer value.")
     }
     if (length(nwin) != 1 || is.na(nwin) || !is.numeric(nwin) || (nwin <= 0)) {
-        stop("The argument 'nwin' must be a single non-NA integer value.")
+        stop("The argument 'nwin' must be a single non-NA, non-zero integer
+             value.")
     }
     if (all(method == c("age", "plain")))
         method <- "plain"
@@ -90,28 +92,52 @@ rollcast <- function(x, p = 0.95, method = c("plain", "age", "vwhs"),
     n <- length(x)
     nin <- n - nout
     xin <- x[1:nin]
-    xout <- x[(nin + 1):nout]
-    xstart <- xin[(nin - nwin):nin]
-    fcasts <- matrix(NA, nout, 2, dimnames = list(c(), c("VaR", "ES")))
+    xout <- x[(nin + 1):n] # fix: nout zu n
+    xstart <- xin[(nin - nwin + 1):nin]
+    fcasts <- matrix(NA, max(nout, 1), 2, dimnames = list(c(), c("VaR", "ES"))) # fix: max(nout, 1)
     if (method == "plain") {
         fcasts[1, ] <- hs(xstart, p = p, method = method)
-        for (i in 2:nout) {
-            fcasts[i, ] <- hs(c(xstart[i:nwin], xout[1:(i - 1)]), p = p,
-                              method = method)
+        if (nout > 1) {
+            for (i in 2:nout) {
+                if (i <= nwin) {
+                    fcasts[i, ] <- hs(c(xstart[i:nwin], xout[1:(i - 1)]),
+                                      p = p, method = method)
+                }
+                else{
+                    fcasts[i, ] <- hs(xout[(i - nwin):(i - 1)], p = p, method = method)
+                }
+            }
         }
     }
     if (method == "age") {
         fcasts[1, ] <- hs(xstart, p = p, method = method, lambda = lambda)
-        for (i in 2:nout) {
-            fcasts[i, ] <- hs(c(xstart[i:nwin], xout[1:(i - 1)]), p = p,
-                              method = method, lambda = lambda)
+        if (nout > 1) {
+            for (i in 2:nout) {
+                if (i <= nwin) {
+                    fcasts[i, ] <- hs(c(xstart[i:nwin], xout[1:(i - 1)]),
+                                      p = p, method = method, lambda = lambda)
+                }
+                else{
+                    fcasts[i, ] <- hs(xout[(i - nwin):(i - 1)], p = p,
+                                      method = method, lambda = lambda)
+                }
+            }
         }
     }
     if (method == "vwhs") {
         fcasts[1, ] <- vwhs(xstart, p = p, lambda = lambda)
-        for (i in 2:nout) {
-            fcasts[i, ] <- vwhs(c(xstart[i:nwin], xout[1:(i - 1)]), p = p,
-                                lambda = lambda)
+        if (nout > 1) {
+            for (i in 2:nout) {
+                if (i <= nwin) {
+                    fcasts[i, ] <- vwhs(c(xstart[i:nwin],
+                                          xout[1:(i - 1)]), p = p,
+                                        lambda = lambda)
+                }
+                else{
+                    fcasts[i, ] <- vwhs(xout[(i - nwin):(i - 1)], p = p,
+                                        lambda = lambda)
+                }
+            }
         }
     }
     VaR <- fcasts[, 1]

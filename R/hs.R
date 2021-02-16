@@ -1,6 +1,6 @@
 #' Nonparametric calculation of univariate Value at Risk and Expected Shortfall
 #'
-#' Computes Value at Risk and Expected Shortfall by means of plain and age
+#' Computes Value at Risk and Expected Shortfall by means of plain and age-
 #' weighted historical simulation
 #'
 #' @param x a numeric vector of asset returns
@@ -40,8 +40,8 @@ hs <- function(x, p = 0.95, method = c("age", "plain"), lambda = 0.98) {
         method <- "plain"
 
     if (method == "plain") {
-        l <- sort(-x)
-        VaR <- stats::quantile(l, p, na.rm = TRUE)
+        l <- -x
+        VaR <- stats::quantile(l, p)
         ES <- mean(l[l >= VaR[1]])
     }
 
@@ -51,7 +51,7 @@ hs <- function(x, p = 0.95, method = c("age", "plain"), lambda = 0.98) {
         l <- sort(-x)
         l.ind <- order(-x)
         pcum <- cumsum(w[l.ind])
-        VaR.ind <- which(pcum > p)[1]
+        VaR.ind <- which(pcum >= p)[1]
         VaR <- l[VaR.ind]
         ES <- mean(l[l >= VaR])
     }

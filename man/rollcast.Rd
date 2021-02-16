@@ -10,7 +10,7 @@ rollcast(
   method = c("plain", "age", "vwhs"),
   lambda = c(0.94, 0.98),
   nout = 250,
-  nwin = 250
+  nwin = 500
 )
 }
 \arguments{
@@ -23,9 +23,10 @@ rollcast(
 \item{lambda}{decay factor for the calculation of weights; default is 0.94
 for \emph{method = 'age'} and 0.98 for \emph{method = 'vwhs'}}
 
-\item{nout}{number of observations for out-of-sample forecasts}
+\item{nout}{number of observations for out-of-sample forecasts; default is
+250}
 
-\item{nwin}{window size for rolling one-step forecasting}
+\item{nwin}{window size for rolling one-step forecasting; default is 500}
 }
 \value{
 Returns a list with the following elements:
@@ -38,8 +39,8 @@ Shortfall}
 }
 \description{
 Computes rolling one-step forecasts of Value at Risk and Expected Shortfall
-by means of plain-, age-weighted- and volatility-weighted historical
-simulation.
+by means of plain historical simulation as well as age- and volatility-
+weighted historical simulation.
 }
 \examples{
 

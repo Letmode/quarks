@@ -23,7 +23,7 @@ Returns a list with the following elements:
 }
 }
 \description{
-Computes Value at Risk and Expected Shortfall by means of plain and age
+Computes Value at Risk and Expected Shortfall by means of plain and age-
 weighted historical simulation
 }
 \examples{
