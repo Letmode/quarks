@@ -16,7 +16,7 @@ Returns a numerical vector \emph{vol} that contains the computed
 volatility.
 }
 \description{
-Estimates volatilities of a return series by means of an exponentially
+Estimates volatility of a return series by means of an exponentially
 weighted moving average.
 }
 \examples{

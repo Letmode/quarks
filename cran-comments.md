@@ -1,3 +1,12 @@
+## Resubmission
+
+This is a resubmission. Following the suggestions of the reviewer I have:
+
+* Added a reference to the DESCRIPTION.
+
+* Added \value to vwhs.Rd
+
+
 ## Test environments
 * local R installation, R 4.0.3
 * ubuntu 16.04 (on travis-ci), R 4.0.3
@@ -18,7 +27,8 @@ Maintainer: 'Sebastian Letmathe <sebastian.letmathe@uni-paderborn.de>'
 
 
 * Possibly mis-spelled words in DESCRIPTION:
-  EWMA (17:6)
+  EWMA (17:44)
+  Gurrola (18:49)
   VaR (12:59)
   
-  The words (abbreviations) are spelled correctly.
+  The words (two abbreviations and a name) are spelled correctly.

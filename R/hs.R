@@ -31,28 +31,32 @@ hs <- function(x, p = 0.95, method = c("age", "plain"), lambda = 0.98) {
              "0 < p < l.")
     }
     if (length(lambda) != 1 || is.na(lambda) || !is.numeric(lambda) ||
-        (lambda < 0)) {
+        lambda < 0 || lambda >= 1) {
         stop("The argument 'lambda' must be a single non-NA double value with ",
-             "0 < lambda < 1.")
+             "0 <= lambda < 1.")
     }
 
     if (all(method == c("age", "plain")))
         method <- "plain"
 
     if (method == "plain") {
-        l <- -x
+        l <- sort(-x)
         VaR <- stats::quantile(l, p)
-        ES <- mean(l[l >= VaR[1]])
+        ES <- mean(l[l >= VaR])
     }
 
     if (method == "age") {
         n <- length(x)
-        w <- lambda^((1:n) - 1) * (1 - lambda)/(1 - lambda^n)
+        w <- lambda^((1:n) - 1) * (1 - lambda) / (1 - lambda^n)
         l <- sort(-x)
         l.ind <- order(-x)
         pcum <- cumsum(w[l.ind])
-        VaR.ind <- which(pcum >= p)[1]
-        VaR <- l[VaR.ind]
+        ind.high <- which(pcum > p)[1]
+        ind.low <- which(pcum > p)[1] - 1
+        VaR.high <- l[ind.high]
+        VaR.low <- l[ind.low]
+        VaR <- VaR.low + (p - pcum[ind.low]) * (VaR.high - VaR.low) /
+            (pcum[ind.high] - pcum[ind.low])
         ES <- mean(l[l >= VaR])
     }
     results <- cbind(VaR = VaR, ES = ES)

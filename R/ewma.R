@@ -1,6 +1,6 @@
 #' Exponentially weighted moving average
 #'
-#' Estimates volatilities of a return series by means of an exponentially
+#' Estimates volatility of a return series by means of an exponentially
 #' weighted moving average.
 #'
 #' @param x a numeric vector of asset returns
@@ -26,7 +26,7 @@ ewma <- function(x, lambda = 0.94) {
              " 'x'.")
     }
     if (length(lambda) != 1 || is.na(lambda) || !is.numeric(lambda) ||
-        (lambda < 0)) {
+        lambda < 0 || lambda >= 1) {
       stop("The argument 'lambda' must be a single non-NA double value with ",
            "0 < lambda < 1.")
     }

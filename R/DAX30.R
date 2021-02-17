@@ -3,7 +3,7 @@
 #' A dataset that contains the daily financial data of the DAX from
 #' 2000 to December 2019 (currency in EUR).
 #'
-#' @format A data frame with 5073 rows and 10 variables:
+#' @format A data frame with 5327 rows and 10 variables:
 #' \describe{
 #'   \item{price.open}{opening price (daily)}
 #'   \item{price.high}{highest price (daily)}

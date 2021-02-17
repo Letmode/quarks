@@ -30,7 +30,7 @@ vwhs <- function(x, p = 0.95, lambda = 0.94) {
              "0 < p < l.")
     }
     if (length(lambda) != 1 || is.na(lambda) || !is.numeric(lambda) ||
-        (lambda < 0)) {
+        lambda < 0 || lambda >= 1) {
         stop("The argument 'lambda' must be a single non-NA double value with ",
              "0 < lambda < 1.")
     }

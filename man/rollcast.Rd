@@ -9,8 +9,8 @@ rollcast(
   p = 0.95,
   method = c("plain", "age", "vwhs"),
   lambda = c(0.94, 0.98),
-  nout = 250,
-  nwin = 500
+  nout = NULL,
+  nwin = NULL
 )
 }
 \arguments{
@@ -23,10 +23,9 @@ rollcast(
 \item{lambda}{decay factor for the calculation of weights; default is 0.94
 for \emph{method = 'age'} and 0.98 for \emph{method = 'vwhs'}}
 
-\item{nout}{number of observations for out-of-sample forecasts; default is
-250}
+\item{nout}{number of out-of-sample observations; default is NULL}
 
-\item{nwin}{window size for rolling one-step forecasting; default is 500}
+\item{nwin}{window size for rolling one-step forecasting; default is NULL}
 }
 \value{
 Returns a list with the following elements:
@@ -35,6 +34,7 @@ Returns a list with the following elements:
 Risk}
 \item{ES}{numerical vector containing out-of-sample forecasts of Expected
 Shortfall}
+\item{xout}{numerical vector containing out-of-sample returns}
 }
 }
 \description{
@@ -52,25 +52,28 @@ retout <- returns[(n - nout + 1):n]
 
 
 ### Example 1 - plain historical simulation
-results1 <- rollcast(x = returns, p = 0.99, method = 'plain')
+results1 <- rollcast(x = returns, p = 0.99, method = 'plain', nout = 250,
+                     nwin = 500)
 matplot(1:nout, cbind(-retout, results1$VaR, results1$ES),
-  type = 'lll',
+  type = 'hll',
   xlab = 'number of out-of-sample obs.', ylab = 'losses, VaR and ES',
   main = 'Plain HS - 99\% VaR and ES for the DAX30 return series'
 )
 
 ### Example 2 - age weighted historical simulation
-results2 <- rollcast(x = returns, p = 0.99, method = 'age')
+results2 <- rollcast(x = returns, p = 0.99, method = 'age', nout = 250,
+                     nwin = 500)
 matplot(1:nout, cbind(-retout, results2$VaR, results2$ES),
-  type = 'lll',
+  type = 'hll',
   xlab = 'number of out-of-sample obs.', ylab = 'losses, VaR and ES',
   main = 'Age weighted HS - 99\% VaR and ES for the DAX30 return series'
 )
 
 ### Example 3 - volatility weighted historical simulation
-results3 <- rollcast(x = returns, p = 0.99, method = 'vwhs')
+results3 <- rollcast(x = returns, p = 0.99, method = 'vwhs', nout = 250,
+                     nwin = 500)
 matplot(1:nout, cbind(-retout, results3$VaR, results3$ES),
-  type = 'lll',
+  type = 'hll',
   xlab = 'number of out-of-sample obs.', ylab = 'losses, VaR and ES',
   main = 'Vol. weighted HS - 99\% VaR and ES for the DAX30 return series'
 )
