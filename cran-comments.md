@@ -27,8 +27,8 @@ Maintainer: 'Sebastian Letmathe <sebastian.letmathe@uni-paderborn.de>'
 
 
 * Possibly mis-spelled words in DESCRIPTION:
-  EWMA (17:44)
-  Gurrola (18:49)
+  EWMA (17:30)
+  Gurrola (18:18)
   VaR (12:59)
   
   The words (two abbreviations and a name) are spelled correctly.
