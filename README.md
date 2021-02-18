@@ -28,8 +28,9 @@ install.packages("quarks")
 This is a basic example which shows you how to solve a common problem.
 The data `DAX30` in this package contains daily financial data of the
 DAX from 2000 to December 2019 (currency in EUR). In the following
-examples the (out-of-sample) one-step forecasts of the 99%-VaR and the
-corresponding ES are computed.
+examples the (out-of-sample) one-step forecasts of the 99%-VaR (red
+line) and the corresponding ES (green line) are computed. Exceedances
+are indicated by the colored circles.
 
 ``` r
 library(quarks)         # Call the package
@@ -66,6 +67,5 @@ plot(results3)
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
-To further analyze these results one might apply various backtesting
-procedures (e.g. traffic light test) in order to assess the performance
-of these methods.
+To further analyze these results one might apply e.g. the traffic light
+test to assess the performance of these methods.

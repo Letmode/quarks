@@ -1,11 +1,7 @@
-## Resubmission
-
-This is a resubmission. Following the suggestions of the reviewer I have:
-
-* Added a reference to the DESCRIPTION.
-
-* Added \value to vwhs.Rd
-
+## Patch release (version 1.0.1)
+This is a patch release based on the CRAN checks of version 1.0.0.
+The example in the README file is adjusted and minor adjustments in the
+documentation were made. Please excuse the inconvenience.
 
 ## Test environments
 * local R installation, R 4.0.3
@@ -23,12 +19,12 @@ Other notifications:
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: 'Sebastian Letmathe <sebastian.letmathe@uni-paderborn.de>'
 
-  New submission
+Days since last update: 1
 
 
-* Possibly mis-spelled words in DESCRIPTION:
+Possibly mis-spelled words in DESCRIPTION:
   EWMA (17:30)
   Gurrola (18:18)
   VaR (12:59)
-  
-  The words (two abbreviations and a name) are spelled correctly.
+
+The words (two abbreviations and a name) are spelled correctly.
