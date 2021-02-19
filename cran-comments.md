@@ -1,7 +1,8 @@
-## Patch release (version 1.0.1)
+## Patch release (version 1.0.2)
 This is a patch release based on the CRAN checks of version 1.0.0.
-The example in the README file is adjusted and minor adjustments in the
-documentation were made. Please excuse the inconvenience.
+A minor mistake in the function 'hs.R' was corrected and the
+README was slightly adjusted.
+I am deeply sorry for the inconvenience.
 
 ## Test environments
 * local R installation, R 4.0.3
