@@ -1,8 +1,8 @@
-## Patch release (version 1.0.2)
+## Patch release (version 1.0.3)
 This is a patch release based on the CRAN checks of version 1.0.0.
-A minor mistake in the function 'hs.R' was corrected and the
+plot.quarks.R was rectified.
 README was slightly adjusted.
-I am deeply sorry for the inconvenience.
+Thank you very much for your efforts.
 
 ## Test environments
 * local R installation, R 4.0.3
@@ -20,7 +20,7 @@ Other notifications:
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: 'Sebastian Letmathe <sebastian.letmathe@uni-paderborn.de>'
 
-Days since last update: 1
+Days since last update: 0
 
 
 Possibly mis-spelled words in DESCRIPTION:
