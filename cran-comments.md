@@ -1,7 +1,8 @@
-## Patch release (version 1.0.3)
-This is a patch release based on the CRAN checks of version 1.0.0.
-plot.quarks.R was rectified.
-README was slightly adjusted.
+## Patch release (version 1.0.4)
+This is a patch release based on the CRAN checks of version 1.0.3.
+
+DESCRIPTION and Documentation are slightly adapted.
+hs.R, vwhs.R and rollcast.R are slightly modified.
 Thank you very much for your efforts.
 
 ## Test environments
@@ -20,7 +21,7 @@ Other notifications:
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: 'Sebastian Letmathe <sebastian.letmathe@uni-paderborn.de>'
 
-Days since last update: 0
+Days since last update: 1
 
 
 Possibly mis-spelled words in DESCRIPTION:
