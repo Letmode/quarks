@@ -1,8 +1,8 @@
-## Patch release (version 1.0.4)
-This is a patch release based on the CRAN checks of version 1.0.3.
+## Patch release (version 1.0.5)
+This is a patch release based on the CRAN checks of version 1.0.4.
 
-DESCRIPTION and Documentation are slightly adapted.
-hs.R, vwhs.R and rollcast.R are slightly modified.
+- example for rollcast.R is slightly modified
+- fixed a bug in rollcast.R
 Thank you very much for your efforts.
 
 ## Test environments

@@ -2,7 +2,7 @@ Type: Package
 Package: quarks
 Title: Simple Methods for Calculating Value at Risk and Expected
     Shortfall
-Version: 1.0.4
+Version: 1.0.5
 Authors@R: 
     person(given = "Sebastian",
            family = "Letmathe",
