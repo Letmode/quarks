@@ -4,12 +4,12 @@
 \alias{hs}
 \title{Nonparametric calculation of univariate Value at Risk and Expected Shortfall}
 \usage{
-hs(x, p = 0.95, method = c("age", "plain"), lambda = 0.98)
+hs(x, p = 0.975, method = c("age", "plain"), lambda = 0.98)
 }
 \arguments{
 \item{x}{a numeric vector of asset returns}
 
-\item{p}{confidence level for VaR calculation; default is 0.95\%}
+\item{p}{confidence level for VaR calculation; default is 0.975}
 
 \item{method}{method to be used for calculation; default is 'plain'}
 

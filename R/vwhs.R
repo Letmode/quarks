@@ -6,12 +6,12 @@
 #' average.
 #'
 #' @param x a numeric vector of asset returns
-#' @param p confidence level for VaR calculation; default is 0.95\%
+#' @param p confidence level for VaR calculation; default is 0.975
 #' @param lambda decay factor for the calculation of weights; default is 0.94
 #'
 #' @export
 #'
-#' @return Returns a list with the following elements:
+#' @return Returns a [1 x 2]-matrix with the following elements:
 #' \describe{
 #' \item{VaR}{Calculated Value at Risk}
 #' \item{ES}{Calculated Expected Shortfall (Conditional Value at Risk)}
@@ -19,9 +19,9 @@
 #' @examples
 #' prices <- DAX30$price.close
 #' returns <- diff(log(prices))
-#' vwhs(x = returns, p = 0.95, lambda = 0.94)
+#' vwhs(x = returns, p = 0.975, lambda = 0.94)
 
-vwhs <- function(x, p = 0.95, lambda = 0.94) {
+vwhs <- function(x, p = 0.975, lambda = 0.94) {
     if (length(x) <= 1 || !all(!is.na(x)) || !is.numeric(x)) {
         stop("A numeric vector of length > 1 and without NAs must be passed to",
              " 'x'.")

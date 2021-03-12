@@ -4,12 +4,12 @@
 \alias{vwhs}
 \title{Volatility weighted historical simulation}
 \usage{
-vwhs(x, p = 0.95, lambda = 0.94)
+vwhs(x, p = 0.975, lambda = 0.94)
 }
 \arguments{
 \item{x}{a numeric vector of asset returns}
 
-\item{p}{confidence level for VaR calculation; default is 0.95\%}
+\item{p}{confidence level for VaR calculation; default is 0.975}
 
 \item{lambda}{decay factor for the calculation of weights; default is 0.94}
 }
@@ -29,5 +29,5 @@ average.
 \examples{
 prices <- DAX30$price.close
 returns <- diff(log(prices))
-vwhs(x = returns, p = 0.95, lambda = 0.94)
+vwhs(x = returns, p = 0.975, lambda = 0.94)
 }
