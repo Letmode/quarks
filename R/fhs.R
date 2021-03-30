@@ -8,11 +8,11 @@
 #' @param x a numeric vector of asset returns
 #' @param p confidence level for VaR calculation; default is 0.975
 #' @param lambda decay factor for the calculation of weights; default is 0.94
-#' @param nboot size of bootsrap sample; default is 10000
+#' @param nboot size of bootstrap sample; default is 10000
 #' @param nahead n-day ahead forecasts of VaR and ES; default is 1
 #' @param arma fitting an ARMA-model to the return series before volatility
 #' filtering; default is FALSE
-#' @param ... additional arguments of the arima function
+#' @param ... additional arguments of the \emph{arima} function
 #'
 #' @export
 #'
@@ -25,7 +25,7 @@
 #' @examples
 #' prices <- DAX30$price.close
 #' returns <- diff(log(prices))
-#' fhs(x = returns, p = 0.975, lambda = 0.94, arma = TRUE, order = c(1, 0, 1))
+#' fhs(x = returns, p = 0.975, lambda = 0.94, nahead = 5)
 
 
 fhs <- function(x, p = 0.975, lambda = 0.94, nboot = 10000, nahead = 1,
@@ -52,13 +52,13 @@ fhs <- function(x, p = 0.975, lambda = 0.94, nboot = 10000, nahead = 1,
     for (i in 1:nahead) {
       boot.xz <- sample(xz, size = nboot, replace = TRUE)
       boot.loss[ , i] <- -(boot.xz * one.ahead.csig)
-      one.ahead.cvar <- lambda * one.ahead.cvar + (1 - lambda) * boot.loss[, i]^2
+      one.ahead.cvar <- lambda * one.ahead.cvar + (1 - lambda) *
+        boot.loss[, i]^2
       one.ahead.csig <- sqrt(one.ahead.cvar)
       VaR[i] <- stats::quantile(boot.loss[, i], p)
       ES[i] <- mean(boot.loss[, i][boot.loss[, i] > VaR[i]])
     }
   }
-
 
   if (arma == TRUE) {
     ar <- dots$order[1]
@@ -76,7 +76,8 @@ fhs <- function(x, p = 0.975, lambda = 0.94, nboot = 10000, nahead = 1,
       boot.loss[, i] <- -(boot.xz * one.ahead.csig)
       boot.loss <- -(mu + sum(phi * ret[(n - 1):(n - ar)]) +
                    sum(theta * x[(n - 1):(n - ma)])) + boot.loss
-      one.ahead.cvar <- lambda * one.ahead.cvar + (1 - lambda) * boot.loss[, i]^2
+      one.ahead.cvar <- lambda * one.ahead.cvar + (1 - lambda) *
+        boot.loss[, i]^2
       one.ahead.csig <- sqrt(one.ahead.cvar)
       VaR[i] <- stats::quantile(boot.loss[, i], p)
       ES[i] <- mean(boot.loss[, i][boot.loss[, i] > VaR[i]])
@@ -84,8 +85,7 @@ fhs <- function(x, p = 0.975, lambda = 0.94, nboot = 10000, nahead = 1,
   }
 
   results <- cbind(VaR = VaR, ES = ES)
-  colnames(results) <- c("VaR", "ES")
-  #rownames(results) <- paste0(100 * p, "%")
+  colnames(results) <- c(paste0(100 * p, "% VaR"), "ES")
   if (arma == TRUE) {
     results <- list(VaR_ES = results, model_arma = arima)
   }

@@ -69,5 +69,12 @@ results3 <- rollcast(x = returns, p = 0.975, method = 'vwhs', nout = 250,
 plot(results3)
 ```
 
+```{r, fig.height=4, fig.width=12}
+### Example 4 - volatility weighted historical simulation 
+results4 <- rollcast(x = returns, p = 0.975, method = 'fhs', nout = 250,
+                     nwin = 250)
+plot(results4)
+```
+
 To further analyze these results one might apply e.g. the traffic light test
 to assess the performance of these methods.

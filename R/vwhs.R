@@ -11,7 +11,7 @@
 #'
 #' @export
 #'
-#' @return Returns a [1 x 2]-matrix with the following elements:
+#' @return Returns a list with the following elements:
 #' \describe{
 #' \item{VaR}{Calculated Value at Risk}
 #' \item{ES}{Calculated Expected Shortfall (Conditional Value at Risk)}
@@ -45,5 +45,6 @@ vwhs <- function(x, p = 0.975, lambda = 0.94) {
     results <- cbind(VaR = VaR, ES = ES)
     colnames(results) <- c("VaR", "ES")
     rownames(results) <- paste0(100 * p, "%")
+    results <- list(VaR_ES = results)
     results
 }

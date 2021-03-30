@@ -67,5 +67,14 @@ plot(results3)
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
+``` r
+### Example 4 - volatility weighted historical simulation 
+results4 <- rollcast(x = returns, p = 0.975, method = 'fhs', nout = 250,
+                     nwin = 250)
+plot(results4)
+```
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+
 To further analyze these results one might apply e.g. the traffic light
 test to assess the performance of these methods.
