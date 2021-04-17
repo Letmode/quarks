@@ -68,9 +68,9 @@ plot(results3)
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 ``` r
-### Example 4 - volatility weighted historical simulation 
+### Example 4 - filtered historical simulation 
 results4 <- rollcast(x = returns, p = 0.975, method = 'fhs', nout = 250,
-                     nwin = 250)
+                     nwin = 250, arma = TRUE, order = c(0, 0, 1))
 plot(results4)
 ```
 

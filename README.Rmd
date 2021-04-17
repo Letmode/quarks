@@ -70,9 +70,9 @@ plot(results3)
 ```
 
 ```{r, fig.height=4, fig.width=12}
-### Example 4 - volatility weighted historical simulation 
+### Example 4 - filtered historical simulation 
 results4 <- rollcast(x = returns, p = 0.975, method = 'fhs', nout = 250,
-                     nwin = 250)
+                     nwin = 250, arma = TRUE, order = c(0, 0, 1))
 plot(results4)
 ```
 
