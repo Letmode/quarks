@@ -59,7 +59,7 @@ fhs <- function(x, p = 0.975, lambda = 0.94, nboot = 10000, nahead = 1,
   n <- length(x)
   dots = list(...)
   if (arma == TRUE) {
-    arima <- stats::arima(x, ...)#do.call(what = stats::arima, args = dots)
+    arima <- stats::arima(x, ...)
     ret <- x
     x <- stats::residuals(arima)
   }
@@ -100,8 +100,10 @@ fhs <- function(x, p = 0.975, lambda = 0.94, nboot = 10000, nahead = 1,
     for (i in 1:nahead) {
       boot.xz <- sample(xz, size = nboot, replace = TRUE)
       boot.loss[, i] <- -(boot.xz * one.ahead.csig)
-      boot.loss <- -(mu + sum(phi * ret[(n - 1):(n - ar)]) +
-                   sum(theta * x[(n - 1):(n - ma)])) + boot.loss
+
+      boot.loss <- -(mu + sum(phi * ret[n:(n - ar + 1)]) +
+                         sum(theta * x[n:(n - ma + 1)])) + boot.loss
+
       one.ahead.cvar <- lambda * one.ahead.cvar + (1 - lambda) *
         boot.loss[, i]^2
       one.ahead.csig <- sqrt(one.ahead.cvar)
