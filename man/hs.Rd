@@ -29,6 +29,6 @@ at Risk) by means of plain and age-weighted historical simulation.
 \examples{
 prices <- DAX30$price.close
 returns <- diff(log(prices))
-hs(x = returns, p = 0.95, method = 'plain')
-hs(x = returns, p = 0.95, method = 'age', lambda = 0.98)
+hs(x = returns, p = 0.975, method = 'plain')
+hs(x = returns, p = 0.975, method = 'age', lambda = 0.98)
 }

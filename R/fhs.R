@@ -30,12 +30,38 @@
 
 fhs <- function(x, p = 0.975, lambda = 0.94, nboot = 10000, nahead = 1,
                 arma = FALSE, ...) {
+  if (length(x) <= 1 || !all(!is.na(x)) || !is.numeric(x)) {
+    stop("A numeric vector of length > 1 and without NAs must be passed to",
+         " 'x'.")
+  }
+  if (length(p) != 1 || is.na(p) || !is.numeric(p) || (p <= 0)) {
+    stop("The argument 'p' must be a single non-NA double value with ",
+         "0 < p < l.")
+  }
+  if (length(lambda) != 1 || is.na(lambda) || !is.numeric(lambda) ||
+      lambda < 0 || lambda >= 1) {
+    stop("The argument 'lambda' must be a single non-NA double value with ",
+         "0 < lambda < 1.")
+  }
+  if (length(nboot) != 1 || is.na(nboot) || !is.numeric(nboot) ||
+      nboot <= 0) {
+    stop("The argument 'nboot' must be a single non-NA integer value with ",
+         "nboot > 0.")
+  }
+  if (length(nahead) != 1 || is.na(nahead) || !is.numeric(nahead) ||
+      nahead <= 0) {
+    stop("The argument 'nahead' must be a single non-NA integer value with ",
+         "nahead > 0.")
+  }
+  if (length(arma) != 1 || !arma %in% c(TRUE, FALSE)) {
+    stop("The argument 'arma' must be TRUE or FALSE.")
+  }
   n <- length(x)
   dots = list(...)
   if (arma == TRUE) {
-    arima <- arima(x, ...)#do.call(what = stats::arima, args = dots)
+    arima <- stats::arima(x, ...)#do.call(what = stats::arima, args = dots)
     ret <- x
-    x <- residuals(arima)
+    x <- stats::residuals(arima)
   }
   cvar <- ewma(x, lambda = lambda)
   one.ahead.cvar <-  lambda * cvar[n] + (1 - lambda) * x[n]^2

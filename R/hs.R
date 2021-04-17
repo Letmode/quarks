@@ -18,8 +18,8 @@
 #' @examples
 #' prices <- DAX30$price.close
 #' returns <- diff(log(prices))
-#' hs(x = returns, p = 0.95, method = 'plain')
-#' hs(x = returns, p = 0.95, method = 'age', lambda = 0.98)
+#' hs(x = returns, p = 0.975, method = 'plain')
+#' hs(x = returns, p = 0.975, method = 'age', lambda = 0.98)
 
 hs <- function(x, p = 0.975, method = c("age", "plain"), lambda = 0.98) {
     if (length(x) <= 1 || !all(!is.na(x)) || !is.numeric(x)) {

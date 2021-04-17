@@ -104,6 +104,9 @@ rollcast <- function(x, p = 0.975, method = c("plain", "age", "vwhs", "fhs"),
        (nwin + nout) > length(x)) {
         stop("Window size and (or) out-of-sample size are too large.")
     }
+    if (length(arma) != 1 || !arma %in% c(TRUE, FALSE)) {
+        stop("The argument 'arma' must be TRUE or FALSE.")
+    }
 
     if (all(method == c("plain", "age", "vwhs", "fhs")))
         method <- "plain"
