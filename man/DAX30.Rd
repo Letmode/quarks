@@ -5,7 +5,7 @@
 \alias{DAX30}
 \title{German Stock Market Index (DAX) Financial Time Series Data}
 \format{
-A data frame with 5327 rows and 10 variables:
+A data frame with 5389 rows and 10 variables:
 \describe{
   \item{price.open}{opening price (daily)}
   \item{price.high}{highest price (daily)}
@@ -27,6 +27,6 @@ DAX30
 }
 \description{
 A dataset that contains the daily financial data of the DAX from
-2000 to December 2020 (currency in EUR).
+2000 to March 2021 (currency in EUR).
 }
 \keyword{datasets}
