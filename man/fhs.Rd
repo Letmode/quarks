@@ -4,40 +4,49 @@
 \alias{fhs}
 \title{Filtered historical simulation}
 \usage{
-fhs(x, p = 0.975, lambda = 0.94, nboot = 10000, nahead = 1, arma = FALSE, ...)
+fhs(x, p = 0.975, model = c("EWMA", "GARCH"), lambda = 0.94, nboot = 5000, ...)
 }
 \arguments{
 \item{x}{a numeric vector of asset returns}
 
 \item{p}{confidence level for VaR calculation; default is 0.975}
 
+\item{model}{model for estimating conditional volatility; default is 'EWMA'}
+
 \item{lambda}{decay factor for the calculation of weights; default is 0.94}
 
-\item{nboot}{size of bootstrap sample; default is 10000}
+\item{nboot}{size of bootstrap sample; default is NULL}
 
-\item{nahead}{n-day ahead forecasts of VaR and ES; default is 1}
-
-\item{arma}{fitting an ARMA-model to the return series before volatility
-filtering; default is FALSE}
-
-\item{...}{additional arguments of the \emph{arima} function}
+\item{...}{additional arguments of the \emph{ugarchspec} function from the
+\emph{rugarch}-package; the default settings for the arguments
+\emph{variance.model} and \emph{mean.model} are \emph{list(model = 'sGARCH',
+garchOrder = c(1, 1))} and \emph{list(armaOrder = c(0, 0))}, respectively}
 }
 \value{
 Returns a list with the following elements:
 \describe{
 \item{VaR}{Calculated Value at Risk}
 \item{ES}{Calculated Expected Shortfall (Conditional Value at Risk)}
-\item{armacoefs}{Estimated model parameters}
+\item{garchmod}{The model fit. Is the respective GARCH fit for
+\emph{model = "GARCH"} (see \emph{rugarch} documentation) and  'EWMA' for
+\emph{model = "EWMA"}}
 }
 }
 \description{
 Calculates univariate Value at Risk and Expected Shortfall (also called
 Conditional Value at Risk) by means of filtered historical simulation.
-Volatility is estimated with an exponentially weighted moving
-average.
+Volatility can be estimated with an exponentially weighted moving
+average or a GARCH-type model.
 }
 \examples{
 prices <- DAX30$price.close
 returns <- diff(log(prices))
-fhs(x = returns, p = 0.975, lambda = 0.94, nahead = 5)
+# volatility weighting via EWMA
+ewma <- fhs(x = returns, p = 0.975, model = "EWMA", lambda = 0.94,
+            nboot = 10000)
+ewma$VaR_ES
+# volatility weighting via GARCH
+garch <- fhs(x = returns, p = 0.975, model = "GARCH", variance.model =
+list(model = "sGARCH"), nboot = 10000)
+garch$VaR_ES
 }

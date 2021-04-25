@@ -1,7 +1,9 @@
 # quarks 1.0.6
 
-- changed default coverage level from 0.95 to 0.975
+- changed default of coverage level (p) from 0.95 to 0.975
 - implemented 'fhs.R', enabling filtered historical simulation
+- implemented volatility estimation with GARCH-type models by means of the
+  'rugarch' package
 
 
 # quarks 1.0.5

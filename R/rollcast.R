@@ -7,17 +7,18 @@
 #'
 #' @param x a numeric vector of asset returns
 #' @param p confidence level for VaR calculation; default is 0.975
+#' @param model model for estimating conditional volatility; default is 'EWMA'
 #' @param method method to be used for calculation; default is 'plain'
 #' @param lambda decay factor for the calculation of weights; default is 0.98
 #' for \emph{method = 'age'} and 0.94 for \emph{method = 'vwhs'} or
 #' \emph{method = 'fhs'}
 #' @param nout number of out-of-sample observations; default is NULL
 #' @param nwin window size for rolling one-step forecasting; default is NULL
-#' @param nboot size of bootstrap sample. Only for \emph{method = 'fhs'};
-#' default is 10000
-#' @param arma fitting an ARMA-model to the return series before volatility
-#' filtering. Only for \emph{method = 'fhs'}; default is FALSE
-#' @param ... additional arguments of the \emph{arima} function
+#' @param nboot size of bootstrap sample; default is NULL
+#' @param ... additional arguments of the \emph{ugarchspec} function from the
+#' \emph{rugarch}-package; the default settings for the arguments
+#' \emph{variance.model} and \emph{mean.model} are \emph{list(model = 'sGARCH',
+#' garchOrder = c(1, 1))} and \emph{list(armaOrder = c(0, 0))}, respectively
 #'
 #' @export
 #'
@@ -54,25 +55,47 @@
 #'   xlab = 'number of out-of-sample obs.', ylab = 'losses, VaR and ES',
 #'   main = 'Age weighted HS - 97.5% VaR and ES for the DAX30 return series')
 #'
-#' ### Example 3 - volatility weighted historical simulation
-#' results3 <- rollcast(x = returns, p = 0.975, method = 'vwhs', nout = nout,
-#'                      nwin = nwin)
+#' ### Example 3 - volatility weighted historical simulation - EWMA
+#' results3 <- rollcast(x = returns, p = 0.975, model = 'EWMA',
+#'                      method = 'vwhs', nout = nout, nwin = nwin)
 #' matplot(1:nout, cbind(-results3$xout, results3$VaR, results3$ES),
 #'   type = 'hll',
 #'   xlab = 'number of out-of-sample obs.', ylab = 'losses, VaR and ES',
-#'   main = 'Vol. weighted HS - 97.5% VaR and ES for the DAX30 return series')
-#'
-#' ### Example 4 - filtered historical simulation
-#' results4 <- rollcast(x = returns, p = 0.975, method = 'fhs', nout = nout,
-#'                      nwin = nwin)
+#'   main = 'Vol. weighted HS (EWMA) - 97.5% VaR and ES for the DAX30 return
+#'   series')
+#' \dontrun{
+#' ### Example 4 - volatility weighted historical simulation - GARCH
+#' results4 <- rollcast(x = returns, p = 0.975, model = 'GARCH',
+#'                      method = 'vwhs', nout = nout, nwin = nwin)
 #' matplot(1:nout, cbind(-results4$xout, results4$VaR, results4$ES),
 #'   type = 'hll',
 #'   xlab = 'number of out-of-sample obs.', ylab = 'losses, VaR and ES',
-#'   main = 'Filtered HS - 97.5% VaR and ES for the DAX30 return series')
+#'   main = 'Vol. weighted HS (GARCH) - 97.5% VaR and ES for the DAX30 return
+#'   series')
+#' }
+#' ### Example 5 - filtered historical simulation - EWMA
+#' results5 <- rollcast(x = returns, p = 0.975, model = 'EWMA',
+#'                      method = 'fhs', nout = nout, nwin = nwin, nboot = 10000)
+#' matplot(1:nout, cbind(-results5$xout, results5$VaR, results5$ES),
+#'   type = 'hll',
+#'   xlab = 'number of out-of-sample obs.', ylab = 'losses, VaR and ES',
+#'   main = 'Filtered HS (EWMA) - 97.5% VaR and ES for the DAX30 return
+#'   series')
+#' \dontrun{
+#' ### Example 6 - filtered historical simulation - GARCH
+#' results6 <- rollcast(x = returns, p = 0.975, model = 'GARCH',
+#'                      method = 'fhs', nout = nout, nwin = nwin, nboot = 10000)
+#' matplot(1:nout, cbind(-results6$xout, results6$VaR, results6$ES),
+#'   type = 'hll',
+#'   xlab = 'number of out-of-sample obs.', ylab = 'losses, VaR and ES',
+#'   main = 'Filtered HS (GARCH) - 97.5% VaR and ES for the DAX30 return
+#'   series')
+#' }
 
-rollcast <- function(x, p = 0.975, method = c("plain", "age", "vwhs", "fhs"),
+rollcast <- function(x, p = 0.975, model = c("EWMA", "GARCH"),
+                     method = c("plain", "age", "vwhs", "fhs"),
                      lambda = c(0.94, 0.98), nout = NULL, nwin = NULL,
-                     nboot = 10000, arma = FALSE, ...) {
+                     nboot = NULL, ...) {
     if (length(x) <= 1 || !all(!is.na(x)) || !is.numeric(x)) {
         stop("A numeric vector of length > 1 and without NAs must be passed to",
              " 'x'.")
@@ -82,7 +105,9 @@ rollcast <- function(x, p = 0.975, method = c("plain", "age", "vwhs", "fhs"),
              "0 < p < l.")
     }
     if (!(length(method) %in% c(1, 4)) || !all(!is.na(method)) ||
-        !is.character(method) || !method %in% c("plain", "age", "vwhs", "fhs")) {
+        !is.character(method) || !all(method %in% c("plain", "age", "vwhs",
+                                                    "fhs")))
+        {
         stop("A single character value must be passed to 'method'.",
              "Valid choices are 'plain', 'age', 'vwhs' or 'fhs'.")
     }
@@ -104,9 +129,17 @@ rollcast <- function(x, p = 0.975, method = c("plain", "age", "vwhs", "fhs"),
        (nwin + nout) > length(x)) {
         stop("Window size and (or) out-of-sample size are too large.")
     }
-    if (length(arma) != 1 || !arma %in% c(TRUE, FALSE)) {
-        stop("The argument 'arma' must be TRUE or FALSE.")
+    if (method == 'fhs' && (length(nboot) != 1 || is.na(nboot) ||
+        !is.numeric(nboot) || nboot <= 0)) {
+        stop("The argument 'nboot' must be a single non-NA integer value with ",
+             "nboot > 0.")
     }
+    if (!(length(model) %in% c(1, 2)) || !all(!is.na(model)) ||
+        !is.character(model) || !all(model %in% c("EWMA", "GARCH"))) {
+        stop("A single character value must be passed to 'model'.",
+              "Valid choices are 'EWMA' or 'GARCH'.")
+    }
+
 
     if (all(method == c("plain", "age", "vwhs", "fhs")))
         method <- "plain"
@@ -114,7 +147,8 @@ rollcast <- function(x, p = 0.975, method = c("plain", "age", "vwhs", "fhs"),
         lambda <- 0.98
     if (all(lambda == c(0.94, 0.98)) && method == "vwhs" || method == "fhs")
         lambda <- 0.94
-
+    if (all(model == c("EWMA", "GARCH")))
+        model <- "EWMA"
 
     n <- length(x)
     nin <- n - nout
@@ -159,36 +193,39 @@ rollcast <- function(x, p = 0.975, method = c("plain", "age", "vwhs", "fhs"),
         }
     }
     if (method == "vwhs") {
-        fcasts[1, ] <- vwhs(xstart, p = p, lambda = lambda)[[1]]
+        fcasts[1, ] <- vwhs(xstart, p = p, lambda = lambda, model = model,
+                            ...)[[1]]
         if (nout > 1) {
             for (i in 2:nout) {
                 if (i <= nwin) {
                     fcasts[i, ] <- vwhs(c(xstart[i:nwin],
                                           xout[1:(i - 1)]), p = p,
-                                        lambda = lambda)[[1]]
+                                        lambda = lambda, model = model,
+                                        ...)[[1]]
                 }
                 else{
                     fcasts[i, ] <- vwhs(xout[(i - nwin):(i - 1)], p = p,
-                                        lambda = lambda)[[1]]
+                                        lambda = lambda, model = model,
+                                        ...)[[1]]
                 }
             }
         }
     }
     if (method == "fhs") {
         fcasts[1, ] <- fhs(xstart, p = p, lambda = lambda, nboot = nboot,
-                           arma = arma, ...)[[1]]
+                           model = model, ...)[[1]]
         if (nout > 1) {
             for (i in 2:nout) {
                 if (i <= nwin) {
                     fcasts[i, ] <- fhs(c(xstart[i:nwin],
                                          xout[1:(i - 1)]), p = p,
-                                         lambda = lambda, nboot = nboot,
-                                         arma = arma, ...)[[1]]
+                                       lambda = lambda, nboot = nboot,
+                                       model = model, ...)[[1]]
                 }
                 else{
                     fcasts[i, ] <- fhs(xout[(i - nwin):(i - 1)], p = p,
                                        lambda = lambda, nboot = nboot,
-                                       arma = arma, ...)[[1]]
+                                       model = model, ...)[[1]]
                 }
             }
         }
