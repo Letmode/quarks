@@ -4,9 +4,9 @@
 #' at Risk) by means of plain and age-weighted historical simulation.
 #'
 #' @param x a numeric vector of asset returns
-#' @param p confidence level for VaR calculation; default is 0.975
-#' @param method method to be used for calculation; default is 'plain'
-#' @param lambda decay factor for the calculation of weights; default is 0.98
+#' @param p confidence level for VaR calculation; default is \code{0.975}
+#' @param method method to be used for calculation; default is \code{'plain'}
+#' @param lambda decay factor for the calculation of weights; default is \code{0.98}
 #'
 #' @export
 #'

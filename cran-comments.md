@@ -1,13 +1,13 @@
-## Patch release (version 1.0.6)
+## Patch release (version 1.0.7)
 This is a patch release.
 
-- modifications of 'hs.R', 'vwhs.R', and 'rollcast.R'
-- implemented 'fhs.R'
-- new import: 'rugarch'
+- modification of 'plot.quarks.R'
+- documentation of all functions slightly modified
+
 Thank you very much for your efforts.
 
 ## Test environments
-* local R installation, R 4.0.5
+* local R installation, R 4.1.0
 * win-builder (devel)
 * r-hub
 
