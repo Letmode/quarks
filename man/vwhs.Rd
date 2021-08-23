@@ -41,9 +41,9 @@ prices <- DAX30$price.close
 returns <- diff(log(prices))
 # volatility weighting via EWMA
 ewma <- vwhs(x = returns, p = 0.975, model = "EWMA", lambda = 0.94)
-ewma$VaR_ES
+ewma
 # volatility weighting via GARCH
 garch <- vwhs(x = returns, p = 0.975, model = "GARCH", variance.model =
 list(model = "sGARCH"))
-garch$VaR_ES
+garch
 }

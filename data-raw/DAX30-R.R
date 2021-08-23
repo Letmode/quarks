@@ -1,6 +1,6 @@
 ## code to prepare `DAX30.R` dataset goes here
-DAX30 <- BatchGetSymbols::BatchGetSymbols("^GDAXI",
+DJI <- BatchGetSymbols::BatchGetSymbols("^DJI",
   first.date = "2000-01-01", last.date = "2020-12-31",
   freq.data = "daily"
 )$df.tickers
-usethis::use_data(DAX30, overwrite = TRUE)
+usethis::use_data(DJI, overwrite = TRUE)

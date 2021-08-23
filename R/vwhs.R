@@ -29,11 +29,11 @@
 #' returns <- diff(log(prices))
 #' # volatility weighting via EWMA
 #' ewma <- vwhs(x = returns, p = 0.975, model = "EWMA", lambda = 0.94)
-#' ewma$VaR_ES
+#' ewma
 #' # volatility weighting via GARCH
 #' garch <- vwhs(x = returns, p = 0.975, model = "GARCH", variance.model =
 #' list(model = "sGARCH"))
-#' garch$VaR_ES
+#' garch
 
 vwhs <- function(x, p = 0.975, model = c("EWMA", "GARCH"), lambda = 0.94, ...)
     {
@@ -76,9 +76,6 @@ vwhs <- function(x, p = 0.975, model = c("EWMA", "GARCH"), lambda = 0.94, ...)
     loss <- -(xz * csig[n])
     VaR <- stats::quantile(loss, p)
     ES <- mean(loss[loss > VaR])
-    results <- cbind(VaR = VaR, ES = ES)
-    colnames(results) <- c("VaR", "ES")
-    rownames(results) <- paste0(100 * p, "%")
-    results <- list(VaR_ES = results, garchmod = fit)
+    results <- list(VaR = VaR, ES = ES, garchmod = fit)
     results
 }

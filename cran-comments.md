@@ -2,7 +2,9 @@
 This is a patch release.
 
 - modification of 'plot.quarks.R'
+- modified output of 'hs.R', 'vwhs.R' and 'fhs.R' 
 - documentation of all functions slightly modified
+- added five additional data sets
 
 Thank you very much for your efforts.
 

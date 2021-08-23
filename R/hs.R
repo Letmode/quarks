@@ -1,6 +1,6 @@
 #' Nonparametric calculation of univariate Value at Risk and Expected Shortfall
 #'
-#' Computes Value at Risk and Expected Shortfall (also called Conditional Value
+#' Computes Value at Risk and Expected Shortfall (Conditional Value
 #' at Risk) by means of plain and age-weighted historical simulation.
 #'
 #' @param x a numeric vector of asset returns
@@ -62,9 +62,6 @@ hs <- function(x, p = 0.975, method = c("age", "plain"), lambda = 0.98) {
         l.ES <- l[l > VaR]
         ES <- sum(l.ES * w.ES)
     }
-    results <- cbind(VaR = VaR, ES = ES)
-    colnames(results) <- c("VaR", "ES")
-    rownames(results) <- paste0(100 * p, "%")
-    results <- list(VaR_ES = results)
+    results <- list(VaR = VaR, ES = ES)
     results
 }

@@ -1,7 +1,7 @@
 #' Filtered historical simulation
 #'
-#' Calculates univariate Value at Risk and Expected Shortfall (also called
-#' Conditional Value at Risk) by means of filtered historical simulation.
+#' Calculates univariate Value at Risk and Expected Shortfall (Conditional
+#' Value at Risk) by means of filtered historical simulation.
 #' Volatility can be estimated with an exponentially weighted moving
 #' average or a GARCH-type model.
 #'
@@ -37,11 +37,11 @@
 #' # volatility weighting via EWMA
 #' ewma <- fhs(x = returns, p = 0.975, model = "EWMA", lambda = 0.94,
 #'             nboot = 10000)
-#' ewma$VaR_ES
+#' ewma
 #' # volatility weighting via GARCH
 #' garch <- fhs(x = returns, p = 0.975, model = "GARCH", variance.model =
 #' list(model = "sGARCH"), nboot = 10000)
-#' garch$VaR_ES
+#' garch
 
 fhs <- function(x, p = 0.975, model = c("EWMA", "GARCH"), lambda = 0.94,
                 nboot = NULL, ...) {
@@ -94,8 +94,6 @@ fhs <- function(x, p = 0.975, model = c("EWMA", "GARCH"), lambda = 0.94,
   boot.loss <- -(boot.xz * one.ahead.csig)
   VaR <- stats::quantile(boot.loss, p)
   ES <- mean(boot.loss[boot.loss > VaR])
-  results <- cbind(VaR = VaR, ES = ES)
-  colnames(results) <- c(paste0(100 * p, "% VaR"), "ES")
-  results <- list(VaR_ES = results, garchmod = fit)
+  results <- list(VaR = VaR, ES = ES, garchmod = fit)
   results
 }

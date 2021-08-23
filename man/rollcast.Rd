@@ -58,7 +58,7 @@ Shortfall (Conditional Value at Risk)}
 }
 \description{
 Computes rolling one-step forecasts of Value at Risk and Expected Shortfall
-(also called Conditional Value at Risk) by means of plain historical
+(Conditional Value at Risk) by means of plain historical
 simulation age- and volatility-weighted historical simulation as well as
 filtered historical simulation.
 }

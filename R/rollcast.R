@@ -1,7 +1,7 @@
 #' Rolling one-step forecasts of Value at Risk and Expected Shortfall
 #'
 #' Computes rolling one-step forecasts of Value at Risk and Expected Shortfall
-#' (also called Conditional Value at Risk) by means of plain historical
+#' (Conditional Value at Risk) by means of plain historical
 #' simulation age- and volatility-weighted historical simulation as well as
 #' filtered historical simulation.
 #'
@@ -166,72 +166,84 @@ rollcast <- function(x, p = 0.975, model = c("EWMA", "GARCH"),
         xout <- x[(nin + 1):n]
     }
     xstart <- xin[(nin - nwin + 1):nin]
-    fcasts <- matrix(NA, max(nout, 1), 2, dimnames = list(c(), c("VaR", "ES")))
+    fcasts <- matrix(NA, max(nout, 1), 2)
     if (method == "plain") {
-        fcasts[1, ] <- hs(xstart, p = p, method = method)[[1]]
+        fcasts[1, ] <- unlist(hs(xstart, p = p, method = method),
+                              use.names = FALSE)[1:2]
         if (nout > 1) {
             for (i in 2:nout) {
                 if (i <= nwin) {
-                    fcasts[i, ] <- hs(c(xstart[i:nwin], xout[1:(i - 1)]),
-                                      p = p, method = method)[[1]]
+                    fcasts[i, ] <- unlist(hs(c(xstart[i:nwin], xout[1:(i - 1)]),
+                                            p = p, method = method),
+                                          use.names = FALSE)[1:2]
                 }
                 else{
-                    fcasts[i, ] <- hs(xout[(i - nwin):(i - 1)], p = p,
-                                      method = method)[[1]]
+                    fcasts[i, ] <- unlist(hs(xout[(i - nwin):(i - 1)], p = p,
+                                             method = method),
+                                          use.names = FALSE)[1:2]
                 }
             }
         }
     }
     if (method == "age") {
-        fcasts[1, ] <- hs(xstart, p = p, method = method, lambda = lambda)[[1]]
+        fcasts[1, ] <- unlist(hs(xstart, p = p, method = method, lambda = lambda),
+                              use.names = FALSE)[1:2]
         if (nout > 1) {
             for (i in 2:nout) {
                 if (i <= nwin) {
-                    fcasts[i, ] <- hs(c(xstart[i:nwin], xout[1:(i - 1)]),
-                                      p = p, method = method,
-                                      lambda = lambda)[[1]]
+                    fcasts[i, ] <- unlist(hs(c(xstart[i:nwin], xout[1:(i - 1)]),
+                                             p = p, method = method,
+                                             lambda = lambda),
+                                          use.names = FALSE)[1:2]
                 }
                 else{
-                    fcasts[i, ] <- hs(xout[(i - nwin):(i - 1)], p = p,
-                                      method = method, lambda = lambda)[[1]]
+                    fcasts[i, ] <- unlist(hs(xout[(i - nwin):(i - 1)], p = p,
+                                             method = method, lambda = lambda),
+                                          use.names = FALSE)[1:2]
                 }
             }
         }
     }
     if (method == "vwhs") {
-        fcasts[1, ] <- vwhs(xstart, p = p, lambda = lambda, model = model,
-                            ...)[[1]]
+        fcasts[1, ] <- unlist(vwhs(xstart, p = p, lambda = lambda,
+                                   model = model, ...),
+                              use.names = FALSE)[1:2]
         if (nout > 1) {
             for (i in 2:nout) {
                 if (i <= nwin) {
-                    fcasts[i, ] <- vwhs(c(xstart[i:nwin],
-                                          xout[1:(i - 1)]), p = p,
-                                        lambda = lambda, model = model,
-                                        ...)[[1]]
+                    fcasts[i, ] <- unlist(vwhs(c(xstart[i:nwin],
+                                               xout[1:(i - 1)]), p = p,
+                                               lambda = lambda,
+                                               model = model, ...),
+                                          use.names = FALSE)[1:2]
                 }
                 else{
-                    fcasts[i, ] <- vwhs(xout[(i - nwin):(i - 1)], p = p,
-                                        lambda = lambda, model = model,
-                                        ...)[[1]]
+                    fcasts[i, ] <- unlist(vwhs(xout[(i - nwin):(i - 1)], p = p,
+                                               lambda = lambda, model = model,
+                                               ...),
+                                          use.names = FALSE)[1:2]
                 }
             }
         }
     }
     if (method == "fhs") {
-        fcasts[1, ] <- fhs(xstart, p = p, lambda = lambda, nboot = nboot,
-                           model = model, ...)[[1]]
+        fcasts[1, ] <- unlist(fhs(xstart, p = p, lambda = lambda,
+                                  nboot = nboot, model = model, ...),
+                              use.names = FALSE)[1:2]
         if (nout > 1) {
             for (i in 2:nout) {
                 if (i <= nwin) {
-                    fcasts[i, ] <- fhs(c(xstart[i:nwin],
-                                         xout[1:(i - 1)]), p = p,
-                                       lambda = lambda, nboot = nboot,
-                                       model = model, ...)[[1]]
+                    fcasts[i, ] <- unlist(fhs(c(xstart[i:nwin],
+                                              xout[1:(i - 1)]), p = p,
+                                              lambda = lambda, nboot = nboot,
+                                              model = model, ...),
+                                         use.names = FALSE)[1:2]
                 }
                 else{
-                    fcasts[i, ] <- fhs(xout[(i - nwin):(i - 1)], p = p,
-                                       lambda = lambda, nboot = nboot,
-                                       model = model, ...)[[1]]
+                    fcasts[i, ] <- unlist(fhs(xout[(i - nwin):(i - 1)], p = p,
+                                              lambda = lambda, nboot = nboot,
+                                              model = model, ...),
+                                         use.names = FALSE)[1:2]
                 }
             }
         }
@@ -242,6 +254,5 @@ rollcast <- function(x, p = 0.975, model = c("EWMA", "GARCH"),
 
     class(results) <- "quarks"
     attr(results, "function") <- "rollcast"
-
     results
 }

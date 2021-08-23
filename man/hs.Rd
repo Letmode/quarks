@@ -23,7 +23,7 @@ Returns a list with the following elements:
 }
 }
 \description{
-Computes Value at Risk and Expected Shortfall (also called Conditional Value
+Computes Value at Risk and Expected Shortfall (Conditional Value
 at Risk) by means of plain and age-weighted historical simulation.
 }
 \examples{
