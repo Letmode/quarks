@@ -41,7 +41,7 @@ hs <- function(x, p = 0.975, method = c("age", "plain"), lambda = 0.98) {
 
     if (method == "plain") {
         l <- sort(-x)
-        VaR <- stats::quantile(l, p)
+        VaR <- unname(stats::quantile(l, p))
         ES <- mean(l[l > VaR])
     }
 

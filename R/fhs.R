@@ -92,7 +92,7 @@ fhs <- function(x, p = 0.975, model = c("EWMA", "GARCH"), lambda = 0.94,
   xz <- x/csig
   boot.xz <- sample(xz, size = nboot, replace = TRUE)
   boot.loss <- -(boot.xz * one.ahead.csig)
-  VaR <- stats::quantile(boot.loss, p)
+  VaR <- unname(stats::quantile(boot.loss, p))
   ES <- mean(boot.loss[boot.loss > VaR])
   results <- list(VaR = VaR, ES = ES, garchmod = fit)
   results

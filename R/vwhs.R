@@ -74,7 +74,7 @@ vwhs <- function(x, p = 0.975, model = c("EWMA", "GARCH"), lambda = 0.94, ...)
     n <- length(x)
     xz <- x/csig
     loss <- -(xz * csig[n])
-    VaR <- stats::quantile(loss, p)
+    VaR <- unname(stats::quantile(loss, p))
     ES <- mean(loss[loss > VaR])
     results <- list(VaR = VaR, ES = ES, garchmod = fit)
     results
