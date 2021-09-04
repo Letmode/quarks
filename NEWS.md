@@ -1,3 +1,11 @@
+# quarks 1.0.9
+
+- fixed a bug in 'hs.R'
+
+# quarks 1.0.8
+
+- corrected a typo which caused an error in 'vwhs.R' and 'fhs.R'
+
 # quarks 1.0.7
 
 - changed output value of 'hs.R', 'vwhs.R' and 'fhs.R'

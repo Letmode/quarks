@@ -85,5 +85,5 @@ results6 <- rollcast(x = returns, p = 0.975, model = 'GARCH',
 plot(results6)
 ```
 
-To further analyze these results one might apply e.g. the traffic light test
+To further analyze these results one might apply the traffic light test
 to assess the performance of these methods.

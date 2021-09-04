@@ -1,10 +1,8 @@
-## Patch release (version 1.0.7)
+## Patch release (version 1.0.9)
 This is a patch release.
 
-- modification of 'plot.quarks.R'
-- modified output of 'hs.R', 'vwhs.R' and 'fhs.R' 
-- documentation of all functions slightly modified
-- added five additional data sets
+- fixed a bug in 'hs.R' 
+
 
 Thank you very much for your efforts.
 
