@@ -1,10 +1,14 @@
+# quarks 1.0.10
+
+- added a print method for 'quarks'
+
 # quarks 1.0.9
 
 - fixed a bug in 'hs.R'
 
 # quarks 1.0.8
 
-- corrected a typo which caused an error in 'vwhs.R' and 'fhs.R'
+- fixed a bug which caused an error in 'vwhs.R' and 'fhs.R'
 
 # quarks 1.0.7
 
@@ -39,7 +43,7 @@
 
 # quarks 1.0.2
 
-- fixed a minor mistake in 'hs.R'
+- fixed a minor bug in 'hs.R'
 - minor adjustments in the README were made
 
 # quarks 1.0.1

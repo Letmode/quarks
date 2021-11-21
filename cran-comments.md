@@ -1,10 +1,7 @@
-## Patch release (version 1.0.9)
+## Patch release (version 1.0.10)
 This is a patch release.
 
-- fixed a bug in 'hs.R' 
-
-
-Thank you very much for your efforts.
+- added a print method for package quarks 
 
 ## Test environments
 * local R installation, R 4.1.0
