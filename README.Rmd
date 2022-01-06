@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 # quarks
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/quarks)](https://CRAN.R-project.org/package=quarks)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 The goal of `quarks` is to enable the user to compute Value at Risk (VaR) and Expected Shortfall (ES)
@@ -36,47 +38,50 @@ install.packages("quarks")
 The data set `DAX30`, which is implemented in the `quarks` package, contains daily financial data of the German stock index DAX from January 2000 to December 2020 (currency in EUR). In the following examples of the (out-of-sample) one-step forecasts of the 97.5$\%$-VaR (red line) and the corresponding ES (green line) are illustrated. Exceedances are indicated by the colored circles.
 
 
-```{r example, message=FALSE, warning=FALSE, fig.height=4, fig.width=12}
+```{r example, include = FALSE}
 library(quarks)         # Call the package
 ```
-```{r, fig.height=4, fig.width=12}
+
+```{r}
 # Calculating the returns
 prices <- DAX30$price.close
 returns <- diff(log(prices))
+```
 
-### Example 1 - plain historical simulation 
+**Example 1 - plain historical simulation**
+```{r, fig.height=4, fig.width=12}
 results1 <- rollcast(x = returns, p = 0.975, method = 'plain', nout = 250,
                      nwin = 250)
 results1
 plot(results1)
 ```
 
+**Example 2 - age weighted historical simulation**
 ```{r, fig.height=4, fig.width=12}
-### Example 2 - age weighted historical simulation 
 results2 <- rollcast(x = returns, p = 0.975, method = 'age', nout = 250,
                      nwin = 250)
 results2
 plot(results2)
 ```
 
+**Example 3 - volatility weighted historical simulation - EWMA**
 ```{r, fig.height=4, fig.width=12}
-### Example 3 - volatility weighted historical simulation - EWMA
 results3 <- rollcast(x = returns, p = 0.975, model = 'EWMA',
                      method = 'vwhs', nout = 250, nwin = 250)
 results3
 plot(results3)
 ```
 
+**Example 4 - volatility weighted historical simulation - GARCH**
 ```{r, fig.height=4, fig.width=12}
-### Example 4 - volatility weighted historical simulation - GARCH
 results4 <- rollcast(x = returns, p = 0.975, model = 'GARCH',
                      method = 'vwhs', nout = 250, nwin = 250)
 results4
 plot(results4)
 ```
 
+**Example 5 - filtered historical simulation - EWMA**
 ```{r, fig.height=4, fig.width=12}
-### Example 5 - filtered historical simulation - EWMA
 set.seed(12345)
 results5 <- rollcast(x = returns, p = 0.975, model = 'EWMA',
                      method = 'fhs', nout = 250, nwin = 250, nboot = 10000)
@@ -84,8 +89,8 @@ results5
 plot(results5)
 ```
 
+**Example 6 - filtered historical simulation - GARCH**
 ```{r, fig.height=4, fig.width=12}
-### Example 6 - filtered historical simulation - GARCH
 set.seed(12345)
 results6 <- rollcast(x = returns, p = 0.975, model = 'GARCH',
                      method = 'fhs', nout = 250, nwin = 250, nboot = 10000)
@@ -95,3 +100,32 @@ plot(results6)
 
 To further analyze these results one might apply backtesting
 to assess the performance of these methods.
+
+## Functions
+
+In ```quarks``` four functions are available.
+
+**Functions - version 1.0.11:**
+
+* ```ewma```: Estimates volatility of a return series by means of an exponentially weighted moving average
+* ```fhs```: Calculates univariate Value at Risk and Expected Shortfall by means of filtered historical simulation
+* ```hs```: Computes Value at Risk and Expected Shortfall by means of plain and age-weighted historical simulation.
+* ```rollcast````: Computes rolling one-step forecasts of Value at Risk and Expected Shortfall
+* ```vwhs```: Calculates univariate Value at Risk and Expected Shortfall by means of volatility weighted historical simulation
+
+For further information on each of the functions, we refer the user to the manual or the package documentation.
+
+**Data Sets**
+
+* ```DAX30```: Daily financial time series data of the German Stock Market Index (DAX)
+from January 2000 to December 2020
+* ```DJI```: Daily financial time series data of the Dow Jones Industrial Average (DJI)
+from January 2000 to December 2020
+* ```FTSE100```: Daily financial time series data of the Financial Times Stock Exchange Index (FTSE)
+from January 2000 to December 2020
+* ```HSI```: Daily financial time series data of the Hang Seng Index (HSI)
+from January 2000 to December 2020
+* ```NIK225```: Daily financial time series data of the Nikkei Heikin Kabuka Index (NIK)
+from January 2000 to December 2020
+* ```SP500```: Daily financial time series data of Standard and Poor`s (SP500)
+from January 2000 to December 2020

@@ -108,7 +108,7 @@ rollcast <- function(x, p = 0.975, model = c("EWMA", "GARCH"),
                      method = c("plain", "age", "vwhs", "fhs"),
                      lambda = c(0.94, 0.98), nout = NULL, nwin = NULL,
                      nboot = NULL, ...) {
-    if (length(x) <= 1 || !all(!is.na(x)) || !is.numeric(x)) {
+    if (length(x) <= 1 || any(is.na(x)) || !is.numeric(x)) {
         stop("A numeric vector of length > 1 and without NAs must be passed to",
              " 'x'.")
     }
@@ -116,14 +116,14 @@ rollcast <- function(x, p = 0.975, model = c("EWMA", "GARCH"),
         stop("The argument 'p' must be a single non-NA double value with ",
              "0 < p < l.")
     }
-    if (!(length(method) %in% c(1, 4)) || !all(!is.na(method)) ||
+    if (!(length(method) %in% c(1, 4)) || any(is.na(method)) ||
         !is.character(method) || !all(method %in% c("plain", "age", "vwhs",
                                                     "fhs")))
         {
         stop("A single character value must be passed to 'method'.",
              "Valid choices are 'plain', 'age', 'vwhs' or 'fhs'.")
     }
-    if (!(length(lambda) %in% c(1, 2)) || !all(!is.na(lambda)) ||
+    if (!(length(lambda) %in% c(1, 2)) || any(is.na(lambda)) ||
         !is.numeric(lambda) || all(lambda < 0) || all(lambda >= 1)) {
         stop("The argument 'lambda' must be a single non-NA double value with ",
              "0 < lambda < 1.")
@@ -146,7 +146,7 @@ rollcast <- function(x, p = 0.975, model = c("EWMA", "GARCH"),
         stop("The argument 'nboot' must be a single non-NA integer value with ",
              "nboot > 0.")
     }
-    if (!(length(model) %in% c(1, 2)) || !all(!is.na(model)) ||
+    if (!(length(model) %in% c(1, 2)) || any(is.na(model)) ||
         !is.character(model) || !all(model %in% c("EWMA", "GARCH"))) {
         stop("A single character value must be passed to 'model'. ",
               "Valid choices are 'EWMA' or 'GARCH'.")
