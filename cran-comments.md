@@ -1,7 +1,8 @@
-## Patch release (version 1.0.10)
+## Patch release (version 1.0.11)
 This is a patch release.
 
-- added a print method for package quarks 
+- slightly adjusted plot method
+- updated data sets
 
 ## Test environments
 * local R installation, R 4.1.0

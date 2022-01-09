@@ -17,7 +17,7 @@
 #' \item{p}{Confidence level for VaR calculation}
 #' }
 #' @examples
-#' prices <- DAX30$price.close
+#' prices <- DAX$price.close
 #' returns <- diff(log(prices))
 #' hs(x = returns, p = 0.975, method = 'plain')
 #' hs(x = returns, p = 0.975, method = 'age', lambda = 0.98)

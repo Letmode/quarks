@@ -26,7 +26,7 @@
 #' \code{model = 'EWMA'}}
 #' }
 #' @examples
-#' prices <- DAX30$price.close
+#' prices <- DAX$price.close
 #' returns <- diff(log(prices))
 #' # volatility weighting via EWMA
 #' ewma <- vwhs(x = returns, p = 0.975, model = "EWMA", lambda = 0.94)

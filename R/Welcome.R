@@ -8,7 +8,3 @@
   packageStartupMessage("")
   packageStartupMessage("********************************************************************************")
 }
-
-.onUnload <- function(libpath) {
-  library.dynam.unload("quarks", libpath)
-}

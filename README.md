@@ -39,7 +39,7 @@ indicated by the colored circles.
 
 ``` r
 # Calculating the returns
-prices <- DAX30$price.close
+prices <- DAX$price.close
 returns <- diff(log(prices))
 ```
 
@@ -63,11 +63,11 @@ results1
 #> --------------------------------------------
 #>  Out-of-sample losses exceeding VaR
 #>  
-#>  Number of breaches:    16
+#>  Number of breaches:    4
 #> --------------------------------------------
 #>  Out-of-sample losses exceeding ES
 #>  
-#>  Number of breaches:    7
+#>  Number of breaches:    1
 #> --------------------------------------------
 plot(results1)
 ```
@@ -94,11 +94,11 @@ results2
 #> --------------------------------------------
 #>  Out-of-sample losses exceeding VaR
 #>  
-#>  Number of breaches:    10
+#>  Number of breaches:    5
 #> --------------------------------------------
 #>  Out-of-sample losses exceeding ES
 #>  
-#>  Number of breaches:    5
+#>  Number of breaches:    4
 #> --------------------------------------------
 plot(results2)
 ```
@@ -125,11 +125,11 @@ results3
 #> --------------------------------------------
 #>  Out-of-sample losses exceeding VaR
 #>  
-#>  Number of breaches:    9
+#>  Number of breaches:    4
 #> --------------------------------------------
 #>  Out-of-sample losses exceeding ES
 #>  
-#>  Number of breaches:    5
+#>  Number of breaches:    3
 #> --------------------------------------------
 plot(results3)
 ```
@@ -156,11 +156,11 @@ results4
 #> --------------------------------------------
 #>  Out-of-sample losses exceeding VaR
 #>  
-#>  Number of breaches:    9
+#>  Number of breaches:    5
 #> --------------------------------------------
 #>  Out-of-sample losses exceeding ES
 #>  
-#>  Number of breaches:    5
+#>  Number of breaches:    3
 #> --------------------------------------------
 plot(results4)
 ```
@@ -188,11 +188,11 @@ results5
 #> --------------------------------------------
 #>  Out-of-sample losses exceeding VaR
 #>  
-#>  Number of breaches:    8
+#>  Number of breaches:    4
 #> --------------------------------------------
 #>  Out-of-sample losses exceeding ES
 #>  
-#>  Number of breaches:    4
+#>  Number of breaches:    3
 #> --------------------------------------------
 plot(results5)
 ```
@@ -220,11 +220,11 @@ results6
 #> --------------------------------------------
 #>  Out-of-sample losses exceeding VaR
 #>  
-#>  Number of breaches:    9
+#>  Number of breaches:    5
 #> --------------------------------------------
 #>  Out-of-sample losses exceeding ES
 #>  
-#>  Number of breaches:    7
+#>  Number of breaches:    2
 #> --------------------------------------------
 plot(results6)
 ```
@@ -236,7 +236,7 @@ the performance of these methods.
 
 ## Functions
 
-In `quarks` four functions are available.
+In `quarks` five functions are available.
 
 **Functions - version 1.0.11:**
 
@@ -246,8 +246,8 @@ In `quarks` four functions are available.
     means of filtered historical simulation
 -   `hs`: Computes Value at Risk and Expected Shortfall by means of
     plain and age-weighted historical simulation.
--   \`\`\`rollcast\`\`\`\`: Computes rolling one-step forecasts of Value
-    at Risk and Expected Shortfall
+-   `rollcast`: Computes rolling one-step-ahead forecasts of Value at
+    Risk and Expected Shortfall
 -   `vwhs`: Calculates univariate Value at Risk and Expected Shortfall
     by means of volatility weighted historical simulation
 
@@ -256,15 +256,15 @@ the manual or the package documentation.
 
 **Data Sets**
 
--   `DAX30`: Daily financial time series data of the German Stock Market
-    Index (DAX) from January 2000 to December 2020
+-   `DAX`: Daily financial time series data of the German Stock Market
+    Index (DAX) from January 2000 to December 2021
 -   `DJI`: Daily financial time series data of the Dow Jones Industrial
-    Average (DJI) from January 2000 to December 2020
+    Average (DJI) from January 2000 to December 2021
 -   `FTSE100`: Daily financial time series data of the Financial Times
-    Stock Exchange Index (FTSE) from January 2000 to December 2020
+    Stock Exchange Index (FTSE) from January 2000 to December 2021
 -   `HSI`: Daily financial time series data of the Hang Seng Index (HSI)
-    from January 2000 to December 2020
+    from January 2000 to December 2021
 -   `NIK225`: Daily financial time series data of the Nikkei Heikin
-    Kabuka Index (NIK) from January 2000 to December 2020
+    Kabuka Index (NIK) from January 2000 to December 2021
 -   `SP500`: Daily financial time series data of Standard and Poor\`s
-    (SP500) from January 2000 to December 2020
+    (SP500) from January 2000 to December 2021

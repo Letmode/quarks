@@ -1,7 +1,7 @@
-#' Rolling one-step forecasts of Value at Risk and Expected Shortfall
+#' Rolling one-step ahead forecasts of Value at Risk and Expected Shortfall
 #'
-#' Computes rolling one-step forecasts of Value at Risk and Expected Shortfall
-#' (Conditional Value at Risk) by means of plain historical
+#' Computes rolling one-step ahead forecasts of Value at Risk and Expected
+#' Shortfall (Conditional Value at Risk) by means of plain historical
 #' simulation age- and volatility-weighted historical simulation as well as
 #' filtered historical simulation.
 #'
@@ -44,7 +44,7 @@
 #' }
 #' @examples
 #'
-#' prices <- DAX30$price.close
+#' prices <- DAX$price.close
 #' returns <- diff(log(prices))
 #' n <- length(returns)
 #' nout <- 250 # number of obs. for out-of-sample forecasting

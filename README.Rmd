@@ -44,7 +44,7 @@ library(quarks)         # Call the package
 
 ```{r}
 # Calculating the returns
-prices <- DAX30$price.close
+prices <- DAX$price.close
 returns <- diff(log(prices))
 ```
 
@@ -103,29 +103,29 @@ to assess the performance of these methods.
 
 ## Functions
 
-In ```quarks``` four functions are available.
+In ```quarks``` five functions are available.
 
 **Functions - version 1.0.11:**
 
 * ```ewma```: Estimates volatility of a return series by means of an exponentially weighted moving average
 * ```fhs```: Calculates univariate Value at Risk and Expected Shortfall by means of filtered historical simulation
 * ```hs```: Computes Value at Risk and Expected Shortfall by means of plain and age-weighted historical simulation.
-* ```rollcast````: Computes rolling one-step forecasts of Value at Risk and Expected Shortfall
+* ```rollcast```: Computes rolling one-step-ahead forecasts of Value at Risk and Expected Shortfall
 * ```vwhs```: Calculates univariate Value at Risk and Expected Shortfall by means of volatility weighted historical simulation
 
 For further information on each of the functions, we refer the user to the manual or the package documentation.
 
 **Data Sets**
 
-* ```DAX30```: Daily financial time series data of the German Stock Market Index (DAX)
-from January 2000 to December 2020
+* ```DAX```: Daily financial time series data of the German Stock Market Index (DAX)
+from January 2000 to December 2021
 * ```DJI```: Daily financial time series data of the Dow Jones Industrial Average (DJI)
-from January 2000 to December 2020
+from January 2000 to December 2021
 * ```FTSE100```: Daily financial time series data of the Financial Times Stock Exchange Index (FTSE)
-from January 2000 to December 2020
+from January 2000 to December 2021
 * ```HSI```: Daily financial time series data of the Hang Seng Index (HSI)
-from January 2000 to December 2020
+from January 2000 to December 2021
 * ```NIK225```: Daily financial time series data of the Nikkei Heikin Kabuka Index (NIK)
-from January 2000 to December 2020
+from January 2000 to December 2021
 * ```SP500```: Daily financial time series data of Standard and Poor`s (SP500)
-from January 2000 to December 2020
+from January 2000 to December 2021
