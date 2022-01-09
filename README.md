@@ -30,9 +30,9 @@ install.packages("quarks")
 
 ## Examples
 
-The data set `DAX30`, which is implemented in the `quarks` package,
+The data set `DAX`, which is implemented in the `quarks` package,
 contains daily financial data of the German stock index DAX from January
-2000 to December 2020 (currency in EUR). In the following examples of
+2000 to December 2021 (currency in EUR). In the following examples of
 the (out-of-sample) one-step forecasts of the 97.5%-VaR (red line) and
 the corresponding ES (green line) are illustrated. Exceedances are
 indicated by the colored circles.
@@ -69,10 +69,15 @@ results1
 #>  
 #>  Number of breaches:    1
 #> --------------------------------------------
+```
+
+Visualize your results with the plot method implemented in `quarks`.
+
+``` r
 plot(results1)
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 **Example 2 - age weighted historical simulation**
 
@@ -100,10 +105,13 @@ results2
 #>  
 #>  Number of breaches:    4
 #> --------------------------------------------
+```
+
+``` r
 plot(results2)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
 
 **Example 3 - volatility weighted historical simulation - EWMA**
 
@@ -131,10 +139,13 @@ results3
 #>  
 #>  Number of breaches:    3
 #> --------------------------------------------
+```
+
+``` r
 plot(results3)
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
 
 **Example 4 - volatility weighted historical simulation - GARCH**
 
@@ -162,10 +173,13 @@ results4
 #>  
 #>  Number of breaches:    3
 #> --------------------------------------------
+```
+
+``` r
 plot(results4)
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
 
 **Example 5 - filtered historical simulation - EWMA**
 
@@ -194,10 +208,13 @@ results5
 #>  
 #>  Number of breaches:    3
 #> --------------------------------------------
+```
+
+``` r
 plot(results5)
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" />
 
 **Example 6 - filtered historical simulation - GARCH**
 
@@ -226,10 +243,13 @@ results6
 #>  
 #>  Number of breaches:    2
 #> --------------------------------------------
+```
+
+``` r
 plot(results6)
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-14-1.png" width="100%" />
 
 To further analyze these results one might apply backtesting to assess
 the performance of these methods.

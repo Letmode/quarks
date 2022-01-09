@@ -35,7 +35,7 @@ install.packages("quarks")
 
 ## Examples
 
-The data set `DAX30`, which is implemented in the `quarks` package, contains daily financial data of the German stock index DAX from January 2000 to December 2020 (currency in EUR). In the following examples of the (out-of-sample) one-step forecasts of the 97.5$\%$-VaR (red line) and the corresponding ES (green line) are illustrated. Exceedances are indicated by the colored circles.
+The data set `DAX`, which is implemented in the `quarks` package, contains daily financial data of the German stock index DAX from January 2000 to December 2021 (currency in EUR). In the following examples of the (out-of-sample) one-step forecasts of the 97.5$\%$-VaR (red line) and the corresponding ES (green line) are illustrated. Exceedances are indicated by the colored circles.
 
 
 ```{r example, include = FALSE}
@@ -49,10 +49,15 @@ returns <- diff(log(prices))
 ```
 
 **Example 1 - plain historical simulation**
-```{r, fig.height=4, fig.width=12}
+```{r}
 results1 <- rollcast(x = returns, p = 0.975, method = 'plain', nout = 250,
                      nwin = 250)
 results1
+```
+
+Visualize your results with the plot method implemented in ```quarks```.
+
+```{r, fig.height=4, fig.width=12}
 plot(results1)
 ```
 
@@ -61,6 +66,9 @@ plot(results1)
 results2 <- rollcast(x = returns, p = 0.975, method = 'age', nout = 250,
                      nwin = 250)
 results2
+```
+
+```{r, fig.height=4, fig.width=12}
 plot(results2)
 ```
 
@@ -69,6 +77,9 @@ plot(results2)
 results3 <- rollcast(x = returns, p = 0.975, model = 'EWMA',
                      method = 'vwhs', nout = 250, nwin = 250)
 results3
+```
+
+```{r, fig.height=4, fig.width=12}
 plot(results3)
 ```
 
@@ -77,6 +88,9 @@ plot(results3)
 results4 <- rollcast(x = returns, p = 0.975, model = 'GARCH',
                      method = 'vwhs', nout = 250, nwin = 250)
 results4
+```
+
+```{r, fig.height=4, fig.width=12}
 plot(results4)
 ```
 
@@ -86,6 +100,9 @@ set.seed(12345)
 results5 <- rollcast(x = returns, p = 0.975, model = 'EWMA',
                      method = 'fhs', nout = 250, nwin = 250, nboot = 10000)
 results5
+```
+
+```{r, fig.height=4, fig.width=12}
 plot(results5)
 ```
 
@@ -95,6 +112,9 @@ set.seed(12345)
 results6 <- rollcast(x = returns, p = 0.975, model = 'GARCH',
                      method = 'fhs', nout = 250, nwin = 250, nboot = 10000)
 results6
+```
+
+```{r, fig.height=4, fig.width=12}
 plot(results6)
 ```
 
