@@ -79,6 +79,8 @@ plot(results1)
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
+------------------------------------------------------------------------
+
 **Example 2 - age weighted historical simulation**
 
 ``` r
@@ -112,6 +114,8 @@ plot(results2)
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+
+------------------------------------------------------------------------
 
 **Example 3 - volatility weighted historical simulation - EWMA**
 
@@ -147,6 +151,8 @@ plot(results3)
 
 <img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
 
+------------------------------------------------------------------------
+
 **Example 4 - volatility weighted historical simulation - GARCH**
 
 ``` r
@@ -180,6 +186,8 @@ plot(results4)
 ```
 
 <img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
+
+------------------------------------------------------------------------
 
 **Example 5 - filtered historical simulation - EWMA**
 
@@ -215,6 +223,8 @@ plot(results5)
 ```
 
 <img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" />
+
+------------------------------------------------------------------------
 
 **Example 6 - filtered historical simulation - GARCH**
 
@@ -254,6 +264,8 @@ plot(results6)
 To further analyze these results one might apply backtesting to assess
 the performance of these methods.
 
+------------------------------------------------------------------------
+
 ## Functions
 
 In `quarks` five functions are available.
@@ -274,7 +286,9 @@ In `quarks` five functions are available.
 For further information on each of the functions, we refer the user to
 the manual or the package documentation.
 
-**Data Sets**
+------------------------------------------------------------------------
+
+## Data Sets
 
 -   `DAX`: Daily financial time series data of the German Stock Market
     Index (DAX) from January 2000 to December 2021

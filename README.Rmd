@@ -61,6 +61,8 @@ Visualize your results with the plot method implemented in ```quarks```.
 plot(results1)
 ```
 
+---
+
 **Example 2 - age weighted historical simulation**
 ```{r, fig.height=4, fig.width=12}
 results2 <- rollcast(x = returns, p = 0.975, method = 'age', nout = 250,
@@ -71,6 +73,8 @@ results2
 ```{r, fig.height=4, fig.width=12}
 plot(results2)
 ```
+
+---
 
 **Example 3 - volatility weighted historical simulation - EWMA**
 ```{r, fig.height=4, fig.width=12}
@@ -83,6 +87,8 @@ results3
 plot(results3)
 ```
 
+---
+
 **Example 4 - volatility weighted historical simulation - GARCH**
 ```{r, fig.height=4, fig.width=12}
 results4 <- rollcast(x = returns, p = 0.975, model = 'GARCH',
@@ -93,6 +99,8 @@ results4
 ```{r, fig.height=4, fig.width=12}
 plot(results4)
 ```
+
+---
 
 **Example 5 - filtered historical simulation - EWMA**
 ```{r, fig.height=4, fig.width=12}
@@ -105,6 +113,8 @@ results5
 ```{r, fig.height=4, fig.width=12}
 plot(results5)
 ```
+
+---
 
 **Example 6 - filtered historical simulation - GARCH**
 ```{r, fig.height=4, fig.width=12}
@@ -121,6 +131,8 @@ plot(results6)
 To further analyze these results one might apply backtesting
 to assess the performance of these methods.
 
+---
+
 ## Functions
 
 In ```quarks``` five functions are available.
@@ -135,7 +147,9 @@ In ```quarks``` five functions are available.
 
 For further information on each of the functions, we refer the user to the manual or the package documentation.
 
-**Data Sets**
+---
+
+## Data Sets
 
 * ```DAX```: Daily financial time series data of the German Stock Market Index (DAX)
 from January 2000 to December 2021
