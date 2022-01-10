@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">quarks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.12</span>
       </span>
     </div>
 
@@ -117,6 +117,7 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results1</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="100%"></p>
+<hr>
 <p><strong>Example 2 - age weighted historical simulation</strong></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, method <span class="op">=</span> <span class="st">'age'</span>, nout <span class="op">=</span> <span class="fl">250</span>,
@@ -145,6 +146,7 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results2</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-6-1.png" width="100%"></p>
+<hr>
 <p><strong>Example 3 - volatility weighted historical simulation - EWMA</strong></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results3</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, model <span class="op">=</span> <span class="st">'EWMA'</span>,
@@ -173,6 +175,7 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results3</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-8-1.png" width="100%"></p>
+<hr>
 <p><strong>Example 4 - volatility weighted historical simulation - GARCH</strong></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results4</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, model <span class="op">=</span> <span class="st">'GARCH'</span>,
@@ -201,6 +204,7 @@
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results4</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-10-1.png" width="100%"></p>
+<hr>
 <p><strong>Example 5 - filtered historical simulation - EWMA</strong></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span>
@@ -230,6 +234,7 @@
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results5</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-12-1.png" width="100%"></p>
+<hr>
 <p><strong>Example 6 - filtered historical simulation - GARCH</strong></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span>
@@ -260,6 +265,7 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results6</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-14-1.png" width="100%"></p>
 <p>To further analyze these results one might apply backtesting to assess the performance of these methods.</p>
+<hr>
 </div>
 <div class="section level2">
 <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>
@@ -279,7 +285,11 @@
 <code>vwhs</code>: Calculates univariate Value at Risk and Expected Shortfall by means of volatility weighted historical simulation</li>
 </ul>
 <p>For further information on each of the functions, we refer the user to the manual or the package documentation.</p>
-<p><strong>Data Sets</strong></p>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="data-sets">Data Sets<a class="anchor" aria-label="anchor" href="#data-sets"></a>
+</h2>
 <ul>
 <li>
 <code>DAX</code>: Daily financial time series data of the German Stock Market Index (DAX) from January 2000 to December 2021</li>
