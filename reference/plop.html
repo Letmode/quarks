@@ -55,14 +55,14 @@
     <dl><dt>x</dt>
 <dd><p>a numeric matrix of asset returns or losses</p></dd>
 <dt>wts</dt>
-<dd><p>a numeric vector or matrix containing the standardized portfolio
-weights; by default the portfolio is equally weighted
-over time and across all assets; if a vector is passed to <code>wts</code> the
-portfolio is equally weighted over time; weights should add up to 1
-(row-wise for matrices)</p></dd>
+<dd><p>a numeric vector or matrix containing the portfolio
+weights; portfolio value is standardized to 1 on any observation unit;
+sum of weights should not exceed 1 (row-wise for matrices);by default
+the portfolio is equally weighted over time and across all assets; if a
+vector is passed to <code>wts</code> the portfolio is equally weighted over time</p></dd>
 <dt>approxim</dt>
 <dd><p>controls if a first-order approximation for the calculation
-of returns or losses is used; default is <code>'lin'</code> (first-order
+of returns or losses is used; default is <code>1</code> (first-order
 approximation is employed)</p></dd>
 </dl></div>
     <div id="value">
