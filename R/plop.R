@@ -2,7 +2,7 @@
 #'
 #' Calculates portfolio returns or losses by assigning weights
 #'
-#' @param x a numeric vector or matrix of asset returns
+#' @param x a numeric matrix of asset returns or losses
 #' @param wts standardized portfolio weights (should add up to 1); by default
 #' the portfolio is equally weighted
 #' @param approxim controls if a first-order approximation for profits or
@@ -20,9 +20,10 @@
 #' portfol <- cbind(SP500$price.close, DJI$price.close)
 #' returns <- apply(portfol, 2, function(x) diff(log(x)))
 #' # defining weights and applying the P&L operator function
-#' wts <- c(0.7, 0.3)
-#' portret <- plop(returns, wts = wts, approxim = 'none')
-#' head(portret$pl)
+#' wts <- c(0.4, 0.6)
+#' portret <- plop(returns, wts = wts, approxim = 'lin')
+#' portloss <- plop(-returns, wts = wts, approxim = 'lin')
+#' plot.ts(cbind(portret$pl, portloss$pl))
 #'
 plop <-  function(x, wts = NULL, approxim = c("none", "lin")) {
   if (all(approxim == c("none", "lin"))) approxim = "lin"
