@@ -9,14 +9,14 @@ plop(x, wts = NULL, approxim = c(0, 1))
 \arguments{
 \item{x}{a numeric matrix of asset returns or losses}
 
-\item{wts}{a numeric vector or matrix containing the standardized portfolio
-weights; by default the portfolio is equally weighted
-over time and across all assets; if a vector is passed to \code{wts} the
-portfolio is equally weighted over time; weights should add up to 1
-(row-wise for matrices)}
+\item{wts}{a numeric vector or matrix containing the portfolio
+weights; portfolio value is standardized to 1 on any observation unit;
+sum of weights should not exceed 1 (row-wise for matrices);by default
+the portfolio is equally weighted over time and across all assets; if a
+vector is passed to \code{wts} the portfolio is equally weighted over time}
 
 \item{approxim}{controls if a first-order approximation for the calculation
-of returns or losses is used; default is \code{'lin'} (first-order
+of returns or losses is used; default is \code{1} (first-order
 approximation is employed)}
 }
 \value{
