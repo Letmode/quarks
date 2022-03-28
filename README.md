@@ -270,7 +270,7 @@ the performance of these methods.
 
 In `quarks` six functions are available.
 
-**Functions - version 1.0.11:**
+**Functions - version 1.0.12:**
 
 -   `ewma`: Estimates volatility of a return series by means of an
     exponentially weighted moving average
@@ -278,8 +278,8 @@ In `quarks` six functions are available.
     means of filtered historical simulation
 -   `hs`: Computes Value at Risk and Expected Shortfall by means of
     plain and age-weighted historical simulation
--   `plop`: Profit & Loss operator function. Calculates portfolio
-    returns or losses by assigning weights
+-   `plop`: Profit & Loss operator function. Calculates weighted
+    portfolio returns or losses
 -   `rollcast`: Computes rolling one-step-ahead forecasts of Value at
     Risk and Expected Shortfall
 -   `vwhs`: Calculates univariate Value at Risk and Expected Shortfall
