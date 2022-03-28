@@ -47,7 +47,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plop</span><span class="op">(</span><span class="va">x</span>, wts <span class="op">=</span> <span class="cn">NULL</span>, approxim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"lin"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plop</span><span class="op">(</span><span class="va">x</span>, wts <span class="op">=</span> <span class="cn">NULL</span>, approxim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -55,11 +55,15 @@
     <dl><dt>x</dt>
 <dd><p>a numeric matrix of asset returns or losses</p></dd>
 <dt>wts</dt>
-<dd><p>standardized portfolio weights (should add up to 1); by default
-the portfolio is equally weighted</p></dd>
+<dd><p>a numeric vector or matrix containing the standardized portfolio
+weights; by default the portfolio is equally weighted
+over time and across all assets; if a vector is passed to <code>wts</code> the
+portfolio is equally weighted over time; weights should add up to 1
+(row-wise for matrices)</p></dd>
 <dt>approxim</dt>
-<dd><p>controls if a first-order approximation for profits or
-losses is used; default is <code>'lin'</code> (first-order approximation)</p></dd>
+<dd><p>controls if a first-order approximation for the calculation
+of returns or losses is used; default is <code>'lin'</code> (first-order
+approximation is employed)</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -79,8 +83,8 @@ losses is used; default is <code>'lin'</code> (first-order approximation)</p></d
 <span class="r-in"><span class="va">returns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">portfol</span>, <span class="fl">2</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="co"># defining weights and applying the P&amp;L operator function</span></span>
 <span class="r-in"><span class="va">wts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.6</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">portret</span> <span class="op">&lt;-</span> <span class="fu">plop</span><span class="op">(</span><span class="va">returns</span>, wts <span class="op">=</span> <span class="va">wts</span>, approxim <span class="op">=</span> <span class="st">'lin'</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">portloss</span> <span class="op">&lt;-</span> <span class="fu">plop</span><span class="op">(</span><span class="op">-</span><span class="va">returns</span>, wts <span class="op">=</span> <span class="va">wts</span>, approxim <span class="op">=</span> <span class="st">'lin'</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">portret</span> <span class="op">&lt;-</span> <span class="fu">plop</span><span class="op">(</span><span class="va">returns</span>, wts <span class="op">=</span> <span class="va">wts</span>, approxim <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">portloss</span> <span class="op">&lt;-</span> <span class="fu">plop</span><span class="op">(</span><span class="op">-</span><span class="va">returns</span>, wts <span class="op">=</span> <span class="va">wts</span>, approxim <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/plot.ts.html" class="external-link">plot.ts</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">portret</span><span class="op">$</span><span class="va">pl</span>, <span class="va">portloss</span><span class="op">$</span><span class="va">pl</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="plop-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
