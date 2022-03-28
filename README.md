@@ -268,7 +268,7 @@ the performance of these methods.
 
 ## Functions
 
-In `quarks` five functions are available.
+In `quarks` six functions are available.
 
 **Functions - version 1.0.11:**
 
@@ -277,7 +277,9 @@ In `quarks` five functions are available.
 -   `fhs`: Calculates univariate Value at Risk and Expected Shortfall by
     means of filtered historical simulation
 -   `hs`: Computes Value at Risk and Expected Shortfall by means of
-    plain and age-weighted historical simulation.
+    plain and age-weighted historical simulation
+-   `plop`: Profit & Loss operator function. Calculates portfolio
+    returns or losses by assigning weights
 -   `rollcast`: Computes rolling one-step-ahead forecasts of Value at
     Risk and Expected Shortfall
 -   `vwhs`: Calculates univariate Value at Risk and Expected Shortfall

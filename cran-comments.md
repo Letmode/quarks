@@ -1,8 +1,7 @@
-## Patch release (version 1.0.11)
+## Patch release (version 1.0.12)
 This is a patch release.
 
-- slightly adjusted plot method
-- updated data sets
+- added a new function ('plop()')
 
 ## Test environments
 * local R installation, R 4.1.0

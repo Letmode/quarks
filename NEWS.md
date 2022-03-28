@@ -1,3 +1,8 @@
+# quarks 1.0.12
+
+- added a new function ('plop()') which calculates weighted portfolio
+  returns and losses
+  
 # quarks 1.0.11
 
 - slightly adjusted plot method (added a grid)
