@@ -4,7 +4,7 @@
 \alias{plop}
 \title{Profit & Loss operator function}
 \usage{
-plop(x, wts = NULL, approxim = c("none", "lin"))
+plop(x, wts = NULL, approxim = c(0, 1))
 }
 \arguments{
 \item{x}{a numeric matrix of asset returns or losses}
@@ -12,8 +12,9 @@ plop(x, wts = NULL, approxim = c("none", "lin"))
 \item{wts}{standardized portfolio weights (should add up to 1); by default
 the portfolio is equally weighted}
 
-\item{approxim}{controls if a first-order approximation for profits or
-losses is used; default is \code{'lin'} (first-order approximation)}
+\item{approxim}{controls if a first-order approximation for the calculation
+of returns or losses is used; default is \code{'lin'} (first-order
+approximation is employed)}
 }
 \value{
 Returns a list with the following elements:
@@ -31,8 +32,8 @@ portfol <- cbind(SP500$price.close, DJI$price.close)
 returns <- apply(portfol, 2, function(x) diff(log(x)))
 # defining weights and applying the P&L operator function
 wts <- c(0.4, 0.6)
-portret <- plop(returns, wts = wts, approxim = 'lin')
-portloss <- plop(-returns, wts = wts, approxim = 'lin')
+portret <- plop(returns, wts = wts, approxim = 1)
+portloss <- plop(-returns, wts = wts, approxim = 1)
 plot.ts(cbind(portret$pl, portloss$pl))
 
 }
