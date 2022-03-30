@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^Codekiste$
+^R_old_300322
 ^data-raw$
 ^cran-comments\.md$
 ^README\.Rmd$

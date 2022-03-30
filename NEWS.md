@@ -1,7 +1,7 @@
-# quarks 1.0.12
+# quarks 1.1.0
 
-- added a new function ('plop()') which calculates weighted portfolio
-  returns and losses
+- implemented 4 new functions which enable the user to apply various
+  backtesting methods
   
 # quarks 1.0.11
 

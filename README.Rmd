@@ -89,10 +89,11 @@ plot(results3)
 
 ---
 
-**Example 4 - volatility weighted historical simulation - GARCH**
+**Example 4 - filtered historical simulation - GARCH**
 ```{r, fig.height=4, fig.width=12}
+set.seed(12345)
 results4 <- rollcast(x = returns, p = 0.975, model = 'GARCH',
-                     method = 'vwhs', nout = 250, nwin = 250)
+                     method = 'fhs', nout = 250, nwin = 250, nboot = 10000)
 results4
 ```
 
@@ -100,37 +101,42 @@ results4
 plot(results4)
 ```
 
----
+To assess the performance of these methods one might apply backtesting.
 
-**Example 5 - filtered historical simulation - EWMA**
+For instance, by employing the Traffic Light Test, Coverage Tests or by means of Loss Function.
+
+**Example 5 - Traffic Light Test**
 ```{r, fig.height=4, fig.width=12}
-set.seed(12345)
-results5 <- rollcast(x = returns, p = 0.975, model = 'EWMA',
-                     method = 'fhs', nout = 250, nwin = 250, nboot = 10000)
-results5
+# Calculating the returns
+prices <- SP500$price.close
+returns <- diff(log(prices))
+
+results <- rollcast(x = returns, p = 0.99, model = 'GARCH',
+                     method = 'vwhs', nout = 250, nwin = 500)
+trftest(results)
 ```
 
+**Example 6 - Coverage Tests**
 ```{r, fig.height=4, fig.width=12}
-plot(results5)
+# Calculating the returns
+prices <- HSI$price.close
+returns <- diff(log(prices))
+
+results <- rollcast(x = returns, p = 0.99, model = 'GARCH',
+                     method = 'vwhs', nout = 250, nwin = 500)
+cvgtest(results)
 ```
 
----
-
-**Example 6 - filtered historical simulation - GARCH**
+**Example 6 - Coverage Tests**
 ```{r, fig.height=4, fig.width=12}
-set.seed(12345)
-results6 <- rollcast(x = returns, p = 0.975, model = 'GARCH',
-                     method = 'fhs', nout = 250, nwin = 250, nboot = 10000)
-results6
+# Calculating the returns
+prices <- FTSE100$price.close
+returns <- diff(log(prices))
+
+results <- rollcast(x = returns, p = 0.99, model = 'GARCH',
+                     method = 'vwhs', nout = 250, nwin = 500)
+lossfun(results)
 ```
-
-```{r, fig.height=4, fig.width=12}
-plot(results6)
-```
-
-To further analyze these results one might apply backtesting
-to assess the performance of these methods.
-
 ---
 
 ## Functions
@@ -139,11 +145,14 @@ In ```quarks``` six functions are available.
 
 **Functions - version 1.0.12:**
 
+* ```cvgtest```: Applies various coverage tests to Value at Risk
 * ```ewma```: Estimates volatility of a return series by means of an exponentially weighted moving average
 * ```fhs```: Calculates univariate Value at Risk and Expected Shortfall by means of filtered historical simulation
 * ```hs```: Computes Value at Risk and Expected Shortfall by means of plain and age-weighted historical simulation
-* ```plop```: Profit & Loss operator function. Calculates weighted portfolio returns or losses
+* ```lossfun```: Calculates of loss functions of ES
+* ```plop```: Profit & Loss operator function; Calculates weighted portfolio returns or losses
 * ```rollcast```: Computes rolling one-step-ahead forecasts of Value at Risk and Expected Shortfall
+* ```trftest```: Applies the Traffic Light Test to Value at Risk 
 * ```vwhs```: Calculates univariate Value at Risk and Expected Shortfall by means of volatility weighted historical simulation
 
 For further information on each of the functions, we refer the user to the manual or the package documentation.
