@@ -34,6 +34,9 @@
     <loc>https://letmode.github.io/quarks/reference/SP500.html</loc>
   </url>
   <url>
+    <loc>https://letmode.github.io/quarks/reference/cvgtest.html</loc>
+  </url>
+  <url>
     <loc>https://letmode.github.io/quarks/reference/ewma.html</loc>
   </url>
   <url>
@@ -46,6 +49,9 @@
     <loc>https://letmode.github.io/quarks/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://letmode.github.io/quarks/reference/lossfun.html</loc>
+  </url>
+  <url>
     <loc>https://letmode.github.io/quarks/reference/plop.html</loc>
   </url>
   <url>
@@ -56,6 +62,9 @@
   </url>
   <url>
     <loc>https://letmode.github.io/quarks/reference/rollcast.html</loc>
+  </url>
+  <url>
+    <loc>https://letmode.github.io/quarks/reference/trftest.html</loc>
   </url>
   <url>
     <loc>https://letmode.github.io/quarks/reference/vwhs.html</loc>
