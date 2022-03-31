@@ -125,7 +125,7 @@ print.quarks <- function(x, ...) {
     cat("--------------------------------------------", fill = TRUE)
     cat("|            Independence test             |", fill = TRUE)
     cat("--------------------------------------------", fill = TRUE)
-    cat("H0: w_[00] = w[10]", sep = "", fill = TRUE)
+    cat("H0: w_[00] = w_[10]", sep = "", fill = TRUE)
     cat(" ", fill = TRUE)
     cat("p_[ind] = ", round(x$p.ind, 4), sep = "", fill = TRUE)
     cat("--------------------------------------------", fill = TRUE)
