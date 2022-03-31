@@ -106,16 +106,7 @@ corresponding estimated <code>obj$VaR</code> series and the coverage level <code
 for which the VaR has been calculated. If an object returned by this function
 is entered into the R console, a detailed overview of the test
 results is printed.</p>
-    </div>
-    <div id="references">
-    <h2>References</h2>
-    <p>Christoffersen, P. F. (1998). Evaluating interval forecasts. International
-economic review, pp. 841-862.</p>
-<p>Kupiec, P. (1995). Techniques for verifying the accuracy of risk measurement
-models. The J. of Derivatives, 3(2).</p>
-
-<p>'@details
-With this function, the conditional and the unconditional coverage
+<p>With this function, the conditional and the unconditional coverage
 tests introduced by Kupiec (1995) and Christoffersen (1998) can be applied.
 Given a return series \(r_t\) with \(n\) observations, divide the
 series into \(n-K\) in-sample and \(K\) out-of-sample observations,
@@ -130,6 +121,13 @@ for \(t = n + 1, n + 2, ..., n + K\) as the hit sequence, where \(\alpha\) is
 the confidence level for the VaR (often \(\alpha = 0.95\) or \(\alpha = 0.99\)).
 Furthermore, denote \(p = \alpha\) and let \(w\) be the actual covered
 proportion of losses in the data.</p>
+    </div>
+    <div id="references">
+    <h2>References</h2>
+    <p>Christoffersen, P. F. (1998). Evaluating interval forecasts. International
+economic review, pp. 841-862.</p>
+<p>Kupiec, P. (1995). Techniques for verifying the accuracy of risk measurement
+models. The J. of Derivatives, 3(2).</p>
     </div>
 
     <div id="ref-examples">
