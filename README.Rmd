@@ -127,7 +127,7 @@ results <- rollcast(x = returns, p = 0.99, model = 'GARCH',
 cvgtest(results)
 ```
 
-**Example 6 - Coverage Tests**
+**Example 7 - Loss Functions**
 ```{r, fig.height=4, fig.width=12}
 # Calculating the returns
 prices <- FTSE100$price.close
@@ -143,7 +143,7 @@ lossfun(results)
 
 In ```quarks``` six functions are available.
 
-**Functions - version 1.0.12:**
+**Functions - version 1.1.0:**
 
 * ```cvgtest```: Applies various coverage tests to Value at Risk
 * ```ewma```: Estimates volatility of a return series by means of an exponentially weighted moving average

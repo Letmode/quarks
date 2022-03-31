@@ -219,7 +219,7 @@ results <- rollcast(x = returns, p = 0.99, model = 'GARCH',
 trftest(results)
 #>  
 #> --------------------------------------------
-#> |            Backtesting result            |
+#> |            Traffic Light Test            |
 #> --------------------------------------------
 #>  Method: Volatility Weighting
 #>  Model:  sGARCH
@@ -230,11 +230,11 @@ trftest(results)
 #>  Green zone:  p < 95%          
 #>  Yellow zone: 95% <= p < 99.99%
 #>  Red zone:    p >= 99.99%      
-#>  
 #> --------------------------------------------
-#> |            Test - 99%-VaR              |
+#> |         Test result - 99%-VaR          |
 #> --------------------------------------------
 #>  Number of violations: 3
+#>  
 #>  p = 0.7581: Green zone
 #> --------------------------------------------
 ```
@@ -255,30 +255,30 @@ cvgtest(results)
 #> --------------------------------------------
 #> |               Test results               |
 #> --------------------------------------------
-#>  
+#>  Method: Volatility Weighting
+#>  Model:  sGARCH
 #> --------------------------------------------
 #> |        Unconditional coverage test       |
 #> --------------------------------------------
 #> H0: w = 0.99
-#> p_[uc] = 0.753
 #>  
+#> p_[uc] = 0.753
 #> --------------------------------------------
 #> |            Independence test             |
 #> --------------------------------------------
-#>  
 #> H0: w_[00] = w[10]
-#> p_[ind] = 0.0198
 #>  
+#> p_[ind] = 0.0198
 #> --------------------------------------------
 #> |         Conditional coverage test        |
 #> --------------------------------------------
-#>  
 #> H0: w_[00] = w_[10] = 0.99
+#>  
 #> p_[cc] = 0.0632
 #> --------------------------------------------
 ```
 
-**Example 6 - Coverage Tests**
+**Example 7 - Loss Functions**
 
 ``` r
 # Calculating the returns
@@ -311,7 +311,7 @@ lossfun(results)
 
 In `quarks` six functions are available.
 
-**Functions - version 1.0.12:**
+**Functions - version 1.1.0:**
 
 -   `cvgtest`: Applies various coverage tests to Value at Risk
 -   `ewma`: Estimates volatility of a return series by means of an
