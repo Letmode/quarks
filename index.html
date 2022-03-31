@@ -234,7 +234,7 @@
 <span class="fu"><a href="reference/trftest.html">trftest</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span>
 <span class="co">#&gt;  </span>
 <span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |            Backtesting result            |</span>
+<span class="co">#&gt; |            Traffic Light Test            |</span>
 <span class="co">#&gt; --------------------------------------------</span>
 <span class="co">#&gt;  Method: Volatility Weighting</span>
 <span class="co">#&gt;  Model:  sGARCH</span>
@@ -245,11 +245,11 @@
 <span class="co">#&gt;  Green zone:  p &lt; 95%          </span>
 <span class="co">#&gt;  Yellow zone: 95% &lt;= p &lt; 99.99%</span>
 <span class="co">#&gt;  Red zone:    p &gt;= 99.99%      </span>
-<span class="co">#&gt;  </span>
 <span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |            Test - 99%-VaR              |</span>
+<span class="co">#&gt; |         Test result - 99%-VaR          |</span>
 <span class="co">#&gt; --------------------------------------------</span>
 <span class="co">#&gt;  Number of violations: 3</span>
+<span class="co">#&gt;  </span>
 <span class="co">#&gt;  p = 0.7581: Green zone</span>
 <span class="co">#&gt; --------------------------------------------</span></code></pre></div>
 <p><strong>Example 6 - Coverage Tests</strong></p>
@@ -267,28 +267,28 @@
 <span class="co">#&gt; --------------------------------------------</span>
 <span class="co">#&gt; |               Test results               |</span>
 <span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  </span>
+<span class="co">#&gt;  Method: Volatility Weighting</span>
+<span class="co">#&gt;  Model:  sGARCH</span>
 <span class="co">#&gt; --------------------------------------------</span>
 <span class="co">#&gt; |        Unconditional coverage test       |</span>
 <span class="co">#&gt; --------------------------------------------</span>
 <span class="co">#&gt; H0: w = 0.99</span>
-<span class="co">#&gt; p_[uc] = 0.753</span>
 <span class="co">#&gt;  </span>
+<span class="co">#&gt; p_[uc] = 0.753</span>
 <span class="co">#&gt; --------------------------------------------</span>
 <span class="co">#&gt; |            Independence test             |</span>
 <span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  </span>
 <span class="co">#&gt; H0: w_[00] = w[10]</span>
-<span class="co">#&gt; p_[ind] = 0.0198</span>
 <span class="co">#&gt;  </span>
+<span class="co">#&gt; p_[ind] = 0.0198</span>
 <span class="co">#&gt; --------------------------------------------</span>
 <span class="co">#&gt; |         Conditional coverage test        |</span>
 <span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  </span>
 <span class="co">#&gt; H0: w_[00] = w_[10] = 0.99</span>
+<span class="co">#&gt;  </span>
 <span class="co">#&gt; p_[cc] = 0.0632</span>
 <span class="co">#&gt; --------------------------------------------</span></code></pre></div>
-<p><strong>Example 6 - Coverage Tests</strong></p>
+<p><strong>Example 7 - Loss Functions</strong></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Calculating the returns</span>
 <span class="va">prices</span> <span class="op">&lt;-</span> <span class="va">FTSE100</span><span class="op">$</span><span class="va">price.close</span>
@@ -318,7 +318,7 @@
 <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>
 </h2>
 <p>In <code>quarks</code> six functions are available.</p>
-<p><strong>Functions - version 1.0.12:</strong></p>
+<p><strong>Functions - version 1.1.0:</strong></p>
 <ul>
 <li>
 <code>cvgtest</code>: Applies various coverage tests to Value at Risk</li>
