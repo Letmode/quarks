@@ -50,7 +50,7 @@
 #' models. The J. of Derivatives, 3(2).
 #'
 #'
-#' '@details
+#' @details
 #' With this function, the conditional and the unconditional coverage
 #' tests introduced by Kupiec (1995) and Christoffersen (1998) can be applied.
 #' Given a return series \eqn{r_t} with \eqn{n} observations, divide the
