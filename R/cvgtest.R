@@ -37,9 +37,9 @@
 #' \item{p.cc}{the p-value of the conditional coverage test}
 #' \item{p.ind}{the p-value of the independence test}
 #' \item{model}{selected model for estimation; only available if a list
-#' returned by the \code{rollcast}) is passed to \code{cvgtest}}
+#' returned by the \code{rollcast} function is passed to \code{cvgtest}}
 #' \item{method}{selected method for estimation; only available if a list
-#' returned by the \code{rollcast}) is passed to \code{cvgtest}}
+#' returned by the \code{rollcast}) function is passed to \code{cvgtest}}
 #' }
 #'
 #' @references
