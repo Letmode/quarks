@@ -19,7 +19,7 @@ of the Value-at-Risk (VaR) are applied."><!-- mathjax --><script src="https://cd
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">quarks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -51,7 +51,7 @@ of the Value-at-Risk (VaR) are applied.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">cvgtest</span><span class="op">(</span>obj <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>loss <span class="op">=</span> <span class="cn">NULL</span>, VaR <span class="op">=</span> <span class="cn">NULL</span>, p <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">cvgtest</span><span class="op">(</span>obj <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>loss <span class="op">=</span> <span class="cn">NULL</span>, VaR <span class="op">=</span> <span class="cn">NULL</span>, p <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>, conflvl <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -72,7 +72,14 @@ stated in the null hypotheses of the coverage tests (see the section
 <code>Details</code> for more information); is set to <code>NULL</code> by default.</p></dd>
 
 
-</dl><p>Please note that a list returned by the <code>rollcast</code> function can be directly
+</dl></dd>
+
+
+<dt>conflvl</dt>
+<dd><p>a numeric vector with one element; the significance
+level at which the Null Hypothesis is evaluated; is set to <code>0.95</code> by
+default.
+Please note that a list returned by the <code>rollcast</code> function can be directly
 passed to <code>cvgtest</code>.</p></dd>
 
 </dl></div>
@@ -91,6 +98,10 @@ passed to <code>cvgtest</code>.</p></dd>
 
 <dt>p.ind</dt>
 <dd><p>the p-value of the independence test</p></dd>
+
+<dt>conflvl</dt>
+<dd><p>the significance level at which the Null Hypothesis is
+evaluated</p></dd>
 
 <dt>model</dt>
 <dd><p>selected model for estimation; only available if a list
