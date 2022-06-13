@@ -19,7 +19,7 @@ of the Value-at-Risk (VaR) are applied."><!-- mathjax --><script src="https://cd
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">quarks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
       </span>
     </div>
 
@@ -74,10 +74,13 @@ stated in the null hypotheses of the coverage tests (see the section
 
 </dl><p>Please note that a list returned by the <code>rollcast</code> function can be directly
 passed to <code>cvgtest</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of class <code>quarks</code> with the following four elements:</p><dl><dt>p</dt>
+    
+
+<p>A list of class <code>quarks</code> with the following four elements:</p><dl><dt>p</dt>
 <dd><p>probability p stated in the null hypotheses of the coverage tests</p></dd>
 
 <dt>p.uc</dt>
@@ -154,19 +157,25 @@ models. The J. of Derivatives, 3(2).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> H0: w = 0.975</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p_[uc] = 0.3343</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> p_[uc] = 0.3296</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Decision: Fail to reject H0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |            Independence test             |</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> H0: w_[00] = w_[10]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p_[ind] = 0.7178</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> p_[ind] = 0.6865</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Decision: Fail to reject H0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |         Conditional coverage test        |</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> H0: w_[00] = w_[10] = 0.975</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p_[cc] = 0.5878</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> p_[cc] = 0.5731</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Decision: Fail to reject H0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-in"></span>
 </code></pre></div>
@@ -183,7 +192,7 @@ models. The J. of Derivatives, 3(2).</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer></div>

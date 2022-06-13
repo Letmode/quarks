@@ -20,7 +20,7 @@ average or a GARCH-type model."><!-- mathjax --><script src="https://cdnjs.cloud
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">quarks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
       </span>
     </div>
 
@@ -60,17 +60,27 @@ average or a GARCH-type model.</p>
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>a numeric vector of asset returns</p></dd>
+
+
 <dt>p</dt>
 <dd><p>confidence level for VaR calculation; default is <code>0.975</code></p></dd>
+
+
 <dt>model</dt>
 <dd><p>model for estimating conditional volatility; options are <code>'EWMA'</code>
 and <code>'GARCH'</code>; if <code>model = 'GARCH'</code>, additional arguments can be adjusted
 via <code>...</code>; default is <code>'EWMA'</code></p></dd>
+
+
 <dt>lambda</dt>
 <dd><p>decay factor for the calculation of weights; default is <code>0.94</code></p></dd>
+
+
 <dt>nboot</dt>
 <dd><p>size of bootstrap sample; must be a single non-NA integer value
 with <code>nboot &gt; 0</code>; default is <code>NULL</code></p></dd>
+
+
 <dt>...</dt>
 <dd><p>additional arguments of the <code>ugarchspec</code> function from the
 <code>rugarch</code>-package; only applied if <code>model = 'GARCH'</code>; default
@@ -82,10 +92,13 @@ settings for the arguments <code>variance.model</code> and <code>mean.model</cod
 
 
 </dl></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a list with the following elements:</p><dl><dt>VaR</dt>
+    
+
+<p>Returns a list with the following elements:</p><dl><dt>VaR</dt>
 <dd><p>Calculated Value at Risk</p></dd>
 
 <dt>ES</dt>
@@ -111,10 +124,10 @@ settings for the arguments <code>variance.model</code> and <code>mean.model</cod
 <span class="r-in">            nboot <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">ewma</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $VaR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0246761</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.02334379</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.03230342</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.03020746</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $p</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.975</span>
@@ -127,10 +140,10 @@ settings for the arguments <code>variance.model</code> and <code>mean.model</cod
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"sGARCH"</span><span class="op">)</span>, nboot <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">garch</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $VaR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.02323077</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.02273896</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.02885487</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.02892761</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $p</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.975</span>
@@ -227,7 +240,7 @@ settings for the arguments <code>variance.model</code> and <code>mean.model</cod
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4    50     244.4    9.269e-28</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Elapsed time : 0.4237256 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Elapsed time : 0.2917616 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
@@ -244,7 +257,7 @@ settings for the arguments <code>variance.model</code> and <code>mean.model</cod
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer></div>

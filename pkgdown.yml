@@ -1,8 +1,8 @@
 pandoc: 2.7.3
-pkgdown: 2.0.2
+pkgdown: 2.0.4
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-03-31T19:37Z
+last_built: 2022-06-13T08:27Z
 urls:
   reference: https://letmode.github.io/quarks/reference
   article: https://letmode.github.io/quarks/articles

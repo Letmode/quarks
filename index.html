@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">quarks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
       </span>
     </div>
 
@@ -73,7 +73,6 @@
 <div class="page-header"><h1 id="quarks">quarks<a class="anchor" aria-label="anchor" href="#quarks"></a>
 </h1></div>
 <!-- badges: start -->
-
 <p>The goal of <code>quarks</code> is to enable the user to compute Value at Risk (VaR) and Expected Shortfall (ES) by means of various types of historical simulation. Currently plain historical simulation as well as age-, volatility-weighted- and filtered historical simulation are implemented in <code>quarks</code>. Volatility weighting can be carried out via an exponentially weighted moving average (EWMA) model or other GARCH-type models.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -85,7 +84,7 @@
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
-<p>The data set <code>DAX</code>, which is implemented in the <code>quarks</code> package, contains daily financial data of the German stock index DAX from January 2000 to December 2021 (currency in EUR). In the following examples of the (out-of-sample) one-step forecasts of the 97.5%-VaR (red line) and the corresponding ES (green line) are illustrated. Exceedances are indicated by the colored circles.</p>
+<p>The data set <code>DAX</code>, which is implemented in the <code>quarks</code> package, contains daily financial data of the German stock index DAX from January 2000 to December 2021 (currency in EUR). In the following examples of the (out-of-sample) one-step forecasts of the 97.5<img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5C%25" title="%" alt="\%">-VaR (red line) and the corresponding ES (green line) are illustrated. Exceedances are indicated by the colored circles.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Calculating the returns</span>
 <span class="va">prices</span> <span class="op">&lt;-</span> <span class="va">DAX</span><span class="op">$</span><span class="va">price.close</span>
@@ -246,7 +245,7 @@
 <span class="co">#&gt;  Yellow zone: 95% &lt;= p &lt; 99.99%</span>
 <span class="co">#&gt;  Red zone:    p &gt;= 99.99%      </span>
 <span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |         Test result - 99%-VaR          |</span>
+<span class="co">#&gt; |         Test result - 99%-VaR            |</span>
 <span class="co">#&gt; --------------------------------------------</span>
 <span class="co">#&gt;  Number of violations: 3</span>
 <span class="co">#&gt;  </span>
@@ -274,19 +273,25 @@
 <span class="co">#&gt; --------------------------------------------</span>
 <span class="co">#&gt; H0: w = 0.99</span>
 <span class="co">#&gt;  </span>
-<span class="co">#&gt; p_[uc] = 0.753</span>
+<span class="co">#&gt; p_[uc] = 0.758</span>
+<span class="co">#&gt;  </span>
+<span class="co">#&gt; Decision: Fail to reject H0</span>
 <span class="co">#&gt; --------------------------------------------</span>
 <span class="co">#&gt; |            Independence test             |</span>
 <span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; H0: w_[00] = w[10]</span>
+<span class="co">#&gt; H0: w_[00] = w_[10]</span>
 <span class="co">#&gt;  </span>
-<span class="co">#&gt; p_[ind] = 0.0198</span>
+<span class="co">#&gt; p_[ind] = 0.0196</span>
+<span class="co">#&gt;  </span>
+<span class="co">#&gt; Decision: Fail to reject H0</span>
 <span class="co">#&gt; --------------------------------------------</span>
 <span class="co">#&gt; |         Conditional coverage test        |</span>
 <span class="co">#&gt; --------------------------------------------</span>
 <span class="co">#&gt; H0: w_[00] = w_[10] = 0.99</span>
 <span class="co">#&gt;  </span>
-<span class="co">#&gt; p_[cc] = 0.0632</span>
+<span class="co">#&gt; p_[cc] = 0.0625</span>
+<span class="co">#&gt;  </span>
+<span class="co">#&gt; Decision: Fail to reject H0</span>
 <span class="co">#&gt; --------------------------------------------</span></code></pre></div>
 <p><strong>Example 7 - Loss Functions</strong></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -301,16 +306,16 @@
 <span class="fu"><a href="reference/lossfun.html">lossfun</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Please note that the following results are multiplied with 10000.</span>
-<span class="co">#&gt; $lossfunc1</span>
+<span class="co">#&gt; $lossfun1</span>
 <span class="co">#&gt; [1] 2.27884</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $lossfunc2</span>
+<span class="co">#&gt; $lossfun2</span>
 <span class="co">#&gt; [1] 10.84525</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $lossfunc3</span>
+<span class="co">#&gt; $lossfun3</span>
 <span class="co">#&gt; [1] 10.99533</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $lossfunc4</span>
+<span class="co">#&gt; $lossfun4</span>
 <span class="co">#&gt; [1] 10.2165</span></code></pre></div>
 <hr>
 </div>
@@ -318,7 +323,7 @@
 <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>
 </h2>
 <p>In <code>quarks</code> six functions are available.</p>
-<p><strong>Functions - version 1.1.0:</strong></p>
+<p><strong>Functions - version 1.1.1:</strong></p>
 <ul>
 <li>
 <code>cvgtest</code>: Applies various coverage tests to Value at Risk</li>
@@ -414,7 +419,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer>

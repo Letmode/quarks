@@ -20,7 +20,7 @@ filtered historical simulation."><!-- mathjax --><script src="https://cdnjs.clou
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">quarks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
       </span>
     </div>
 
@@ -72,27 +72,43 @@ filtered historical simulation.</p>
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>a numeric vector of asset returns</p></dd>
+
+
 <dt>p</dt>
 <dd><p>confidence level for VaR calculation; default is <code>0.975</code></p></dd>
+
+
 <dt>model</dt>
 <dd><p>model for estimating conditional volatility; options are <code>'EWMA'</code>
 and <code>'GARCH'</code>; if <code>model = 'GARCH'</code>, additional arguments can be adjusted
 via <code>...</code>; default is <code>'EWMA'</code></p></dd>
+
+
 <dt>method</dt>
 <dd><p>method to be used for calculation; default is <code>'plain'</code></p></dd>
+
+
 <dt>lambda</dt>
 <dd><p>decay factor for the calculation of weights; default is <code>0.98</code>
 for <code>method = 'age'</code> and <code>0.94</code> for <code>method = 'vwhs'</code> or
 <code>method = 'fhs'</code></p></dd>
+
+
 <dt>nout</dt>
 <dd><p>number of out-of-sample observations; most recent observations are used;
 default is <code>NULL</code></p></dd>
+
+
 <dt>nwin</dt>
 <dd><p>window size for rolling one-step forecasting; most recent observations
 before out-of-sample are used; default is <code>NULL</code></p></dd>
+
+
 <dt>nboot</dt>
 <dd><p>size of bootstrap sample; must be a single non-NA integer value
 with <code>nboot &gt; 0</code>; default is <code>NULL</code></p></dd>
+
+
 <dt>smoothscale</dt>
 <dd><p>a character object; defines the smoothing approach
 for the unconditional variance from the logarithm of the squared centralized
@@ -103,10 +119,14 @@ default is used; if <code>smoothscale = 'auto'</code>, the function <code><a hre
 is employed and the bandwidth is chosen automatically (data-driven); see the
 documentation of the <code>smoots</code> package for more information; is set to
 <code>smoothscale = 'none'</code> by default</p></dd>
+
+
 <dt>smoothopts</dt>
 <dd><p>additional arguments of <code><a href="https://rdrr.io/pkg/smoots/man/gsmooth.html" class="external-link">smoots::gsmooth()</a></code> and
 <code><a href="https://rdrr.io/pkg/smoots/man/msmooth.html" class="external-link">smoots::msmooth()</a></code>; see the documentation of the <code>smoots</code>
 package for more information; is set to customized default settings</p></dd>
+
+
 <dt>...</dt>
 <dd><p>additional arguments of the <code>ugarchspec</code> function from the
 <code>rugarch</code>-package; only applied if <code>model = 'GARCH'</code>; default
@@ -118,10 +138,13 @@ settings for the arguments <code>variance.model</code> and <code>mean.model</cod
 
 
 </dl></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a list with the following elements:</p><dl><dt>VaR</dt>
+    
+
+<p>Returns a list with the following elements:</p><dl><dt>VaR</dt>
 <dd><p>Numerical vector containing out-of-sample forecasts of Value at
 Risk</p></dd>
 
@@ -247,7 +270,7 @@ Shortfall (Conditional Value at Risk)</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer></div>
