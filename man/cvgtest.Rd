@@ -4,7 +4,7 @@
 \alias{cvgtest}
 \title{Unconditional and Conditional Coverage Tests, Independence Test}
 \usage{
-cvgtest(obj = list(loss = NULL, VaR = NULL, p = NULL))
+cvgtest(obj = list(loss = NULL, VaR = NULL, p = NULL), conflvl = 0.95)
 }
 \arguments{
 \item{obj}{a list that contains the following elements:
@@ -17,7 +17,11 @@ is set to \code{NULL} by default.}
 \item{\code{p}}{a numeric vector with one element; defines the probability p
 stated in the null hypotheses of the coverage tests (see the section
 \code{Details} for more information); is set to \code{NULL} by default.}
-}
+}}
+
+\item{conflvl}{a numeric vector with one element; the significance
+level at which the Null Hypothesis is evaluated; is set to \code{0.95} by
+default.
 Please note that a list returned by the \code{rollcast} function can be directly
 passed to \code{cvgtest}.}
 }
@@ -28,6 +32,8 @@ A list of class \code{quarks} with the following four elements:
 \item{p.uc}{the p-value of the unconditional coverage test}
 \item{p.cc}{the p-value of the conditional coverage test}
 \item{p.ind}{the p-value of the independence test}
+\item{conflvl}{the significance level at which the Null Hypothesis is
+evaluated}
 \item{model}{selected model for estimation; only available if a list
 returned by the \code{rollcast} function is passed to \code{cvgtest}}
 \item{method}{selected method for estimation; only available if a list

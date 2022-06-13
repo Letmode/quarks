@@ -15,6 +15,9 @@
 #' stated in the null hypotheses of the coverage tests (see the section
 #' \code{Details} for more information); is set to \code{NULL} by default.}
 #' }
+#' @param conflvl a numeric vector with one element; the significance
+#' level at which the Null Hypothesis is evaluated; is set to \code{0.95} by
+#' default.
 #' Please note that a list returned by the \code{rollcast} function can be directly
 #' passed to \code{cvgtest}.
 #'
@@ -36,6 +39,8 @@
 #' \item{p.uc}{the p-value of the unconditional coverage test}
 #' \item{p.cc}{the p-value of the conditional coverage test}
 #' \item{p.ind}{the p-value of the independence test}
+#' \item{conflvl}{the significance level at which the Null Hypothesis is
+#' evaluated}
 #' \item{model}{selected model for estimation; only available if a list
 #' returned by the \code{rollcast} function is passed to \code{cvgtest}}
 #' \item{method}{selected method for estimation; only available if a list
@@ -84,7 +89,7 @@
 #' cvgtest(results)
 #'
 
-cvgtest <- function(obj = list(loss = NULL, VaR = NULL, p = NULL)) {
+cvgtest <- function(obj = list(loss = NULL, VaR = NULL, p = NULL), conflvl = 0.95) {
   if (!is.list(obj) && !is.data.frame(obj)) {
     stop("A list or data frame containing two vectors with equal
          length and without NAs as well as a single numeric value
@@ -164,6 +169,7 @@ cvgtest <- function(obj = list(loss = NULL, VaR = NULL, p = NULL)) {
                  p.uc = p.uc,
                  p.ind = p.ind,
                  p.cc = p.cc,
+                 conflvl = conflvl,
                  method = method,
                  model = model)
   class(result) <- "quarks"

@@ -1,3 +1,8 @@
+# quarks 1.1.2
+
+- added argument 'conflvl' to 'cvgtest.R' in order to control confidence 
+  level for hypothesis testing
+
 # quarks 1.1.1
 
 - slightly adjusted print method for 'cvgtest.R'
