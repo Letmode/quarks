@@ -1,11 +1,10 @@
-## Patch release (version 1.1.0)
+## Patch release (version 1.1.1)
 This is a patch release.
 
-- implemented 4 new functions which enable the user to apply various
-  backtesting methods
+- fixed some minor bugs
 
 ## Test environments
-* local R installation, R 4.1.0
+* local R installation, R 4.2.0
 * win-builder (devel)
 * r-hub
 
