@@ -136,6 +136,9 @@ cvgtest <- function(obj = list(loss = NULL, VaR = NULL, p = NULL), conflvl = 0.9
   It <- loss > VaR
   n0 <- sum(1 - It[1:n.out])
   n1 <- sum(It[1:n.out])
+  if (n1 == 0) {
+    stop("No VaR violations found. Tests are not applicable.")
+  }
   Itf <- It[1:(n.out - 1)]
   Its <- It[2:n.out]
   diff.It <- Itf - Its
