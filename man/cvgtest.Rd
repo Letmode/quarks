@@ -51,27 +51,6 @@ corresponding estimated \code{obj$VaR} series and the coverage level \code{obj$p
 for which the VaR has been calculated. If an object returned by this function
 is entered into the R console, a detailed overview of the test
 results is printed.
-
-With this function, the conditional and the unconditional coverage
-tests introduced by Kupiec (1995) and Christoffersen (1998) can be applied.
-Given a return series \eqn{r_t} with \eqn{n} observations, divide the
-series into \eqn{n-K} in-sample and \eqn{K} out-of-sample observations,
-fit a model to the in-sample data and obtain rolling one-step forecasts of
-the VaR for the out-of-sample time points.
-
-Define
-
-\deqn{I_t = 1,}
-
-if \eqn{-r_t > \widehat{VaR}_t (\alpha)} or
-
-\deqn{I_t = 0,}
-
-otherwise,
-for \eqn{t = n + 1, n + 2, ..., n + K} as the hit sequence, where \eqn{\alpha} is
-the confidence level for the VaR (often \eqn{\alpha = 0.95} or \eqn{\alpha = 0.99}).
-Furthermore, denote \eqn{p = \alpha} and let \eqn{w} be the actual covered
-proportion of losses in the data.
 }
 \examples{
 
