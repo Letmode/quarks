@@ -77,7 +77,7 @@ stated in the null hypotheses of the coverage tests (see the section
 
 <dt>conflvl</dt>
 <dd><p>a numeric vector with one element; the significance
-level at which the Null Hypothesis is evaluated; is set to <code>0.95</code> by
+level at which the null hypotheses are evaluated; is set to <code>0.95</code> by
 default.
 Please note that a list returned by the <code>rollcast</code> function can be directly
 passed to <code>cvgtest</code>.</p></dd>
@@ -100,7 +100,7 @@ passed to <code>cvgtest</code>.</p></dd>
 <dd><p>the p-value of the independence test</p></dd>
 
 <dt>conflvl</dt>
-<dd><p>the significance level at which the Null Hypothesis is
+<dd><p>the significance level at which the null hypotheses are
 evaluated</p></dd>
 
 <dt>model</dt>
@@ -115,11 +115,60 @@ returned by the <code>rollcast</code>) function is passed to <code>cvgtest</code
 </dl></div>
     <div id="details">
     <h2>Details</h2>
-    <p>The function needs three inputs: the out-of-sample loss series <code>obj$loss</code>, the
-corresponding estimated <code>obj$VaR</code> series and the coverage level <code>obj$p</code>,
-for which the VaR has been calculated. If an object returned by this function
-is entered into the R console, a detailed overview of the test
-results is printed.</p>
+    <p>With this function, the conditional and the unconditional coverage
+tests introduced by Kupiec (1995) and Christoffersen (1998) can be applied.
+Given a return series \(r_t\) with \(n\) observations, divide the
+series into \(n-K\) in-sample and \(K\) out-of-sample observations,
+fit a model to the in-sample data and obtain rolling one-step forecasts of
+the VaR for the out-of-sample time points.</p>
+<p>Define</p>
+<p>$$I_t = 1,$$</p>
+<p>if \(-r_t &gt; \widehat{VaR}_t (\alpha)\) or</p>
+<p>$$I_t = 0,$$ otherwise,</p>
+<p>for \(t = n + 1, n + 2, ..., n + K\) as the hit sequence, where \(\alpha\) is
+the confidence level for the VaR (often \(\alpha = 0.95\) or \(\alpha = 0.99\)).
+Furthermore, denote \(p = \alpha\) and let \(w\) be the actual covered
+proportion of losses in the data.</p>
+<p>1. Unconditional coverage test:</p>
+<p>$$H_{0, uc}: p = w$$</p>
+<p>Let \(K_1\) be the number of ones in \(I_t\) and analogously \(K_0\) the number of
+zeros (all conditional on the first observation).
+Also calculate \(\hat{w} = K_0 / (K - 1)\). Obtain</p>
+<p>$$L(I_t, p) = p^{K_0}(1 - p)^{K_1}$$</p>
+<p>and</p>
+<p>$$L(I_t, \hat{w}) = \hat{w}^{K_0}(1 - \hat{w})^{K_1}$$</p>
+<p>and subsequently the test statistic</p>
+<p>$$LR_{uc} = -2  * \ln \{L(I_t, p) / L(I_t, \hat{w})\}.$$</p>
+<p>\(LR_{uc}\) now asymptotically follows a chi-square-distribution with one degree
+of freedom.</p>
+<p>2. Conditional coverage test:</p>
+<p>The conditional coverage test combines the unconditional coverage test
+with a test on independence. Denote by \(w_{ij}\) the probability of an \(i\) on day
+\(t-1\) being followed by a \(j\) on day \(t\), where \(i\) and \(j\) correspond to the value of
+\(I_t\) on the respective day.</p>
+<p>$$H_{0, cc}: w_{00} = w{10} = p$$</p>
+<p>with \(i = 0, 1\) and \(j = 0, 1\).</p>
+<p>Let \(K_{ij}\) be the number of observations, where the values on two following days
+follow the pattern \(ij\). Calculate</p>
+<p>$$L(I_t, \hat{w}_{00}, \hat{w}_{10})
+= \hat{w}_{00}^{K_{00}}(1 - \hat{w}_{00})^{K_{01}} * \hat{w}_{10})^{K_{10}}(1 - \hat{w}_{10})^{K_{11}},$$</p>
+<p>where \(\hat{w}_{00} = K_{00} / K_0\) and \(\hat{w}_{10} = K_{10} / K_1\). The test
+statistic is then given by</p>
+<p>$$LR_{cc} = -2  * \ln \{ L(I_t, p) / L(I_t, \hat{w}_{00}, \hat{w}_{10}) \},$$</p>
+<p>which asymptotically follows a chi-square-distribution with two degrees of
+freedom.</p>
+<p>3. Independence test:</p>
+<p>$$H_{0,ind}: w_{00} = w_{10}$$</p>
+<p>The asymptotically chi-square-distributed test statistic (one degree of
+freedom) is given by</p>
+<p>$$LR_{ind} = -2  * \ln \{L(I_t, \hat{w}_{00}, \hat{w}_{10}) / L(I_t, \hat{w})\}.$$</p>
+<p>-----------------------------------------------------------------------------</p>
+<p>The function needs four inputs: the out-of-sample loss series <code>obj$loss</code>, the
+corresponding estimated VaR series <code>obj$VaR</code>, the coverage level <code>obj$p</code>,
+for which the VaR has been calculated and the significance level <code>conflvl</code>,
+at which the null hypotheses are evaluated. If an object returned by this
+function is entered into the R console, a detailed overview of the test results
+is printed.</p>
     </div>
     <div id="references">
     <h2>References</h2>
