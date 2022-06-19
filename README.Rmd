@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%",
   fig.height = 4,
-  fig.width = 12
+  fig.width = 9.5
 )
 ```
 
@@ -57,47 +57,47 @@ results1
 
 Visualize your results with the plot method implemented in ```quarks```.
 
-```{r, fig.height=4, fig.width=12}
+```{r, fig.height=4, fig.width=9.5}
 plot(results1)
 ```
 
 ---
 
 **Example 2 - age weighted historical simulation**
-```{r, fig.height=4, fig.width=12}
+```{r, fig.height=4, fig.width=9.5}
 results2 <- rollcast(x = returns, p = 0.975, method = 'age', nout = 250,
                      nwin = 250)
 results2
 ```
 
-```{r, fig.height=4, fig.width=12}
+```{r, fig.height=4, fig.width=9.5}
 plot(results2)
 ```
 
 ---
 
 **Example 3 - volatility weighted historical simulation - EWMA**
-```{r, fig.height=4, fig.width=12}
+```{r, fig.height=4, fig.width=9.5}
 results3 <- rollcast(x = returns, p = 0.975, model = 'EWMA',
                      method = 'vwhs', nout = 250, nwin = 250)
 results3
 ```
 
-```{r, fig.height=4, fig.width=12}
+```{r, fig.height=4, fig.width=9.5}
 plot(results3)
 ```
 
 ---
 
 **Example 4 - filtered historical simulation - GARCH**
-```{r, fig.height=4, fig.width=12}
+```{r, fig.height=4, fig.width=9.5}
 set.seed(12345)
 results4 <- rollcast(x = returns, p = 0.975, model = 'GARCH',
                      method = 'fhs', nout = 250, nwin = 250, nboot = 10000)
 results4
 ```
 
-```{r, fig.height=4, fig.width=12}
+```{r, fig.height=4, fig.width=9.5}
 plot(results4)
 ```
 
@@ -106,7 +106,7 @@ To assess the performance of these methods one might apply backtesting.
 For instance, by employing the Traffic Light Test, Coverage Tests or by means of Loss Function.
 
 **Example 5 - Traffic Light Test**
-```{r, fig.height=4, fig.width=12}
+```{r, fig.height=4, fig.width=9.5}
 # Calculating the returns
 prices <- SP500$price.close
 returns <- diff(log(prices))
@@ -117,18 +117,18 @@ trftest(results)
 ```
 
 **Example 6 - Coverage Tests**
-```{r, fig.height=4, fig.width=12}
+```{r, fig.height=4, fig.width=9.5}
 # Calculating the returns
 prices <- HSI$price.close
 returns <- diff(log(prices))
 
 results <- rollcast(x = returns, p = 0.99, model = 'GARCH',
                      method = 'vwhs', nout = 250, nwin = 500)
-cvgtest(results)
+cvgtest(results, conflvl = 0.95)
 ```
 
 **Example 7 - Loss Functions**
-```{r, fig.height=4, fig.width=12}
+```{r, fig.height=4, fig.width=9.5}
 # Calculating the returns
 prices <- FTSE100$price.close
 returns <- diff(log(prices))
