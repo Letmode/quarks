@@ -75,7 +75,9 @@ print.quarks <- function(x, ...) {
     cat("|            Traffic Light Test            |", fill = TRUE)
     cat("--------------------------------------------", fill = TRUE)
     cat(" Method:", method, fill = TRUE)
+    if (method %in% c("Volatility Weighting", "Filtered")) {
     cat(" Model: ", x[["model"]], fill = TRUE)
+    }
     cat("--------------------------------------------", fill = TRUE)
     cat("|       Traffic light zone boundaries      |", fill = TRUE)
     cat("--------------------------------------------", fill = TRUE)
