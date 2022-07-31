@@ -23,9 +23,13 @@ License: GPL-3
 Depends: 
     R (>= 2.10)
 Imports:
+    dygraphs,
+    ggplot2,
     graphics,
     progress,
     rugarch,
+    shiny,
+    shinyjs,
     smoots,
     stats
 Encoding: UTF-8
