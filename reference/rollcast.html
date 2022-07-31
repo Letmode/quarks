@@ -53,19 +53,19 @@ filtered historical simulation.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">rollcast</span><span class="op">(</span>
-  <span class="va">x</span>,
-  p <span class="op">=</span> <span class="fl">0.975</span>,
-  model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EWMA"</span>, <span class="st">"GARCH"</span><span class="op">)</span>,
-  method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"plain"</span>, <span class="st">"age"</span>, <span class="st">"vwhs"</span>, <span class="st">"fhs"</span><span class="op">)</span>,
-  lambda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.94</span>, <span class="fl">0.98</span><span class="op">)</span>,
-  nout <span class="op">=</span> <span class="cn">NULL</span>,
-  nwin <span class="op">=</span> <span class="cn">NULL</span>,
-  nboot <span class="op">=</span> <span class="cn">NULL</span>,
-  smoothscale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"lpr"</span>, <span class="st">"auto"</span><span class="op">)</span>,
-  smoothopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rollcast</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  p <span class="op">=</span> <span class="fl">0.975</span>,</span>
+<span>  model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EWMA"</span>, <span class="st">"GARCH"</span><span class="op">)</span>,</span>
+<span>  method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"plain"</span>, <span class="st">"age"</span>, <span class="st">"vwhs"</span>, <span class="st">"fhs"</span><span class="op">)</span>,</span>
+<span>  lambda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.94</span>, <span class="fl">0.98</span><span class="op">)</span>,</span>
+<span>  nout <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  nwin <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  nboot <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  smoothscale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"lpr"</span>, <span class="st">"auto"</span><span class="op">)</span>,</span>
+<span>  smoothopts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -178,84 +178,84 @@ Shortfall (Conditional Value at Risk)</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="va">prices</span> <span class="op">&lt;-</span> <span class="va">DAX</span><span class="op">$</span><span class="va">price.close</span></span>
-<span class="r-in"><span class="va">returns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">prices</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">returns</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">nout</span> <span class="op">&lt;-</span> <span class="fl">250</span> <span class="co"># number of obs. for out-of-sample forecasting</span></span>
-<span class="r-in"><span class="va">nwin</span> <span class="op">&lt;-</span> <span class="fl">500</span> <span class="co"># window size for rolling forecasts</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">### Example 1 - plain historical simulation</span></span>
-<span class="r-in"><span class="va">results1</span> <span class="op">&lt;-</span> <span class="fu">rollcast</span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, method <span class="op">=</span> <span class="st">'plain'</span>, nout <span class="op">=</span> <span class="va">nout</span>,</span>
-<span class="r-in">                     nwin <span class="op">=</span> <span class="va">nwin</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">prices</span> <span class="op">&lt;-</span> <span class="va">DAX</span><span class="op">$</span><span class="va">price.close</span></span></span>
+<span class="r-in"><span><span class="va">returns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">prices</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">returns</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">nout</span> <span class="op">&lt;-</span> <span class="fl">250</span> <span class="co"># number of obs. for out-of-sample forecasting</span></span></span>
+<span class="r-in"><span><span class="va">nwin</span> <span class="op">&lt;-</span> <span class="fl">500</span> <span class="co"># window size for rolling forecasts</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">### Example 1 - plain historical simulation</span></span></span>
+<span class="r-in"><span><span class="va">results1</span> <span class="op">&lt;-</span> <span class="fu">rollcast</span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, method <span class="op">=</span> <span class="st">'plain'</span>, nout <span class="op">=</span> <span class="va">nout</span>,</span></span>
+<span class="r-in"><span>                     nwin <span class="op">=</span> <span class="va">nwin</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Calculations completed.</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/matplot.html" class="external-link">matplot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">nout</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="op">-</span><span class="va">results1</span><span class="op">$</span><span class="va">xout</span>, <span class="va">results1</span><span class="op">$</span><span class="va">VaR</span>, <span class="va">results1</span><span class="op">$</span><span class="va">ES</span><span class="op">)</span>,</span>
-<span class="r-in">  type <span class="op">=</span> <span class="st">'hll'</span>,</span>
-<span class="r-in">  xlab <span class="op">=</span> <span class="st">'number of out-of-sample obs.'</span>, ylab <span class="op">=</span> <span class="st">'losses, VaR and ES'</span>,</span>
-<span class="r-in">  main <span class="op">=</span> <span class="st">'Plain HS - 97.5% VaR and ES for the DAX30 return series'</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/matplot.html" class="external-link">matplot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">nout</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="op">-</span><span class="va">results1</span><span class="op">$</span><span class="va">xout</span>, <span class="va">results1</span><span class="op">$</span><span class="va">VaR</span>, <span class="va">results1</span><span class="op">$</span><span class="va">ES</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  type <span class="op">=</span> <span class="st">'hll'</span>,</span></span>
+<span class="r-in"><span>  xlab <span class="op">=</span> <span class="st">'number of out-of-sample obs.'</span>, ylab <span class="op">=</span> <span class="st">'losses, VaR and ES'</span>,</span></span>
+<span class="r-in"><span>  main <span class="op">=</span> <span class="st">'Plain HS - 97.5% VaR and ES for the DAX30 return series'</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="rollcast-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">### Example 2 - age weighted historical simulation</span></span>
-<span class="r-in"><span class="va">results2</span> <span class="op">&lt;-</span> <span class="fu">rollcast</span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, method <span class="op">=</span> <span class="st">'age'</span>, nout <span class="op">=</span> <span class="va">nout</span>,</span>
-<span class="r-in">                     nwin <span class="op">=</span> <span class="va">nwin</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">### Example 2 - age weighted historical simulation</span></span></span>
+<span class="r-in"><span><span class="va">results2</span> <span class="op">&lt;-</span> <span class="fu">rollcast</span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, method <span class="op">=</span> <span class="st">'age'</span>, nout <span class="op">=</span> <span class="va">nout</span>,</span></span>
+<span class="r-in"><span>                     nwin <span class="op">=</span> <span class="va">nwin</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Calculations completed.</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/matplot.html" class="external-link">matplot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">nout</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="op">-</span><span class="va">results2</span><span class="op">$</span><span class="va">xout</span>, <span class="va">results2</span><span class="op">$</span><span class="va">VaR</span>, <span class="va">results2</span><span class="op">$</span><span class="va">ES</span><span class="op">)</span>,</span>
-<span class="r-in">  type <span class="op">=</span> <span class="st">'hll'</span>,</span>
-<span class="r-in">  xlab <span class="op">=</span> <span class="st">'number of out-of-sample obs.'</span>, ylab <span class="op">=</span> <span class="st">'losses, VaR and ES'</span>,</span>
-<span class="r-in">  main <span class="op">=</span> <span class="st">'Age weighted HS - 97.5% VaR and ES for the DAX30 return series'</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/matplot.html" class="external-link">matplot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">nout</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="op">-</span><span class="va">results2</span><span class="op">$</span><span class="va">xout</span>, <span class="va">results2</span><span class="op">$</span><span class="va">VaR</span>, <span class="va">results2</span><span class="op">$</span><span class="va">ES</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  type <span class="op">=</span> <span class="st">'hll'</span>,</span></span>
+<span class="r-in"><span>  xlab <span class="op">=</span> <span class="st">'number of out-of-sample obs.'</span>, ylab <span class="op">=</span> <span class="st">'losses, VaR and ES'</span>,</span></span>
+<span class="r-in"><span>  main <span class="op">=</span> <span class="st">'Age weighted HS - 97.5% VaR and ES for the DAX30 return series'</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="rollcast-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">### Example 3 - volatility weighted historical simulation - EWMA</span></span>
-<span class="r-in"><span class="va">results3</span> <span class="op">&lt;-</span> <span class="fu">rollcast</span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, model <span class="op">=</span> <span class="st">'EWMA'</span>,</span>
-<span class="r-in">                     method <span class="op">=</span> <span class="st">'vwhs'</span>, nout <span class="op">=</span> <span class="va">nout</span>, nwin <span class="op">=</span> <span class="va">nwin</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">### Example 3 - volatility weighted historical simulation - EWMA</span></span></span>
+<span class="r-in"><span><span class="va">results3</span> <span class="op">&lt;-</span> <span class="fu">rollcast</span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, model <span class="op">=</span> <span class="st">'EWMA'</span>,</span></span>
+<span class="r-in"><span>                     method <span class="op">=</span> <span class="st">'vwhs'</span>, nout <span class="op">=</span> <span class="va">nout</span>, nwin <span class="op">=</span> <span class="va">nwin</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Calculations completed.</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/matplot.html" class="external-link">matplot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">nout</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="op">-</span><span class="va">results3</span><span class="op">$</span><span class="va">xout</span>, <span class="va">results3</span><span class="op">$</span><span class="va">VaR</span>, <span class="va">results3</span><span class="op">$</span><span class="va">ES</span><span class="op">)</span>,</span>
-<span class="r-in">  type <span class="op">=</span> <span class="st">'hll'</span>,</span>
-<span class="r-in">  xlab <span class="op">=</span> <span class="st">'number of out-of-sample obs.'</span>, ylab <span class="op">=</span> <span class="st">'losses, VaR and ES'</span>,</span>
-<span class="r-in">  main <span class="op">=</span> <span class="st">'Vol. weighted HS (EWMA) - 97.5% VaR and ES for the DAX30 return</span>
-<span class="r-in">  series'</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/matplot.html" class="external-link">matplot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">nout</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="op">-</span><span class="va">results3</span><span class="op">$</span><span class="va">xout</span>, <span class="va">results3</span><span class="op">$</span><span class="va">VaR</span>, <span class="va">results3</span><span class="op">$</span><span class="va">ES</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  type <span class="op">=</span> <span class="st">'hll'</span>,</span></span>
+<span class="r-in"><span>  xlab <span class="op">=</span> <span class="st">'number of out-of-sample obs.'</span>, ylab <span class="op">=</span> <span class="st">'losses, VaR and ES'</span>,</span></span>
+<span class="r-in"><span>  main <span class="op">=</span> <span class="st">'Vol. weighted HS (EWMA) - 97.5% VaR and ES for the DAX30 return</span></span></span>
+<span class="r-in"><span><span class="st">  series'</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="rollcast-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="co">### Example 4 - volatility weighted historical simulation - GARCH</span></span>
-<span class="r-in"><span class="va">results4</span> <span class="op">&lt;-</span> <span class="fu">rollcast</span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, model <span class="op">=</span> <span class="st">'GARCH'</span>,</span>
-<span class="r-in">                     method <span class="op">=</span> <span class="st">'vwhs'</span>, nout <span class="op">=</span> <span class="va">nout</span>, nwin <span class="op">=</span> <span class="va">nwin</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="co">### Example 4 - volatility weighted historical simulation - GARCH</span></span></span>
+<span class="r-in"><span><span class="va">results4</span> <span class="op">&lt;-</span> <span class="fu">rollcast</span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, model <span class="op">=</span> <span class="st">'GARCH'</span>,</span></span>
+<span class="r-in"><span>                     method <span class="op">=</span> <span class="st">'vwhs'</span>, nout <span class="op">=</span> <span class="va">nout</span>, nwin <span class="op">=</span> <span class="va">nwin</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Calculations completed.</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/matplot.html" class="external-link">matplot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">nout</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="op">-</span><span class="va">results4</span><span class="op">$</span><span class="va">xout</span>, <span class="va">results4</span><span class="op">$</span><span class="va">VaR</span>, <span class="va">results4</span><span class="op">$</span><span class="va">ES</span><span class="op">)</span>,</span>
-<span class="r-in">  type <span class="op">=</span> <span class="st">'hll'</span>,</span>
-<span class="r-in">  xlab <span class="op">=</span> <span class="st">'number of out-of-sample obs.'</span>, ylab <span class="op">=</span> <span class="st">'losses, VaR and ES'</span>,</span>
-<span class="r-in">  main <span class="op">=</span> <span class="st">'Vol. weighted HS (GARCH) - 97.5% VaR and ES for the DAX30 return</span>
-<span class="r-in">  series'</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/matplot.html" class="external-link">matplot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">nout</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="op">-</span><span class="va">results4</span><span class="op">$</span><span class="va">xout</span>, <span class="va">results4</span><span class="op">$</span><span class="va">VaR</span>, <span class="va">results4</span><span class="op">$</span><span class="va">ES</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  type <span class="op">=</span> <span class="st">'hll'</span>,</span></span>
+<span class="r-in"><span>  xlab <span class="op">=</span> <span class="st">'number of out-of-sample obs.'</span>, ylab <span class="op">=</span> <span class="st">'losses, VaR and ES'</span>,</span></span>
+<span class="r-in"><span>  main <span class="op">=</span> <span class="st">'Vol. weighted HS (GARCH) - 97.5% VaR and ES for the DAX30 return</span></span></span>
+<span class="r-in"><span><span class="st">  series'</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="rollcast-4.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co"># }</span></span>
-<span class="r-in"><span class="co">### Example 5 - filtered historical simulation - EWMA</span></span>
-<span class="r-in"><span class="va">results5</span> <span class="op">&lt;-</span> <span class="fu">rollcast</span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, model <span class="op">=</span> <span class="st">'EWMA'</span>,</span>
-<span class="r-in">                     method <span class="op">=</span> <span class="st">'fhs'</span>, nout <span class="op">=</span> <span class="va">nout</span>, nwin <span class="op">=</span> <span class="va">nwin</span>, nboot <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="co">### Example 5 - filtered historical simulation - EWMA</span></span></span>
+<span class="r-in"><span><span class="va">results5</span> <span class="op">&lt;-</span> <span class="fu">rollcast</span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, model <span class="op">=</span> <span class="st">'EWMA'</span>,</span></span>
+<span class="r-in"><span>                     method <span class="op">=</span> <span class="st">'fhs'</span>, nout <span class="op">=</span> <span class="va">nout</span>, nwin <span class="op">=</span> <span class="va">nwin</span>, nboot <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Calculations completed.</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/matplot.html" class="external-link">matplot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">nout</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="op">-</span><span class="va">results5</span><span class="op">$</span><span class="va">xout</span>, <span class="va">results5</span><span class="op">$</span><span class="va">VaR</span>, <span class="va">results5</span><span class="op">$</span><span class="va">ES</span><span class="op">)</span>,</span>
-<span class="r-in">  type <span class="op">=</span> <span class="st">'hll'</span>,</span>
-<span class="r-in">  xlab <span class="op">=</span> <span class="st">'number of out-of-sample obs.'</span>, ylab <span class="op">=</span> <span class="st">'losses, VaR and ES'</span>,</span>
-<span class="r-in">  main <span class="op">=</span> <span class="st">'Filtered HS (EWMA) - 97.5% VaR and ES for the DAX30 return</span>
-<span class="r-in">  series'</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/matplot.html" class="external-link">matplot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">nout</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="op">-</span><span class="va">results5</span><span class="op">$</span><span class="va">xout</span>, <span class="va">results5</span><span class="op">$</span><span class="va">VaR</span>, <span class="va">results5</span><span class="op">$</span><span class="va">ES</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  type <span class="op">=</span> <span class="st">'hll'</span>,</span></span>
+<span class="r-in"><span>  xlab <span class="op">=</span> <span class="st">'number of out-of-sample obs.'</span>, ylab <span class="op">=</span> <span class="st">'losses, VaR and ES'</span>,</span></span>
+<span class="r-in"><span>  main <span class="op">=</span> <span class="st">'Filtered HS (EWMA) - 97.5% VaR and ES for the DAX30 return</span></span></span>
+<span class="r-in"><span><span class="st">  series'</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="rollcast-5.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="co">### Example 6 - filtered historical simulation - GARCH</span></span>
-<span class="r-in"><span class="va">results6</span> <span class="op">&lt;-</span> <span class="fu">rollcast</span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, model <span class="op">=</span> <span class="st">'GARCH'</span>,</span>
-<span class="r-in">                     method <span class="op">=</span> <span class="st">'fhs'</span>, nout <span class="op">=</span> <span class="va">nout</span>, nwin <span class="op">=</span> <span class="va">nwin</span>, nboot <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="co">### Example 6 - filtered historical simulation - GARCH</span></span></span>
+<span class="r-in"><span><span class="va">results6</span> <span class="op">&lt;-</span> <span class="fu">rollcast</span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, model <span class="op">=</span> <span class="st">'GARCH'</span>,</span></span>
+<span class="r-in"><span>                     method <span class="op">=</span> <span class="st">'fhs'</span>, nout <span class="op">=</span> <span class="va">nout</span>, nwin <span class="op">=</span> <span class="va">nwin</span>, nboot <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Calculations completed.</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/matplot.html" class="external-link">matplot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">nout</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="op">-</span><span class="va">results6</span><span class="op">$</span><span class="va">xout</span>, <span class="va">results6</span><span class="op">$</span><span class="va">VaR</span>, <span class="va">results6</span><span class="op">$</span><span class="va">ES</span><span class="op">)</span>,</span>
-<span class="r-in">  type <span class="op">=</span> <span class="st">'hll'</span>,</span>
-<span class="r-in">  xlab <span class="op">=</span> <span class="st">'number of out-of-sample obs.'</span>, ylab <span class="op">=</span> <span class="st">'losses, VaR and ES'</span>,</span>
-<span class="r-in">  main <span class="op">=</span> <span class="st">'Filtered HS (GARCH) - 97.5% VaR and ES for the DAX30 return</span>
-<span class="r-in">  series'</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/matplot.html" class="external-link">matplot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">nout</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="op">-</span><span class="va">results6</span><span class="op">$</span><span class="va">xout</span>, <span class="va">results6</span><span class="op">$</span><span class="va">VaR</span>, <span class="va">results6</span><span class="op">$</span><span class="va">ES</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  type <span class="op">=</span> <span class="st">'hll'</span>,</span></span>
+<span class="r-in"><span>  xlab <span class="op">=</span> <span class="st">'number of out-of-sample obs.'</span>, ylab <span class="op">=</span> <span class="st">'losses, VaR and ES'</span>,</span></span>
+<span class="r-in"><span>  main <span class="op">=</span> <span class="st">'Filtered HS (GARCH) - 97.5% VaR and ES for the DAX30 return</span></span></span>
+<span class="r-in"><span><span class="st">  series'</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="rollcast-6.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -270,7 +270,7 @@ Shortfall (Conditional Value at Risk)</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -79,244 +79,244 @@
 </h2>
 <p>You can install the released version of quarks from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"quarks"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"quarks"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
 <p>The data set <code>DAX</code>, which is implemented in the <code>quarks</code> package, contains daily financial data of the German stock index DAX from January 2000 to December 2021 (currency in EUR). In the following examples of the (out-of-sample) one-step forecasts of the 97.5<img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5C%25" title="%" alt="\%">-VaR (red line) and the corresponding ES (green line) are illustrated. Exceedances are indicated by the colored circles.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Calculating the returns</span>
-<span class="va">prices</span> <span class="op">&lt;-</span> <span class="va">DAX</span><span class="op">$</span><span class="va">price.close</span>
-<span class="va">returns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">prices</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Calculating the returns</span></span>
+<span><span class="va">prices</span> <span class="op">&lt;-</span> <span class="va">DAX</span><span class="op">$</span><span class="va">price.close</span></span>
+<span><span class="va">returns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">prices</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Example 1 - plain historical simulation</strong></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, method <span class="op">=</span> <span class="st">'plain'</span>, nout <span class="op">=</span> <span class="fl">250</span>,
-                     nwin <span class="op">=</span> <span class="fl">250</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Calculations completed.</span>
-<span class="va">results1</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |              Specifications              |</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Out-of-sample size:    250</span>
-<span class="co">#&gt;  Rolling window size:   250</span>
-<span class="co">#&gt;  Bootstrap sample size: N/A</span>
-<span class="co">#&gt;  Confidence level:      97.5 %</span>
-<span class="co">#&gt;  Method:                Plain</span>
-<span class="co">#&gt;  Model:                 EWMA</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |           Forecast performance           |</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Out-of-sample losses exceeding VaR</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt;  Number of breaches:    4</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Out-of-sample losses exceeding ES</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt;  Number of breaches:    1</span>
-<span class="co">#&gt; --------------------------------------------</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">results1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, method <span class="op">=</span> <span class="st">'plain'</span>, nout <span class="op">=</span> <span class="fl">250</span>,</span>
+<span>                     nwin <span class="op">=</span> <span class="fl">250</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Calculations completed.</span></span>
+<span><span class="va">results1</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; |              Specifications              |</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Out-of-sample size:    250</span></span>
+<span><span class="co">#&gt;  Rolling window size:   250</span></span>
+<span><span class="co">#&gt;  Bootstrap sample size: N/A</span></span>
+<span><span class="co">#&gt;  Confidence level:      97.5 %</span></span>
+<span><span class="co">#&gt;  Method:                Plain</span></span>
+<span><span class="co">#&gt;  Model:                 EWMA</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; |           Forecast performance           |</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Out-of-sample losses exceeding VaR</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt;  Number of breaches:    4</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Out-of-sample losses exceeding ES</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt;  Number of breaches:    1</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span></code></pre></div>
 <p>Visualize your results with the plot method implemented in <code>quarks</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results1</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results1</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="100%"></p>
 <hr>
 <p><strong>Example 2 - age weighted historical simulation</strong></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, method <span class="op">=</span> <span class="st">'age'</span>, nout <span class="op">=</span> <span class="fl">250</span>,
-                     nwin <span class="op">=</span> <span class="fl">250</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Calculations completed.</span>
-<span class="va">results2</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |              Specifications              |</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Out-of-sample size:    250</span>
-<span class="co">#&gt;  Rolling window size:   250</span>
-<span class="co">#&gt;  Bootstrap sample size: N/A</span>
-<span class="co">#&gt;  Confidence level:      97.5 %</span>
-<span class="co">#&gt;  Method:                Age Weighting</span>
-<span class="co">#&gt;  Model:                 EWMA</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |           Forecast performance           |</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Out-of-sample losses exceeding VaR</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt;  Number of breaches:    5</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Out-of-sample losses exceeding ES</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt;  Number of breaches:    4</span>
-<span class="co">#&gt; --------------------------------------------</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">results2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, method <span class="op">=</span> <span class="st">'age'</span>, nout <span class="op">=</span> <span class="fl">250</span>,</span>
+<span>                     nwin <span class="op">=</span> <span class="fl">250</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Calculations completed.</span></span>
+<span><span class="va">results2</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; |              Specifications              |</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Out-of-sample size:    250</span></span>
+<span><span class="co">#&gt;  Rolling window size:   250</span></span>
+<span><span class="co">#&gt;  Bootstrap sample size: N/A</span></span>
+<span><span class="co">#&gt;  Confidence level:      97.5 %</span></span>
+<span><span class="co">#&gt;  Method:                Age Weighting</span></span>
+<span><span class="co">#&gt;  Model:                 EWMA</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; |           Forecast performance           |</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Out-of-sample losses exceeding VaR</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt;  Number of breaches:    5</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Out-of-sample losses exceeding ES</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt;  Number of breaches:    4</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-6-1.png" width="100%"></p>
 <hr>
 <p><strong>Example 3 - volatility weighted historical simulation - EWMA</strong></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results3</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, model <span class="op">=</span> <span class="st">'EWMA'</span>,
-                     method <span class="op">=</span> <span class="st">'vwhs'</span>, nout <span class="op">=</span> <span class="fl">250</span>, nwin <span class="op">=</span> <span class="fl">250</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Calculations completed.</span>
-<span class="va">results3</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |              Specifications              |</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Out-of-sample size:    250</span>
-<span class="co">#&gt;  Rolling window size:   250</span>
-<span class="co">#&gt;  Bootstrap sample size: N/A</span>
-<span class="co">#&gt;  Confidence level:      97.5 %</span>
-<span class="co">#&gt;  Method:                Volatility Weighting</span>
-<span class="co">#&gt;  Model:                 EWMA</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |           Forecast performance           |</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Out-of-sample losses exceeding VaR</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt;  Number of breaches:    4</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Out-of-sample losses exceeding ES</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt;  Number of breaches:    3</span>
-<span class="co">#&gt; --------------------------------------------</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">results3</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, model <span class="op">=</span> <span class="st">'EWMA'</span>,</span>
+<span>                     method <span class="op">=</span> <span class="st">'vwhs'</span>, nout <span class="op">=</span> <span class="fl">250</span>, nwin <span class="op">=</span> <span class="fl">250</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Calculations completed.</span></span>
+<span><span class="va">results3</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; |              Specifications              |</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Out-of-sample size:    250</span></span>
+<span><span class="co">#&gt;  Rolling window size:   250</span></span>
+<span><span class="co">#&gt;  Bootstrap sample size: N/A</span></span>
+<span><span class="co">#&gt;  Confidence level:      97.5 %</span></span>
+<span><span class="co">#&gt;  Method:                Volatility Weighting</span></span>
+<span><span class="co">#&gt;  Model:                 EWMA</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; |           Forecast performance           |</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Out-of-sample losses exceeding VaR</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt;  Number of breaches:    4</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Out-of-sample losses exceeding ES</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt;  Number of breaches:    3</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results3</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results3</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-8-1.png" width="100%"></p>
 <hr>
 <p><strong>Example 4 - filtered historical simulation - GARCH</strong></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span>
-<span class="va">results4</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, model <span class="op">=</span> <span class="st">'GARCH'</span>,
-                     method <span class="op">=</span> <span class="st">'fhs'</span>, nout <span class="op">=</span> <span class="fl">250</span>, nwin <span class="op">=</span> <span class="fl">250</span>, nboot <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Calculations completed.</span>
-<span class="va">results4</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |              Specifications              |</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Out-of-sample size:    250</span>
-<span class="co">#&gt;  Rolling window size:   250</span>
-<span class="co">#&gt;  Bootstrap sample size: 10000</span>
-<span class="co">#&gt;  Confidence level:      97.5 %</span>
-<span class="co">#&gt;  Method:                Filtered</span>
-<span class="co">#&gt;  Model:                 sGARCH</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |           Forecast performance           |</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Out-of-sample losses exceeding VaR</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt;  Number of breaches:    5</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Out-of-sample losses exceeding ES</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt;  Number of breaches:    2</span>
-<span class="co">#&gt; --------------------------------------------</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
+<span><span class="va">results4</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.975</span>, model <span class="op">=</span> <span class="st">'GARCH'</span>,</span>
+<span>                     method <span class="op">=</span> <span class="st">'fhs'</span>, nout <span class="op">=</span> <span class="fl">250</span>, nwin <span class="op">=</span> <span class="fl">250</span>, nboot <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Calculations completed.</span></span>
+<span><span class="va">results4</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; |              Specifications              |</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Out-of-sample size:    250</span></span>
+<span><span class="co">#&gt;  Rolling window size:   250</span></span>
+<span><span class="co">#&gt;  Bootstrap sample size: 10000</span></span>
+<span><span class="co">#&gt;  Confidence level:      97.5 %</span></span>
+<span><span class="co">#&gt;  Method:                Filtered</span></span>
+<span><span class="co">#&gt;  Model:                 sGARCH</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; |           Forecast performance           |</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Out-of-sample losses exceeding VaR</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt;  Number of breaches:    5</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Out-of-sample losses exceeding ES</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt;  Number of breaches:    2</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results4</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results4</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-10-1.png" width="100%"></p>
 <p>To assess the performance of these methods one might apply backtesting.</p>
 <p>For instance, by employing the Traffic Light Test, Coverage Tests or by means of Loss Function.</p>
 <p><strong>Example 5 - Traffic Light Test</strong></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Calculating the returns</span>
-<span class="va">prices</span> <span class="op">&lt;-</span> <span class="va">SP500</span><span class="op">$</span><span class="va">price.close</span>
-<span class="va">returns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">prices</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.99</span>, model <span class="op">=</span> <span class="st">'GARCH'</span>,
-                     method <span class="op">=</span> <span class="st">'vwhs'</span>, nout <span class="op">=</span> <span class="fl">250</span>, nwin <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Calculations completed.</span>
-<span class="fu"><a href="reference/trftest.html">trftest</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |            Traffic Light Test            |</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Method: Volatility Weighting</span>
-<span class="co">#&gt;  Model:  sGARCH</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |       Traffic light zone boundaries      |</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Zone         Probability      </span>
-<span class="co">#&gt;  Green zone:  p &lt; 95%          </span>
-<span class="co">#&gt;  Yellow zone: 95% &lt;= p &lt; 99.99%</span>
-<span class="co">#&gt;  Red zone:    p &gt;= 99.99%      </span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |         Test result - 99%-VaR            |</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Number of violations: 3</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt;  p = 0.7581: Green zone</span>
-<span class="co">#&gt; --------------------------------------------</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Calculating the returns</span></span>
+<span><span class="va">prices</span> <span class="op">&lt;-</span> <span class="va">SP500</span><span class="op">$</span><span class="va">price.close</span></span>
+<span><span class="va">returns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">prices</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.99</span>, model <span class="op">=</span> <span class="st">'GARCH'</span>,</span>
+<span>                     method <span class="op">=</span> <span class="st">'vwhs'</span>, nout <span class="op">=</span> <span class="fl">250</span>, nwin <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Calculations completed.</span></span>
+<span><span class="fu"><a href="reference/trftest.html">trftest</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; |            Traffic Light Test            |</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Method: Volatility Weighting</span></span>
+<span><span class="co">#&gt;  Model:  sGARCH</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; |       Traffic light zone boundaries      |</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Zone         Probability      </span></span>
+<span><span class="co">#&gt;  Green zone:  p &lt; 95%          </span></span>
+<span><span class="co">#&gt;  Yellow zone: 95% &lt;= p &lt; 99.99%</span></span>
+<span><span class="co">#&gt;  Red zone:    p &gt;= 99.99%      </span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; |         Test result - 99%-VaR            |</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Number of violations: 3</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt;  p = 0.7581: Green zone</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span></code></pre></div>
 <p><strong>Example 6 - Coverage Tests</strong></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Calculating the returns</span>
-<span class="va">prices</span> <span class="op">&lt;-</span> <span class="va">HSI</span><span class="op">$</span><span class="va">price.close</span>
-<span class="va">returns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">prices</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.99</span>, model <span class="op">=</span> <span class="st">'GARCH'</span>,
-                     method <span class="op">=</span> <span class="st">'vwhs'</span>, nout <span class="op">=</span> <span class="fl">250</span>, nwin <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Calculations completed.</span>
-<span class="fu"><a href="reference/cvgtest.html">cvgtest</a></span><span class="op">(</span><span class="va">results</span>, conflvl <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |               Test results               |</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt;  Method: Volatility Weighting</span>
-<span class="co">#&gt;  Model:  sGARCH</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |        Unconditional coverage test       |</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; H0: w = 0.99</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt; p_[uc] = 0.758</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt; Decision: Fail to reject H0</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |            Independence test             |</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; H0: w_[00] = w_[10]</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt; p_[ind] = 0.0196</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt; Decision: Reject H0</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; |         Conditional coverage test        |</span>
-<span class="co">#&gt; --------------------------------------------</span>
-<span class="co">#&gt; H0: w_[00] = w_[10] = 0.99</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt; p_[cc] = 0.0625</span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt; Decision: Fail to reject H0</span>
-<span class="co">#&gt; --------------------------------------------</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Calculating the returns</span></span>
+<span><span class="va">prices</span> <span class="op">&lt;-</span> <span class="va">HSI</span><span class="op">$</span><span class="va">price.close</span></span>
+<span><span class="va">returns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">prices</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.99</span>, model <span class="op">=</span> <span class="st">'GARCH'</span>,</span>
+<span>                     method <span class="op">=</span> <span class="st">'vwhs'</span>, nout <span class="op">=</span> <span class="fl">250</span>, nwin <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Calculations completed.</span></span>
+<span><span class="fu"><a href="reference/cvgtest.html">cvgtest</a></span><span class="op">(</span><span class="va">results</span>, conflvl <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; |               Test results               |</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt;  Method: Volatility Weighting</span></span>
+<span><span class="co">#&gt;  Model:  sGARCH</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; |        Unconditional coverage test       |</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; H0: w = 0.99</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; p_[uc] = 0.758</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; Decision: Fail to reject H0</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; |            Independence test             |</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; H0: w_[00] = w_[10]</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; p_[ind] = 0.0196</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; Decision: Reject H0</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; |         Conditional coverage test        |</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span>
+<span><span class="co">#&gt; H0: w_[00] = w_[10] = 0.99</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; p_[cc] = 0.0625</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; Decision: Fail to reject H0</span></span>
+<span><span class="co">#&gt; --------------------------------------------</span></span></code></pre></div>
 <p><strong>Example 7 - Loss Functions</strong></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Calculating the returns</span>
-<span class="va">prices</span> <span class="op">&lt;-</span> <span class="va">FTSE100</span><span class="op">$</span><span class="va">price.close</span>
-<span class="va">returns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">prices</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.99</span>, model <span class="op">=</span> <span class="st">'GARCH'</span>,
-                     method <span class="op">=</span> <span class="st">'vwhs'</span>, nout <span class="op">=</span> <span class="fl">250</span>, nwin <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Calculations completed.</span>
-<span class="fu"><a href="reference/lossfun.html">lossfun</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Please note that the following results are multiplied with 10000.</span>
-<span class="co">#&gt; $lossfun1</span>
-<span class="co">#&gt; [1] 2.27884</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $lossfun2</span>
-<span class="co">#&gt; [1] 10.84525</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $lossfun3</span>
-<span class="co">#&gt; [1] 10.99533</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $lossfun4</span>
-<span class="co">#&gt; [1] 10.2165</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Calculating the returns</span></span>
+<span><span class="va">prices</span> <span class="op">&lt;-</span> <span class="va">FTSE100</span><span class="op">$</span><span class="va">price.close</span></span>
+<span><span class="va">returns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">prices</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rollcast.html">rollcast</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">returns</span>, p <span class="op">=</span> <span class="fl">0.99</span>, model <span class="op">=</span> <span class="st">'GARCH'</span>,</span>
+<span>                     method <span class="op">=</span> <span class="st">'vwhs'</span>, nout <span class="op">=</span> <span class="fl">250</span>, nwin <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Calculations completed.</span></span>
+<span><span class="fu"><a href="reference/lossfun.html">lossfun</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Please note that the following results are multiplied with 10000.</span></span>
+<span><span class="co">#&gt; $lossfun1</span></span>
+<span><span class="co">#&gt; [1] 2.27884</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $lossfun2</span></span>
+<span><span class="co">#&gt; [1] 10.84525</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $lossfun3</span></span>
+<span><span class="co">#&gt; [1] 10.99533</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $lossfun4</span></span>
+<span><span class="co">#&gt; [1] 10.2165</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level2">
@@ -419,7 +419,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
