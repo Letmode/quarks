@@ -5,7 +5,8 @@
 #' @import ggplot2
 
 runFTSdata <- function() {
-  app <- suppressWarnings(
+  options(show.error.messages = FALSE)
+  app <-
     list(ui = fluidPage(useShinyjs(),
                               sidebarLayout(
                                 sidebarPanel(
@@ -52,7 +53,6 @@ runFTSdata <- function() {
                               )
   ),
   server = function(input, output, session){
-    options(warn = -1)
     updateSelectizeInput(session, "ticker",
                          choices = c(paste0(quarks:::ticker_stocks$Ticker[-1], " (", quarks:::ticker_stocks$Name[-1], ")"),
                                      paste0(quarks:::ticker_indices$Ticker, " (", quarks:::ticker_indices$Name, ")")),
@@ -115,7 +115,6 @@ runFTSdata <- function() {
     observeEvent(input$closeApp, {
       stopApp()
     })
-
     # shinyjs::toggle("hist")
     # observeEvent(input$histApp, {
     #   output$hist <- renderPlot({
@@ -140,9 +139,7 @@ runFTSdata <- function() {
     #   shinyjs::toggle("hist")
     # })
 
-    onStop(function() options(warn = 0))
     }
 )
-)
-shiny::runApp(app)
+shiny::runApp(app, display.mode = 'normal')
 }
