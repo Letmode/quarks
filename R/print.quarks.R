@@ -116,6 +116,9 @@ print.quarks <- function(x, ...) {
     if (x[["method"]] == "fhs") {
       method = "Filtered"
     }
+    if (x[["method"]] == "NA") {
+      method = "NA"
+    }
     cat(" ", fill = TRUE)
     cat("--------------------------------------------", fill = TRUE)
     cat("|               Test results               |", fill = TRUE)
