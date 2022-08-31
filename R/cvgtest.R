@@ -184,8 +184,9 @@ cvgtest <- function(obj = list(loss = NULL, VaR = NULL, p = NULL), conflvl = 0.9
   else {
     loss <- obj[["loss"]]
     VaR <- obj[["VaR"]]
-    if (is.null(model)) model <- NA
-    if (is.null(method)) method <- NA
+    p <- obj[["p"]]
+    model <- "NA"
+    method <- "NA"
   }
 
   if (length(conflvl) != 1 || is.na(conflvl) || !is.numeric(conflvl) ||
