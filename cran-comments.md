@@ -1,7 +1,7 @@
-## Patch release (version 1.1.4)
+## Patch release (version 1.1.5)
 This is a patch release.
 
-- updated data sets
+- minor improvements of the ShinyApp (runFTS) for downloading data from Yahoo Finance
 - fixed some minor bugs
 
 ## Test environments
