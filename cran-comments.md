@@ -13,4 +13,9 @@ This is a patch release.
 
 0 errors | 0 warnings | 0 notes
 
+## Comments
+
+The maintainer adress has changed from 'sebastian.let@t-online.de' to 
+'sebastian.let@yahoo.com'.
+
 
