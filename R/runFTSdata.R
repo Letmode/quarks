@@ -24,25 +24,18 @@ runFTSdata <- function() {
                                                  "Period",
                                                  start = Sys.Date()-750,
                                                  end = Sys.Date()),
-
                                   br(),
                                   br(),
+                                  selectInput("dropdown3",
+                                              label = "Choose frequency",
+                                              choices = c("daily", "weekly", "monthly",
+                                                          "yearly"),
+                                              selected = "daily"),
+                                  textOutput("selected_option"),
                                   # p(actionButton("loadData", "Load", icon = icon("r-project")),
                                   #   br(),
                                   #   "Selected data is loaded into global R-environment.",
                                   #   style = "font-family: 'consolas'; font-si16pt"),
-                                  # br(),
-                                  # br(),
-                                  p(downloadButton("downloadData", "Save", icon = icon("floppy-disk")),
-                                    br(),
-                                    "Save selected data on local hard drive.",
-                                    style = "font-family: 'consolas'; font-si16pt"),
-                                  br(),
-                                  br(),
-                                  p(actionButton("closeApp", "Close", icon = icon("power-off")),
-                                    br(),
-                                    "Close Application.",
-                                    style = "font-family: 'consolas'; font-si16pt"),
                                   br(),
                                   br(),
                                   selectInput("dropdown",
@@ -67,9 +60,19 @@ runFTSdata <- function() {
                                                           "cumret_adjusted_prices"),
                                               selected = "ret_closing_prices"),
                                   textOutput("selected_option"),
-                                  br()
+                                  br(),
+                                  br(),
+                                  p(downloadButton("downloadData", "Save", icon = icon("floppy-disk")),
+                                    br(),
+                                    "Save selected data on local hard drive",
+                                    style = "font-family: 'consolas'; font-si16pt"),
+                                  br(),
+                                  br(),
+                                  p(actionButton("closeApp", "Close", icon = icon("power-off")),
+                                    br(),
+                                    "Close Application",
+                                    style = "font-family: 'consolas'; font-si16pt"),
                                 ),
-
                                 mainPanel(br(),
                                           br(),
                                           conditionalPanel(
@@ -96,11 +99,12 @@ runFTSdata <- function() {
       req(input$ticker)
       req(input$Date[1])
       req(input$Date[2])
+      req(input$dropdown3)
       ticker = strsplit(input$ticker, " ")[[1]][1]
       suppressWarnings(
         suppressMessages(
           yfR::yf_get(tickers = ticker, first_date = input$Date[1],
-                      last_date = input$Date[2], freq_data = "daily",
+                      last_date = input$Date[2], freq_data = input$dropdown3,
                       cache_folder = file.path(tempdir(), 'BGS_Cache'))
         )
       )
@@ -112,10 +116,11 @@ runFTSdata <- function() {
     req(input$Date[1])
     req(input$Date[2])
     req(input$dropdown)
+    req(input$dropdown3)
     req(dataInput())
     dat = dataInput()
     plot_data = xts::xts(dat[paste(input$dropdown)], dat$ref_date)
-    dygraphs::dygraph(plot_data, main = paste(input$ticker, input$dropdown, "(daily)"),
+    dygraphs::dygraph(plot_data, main = paste(input$ticker, input$dropdown, input$dropdown3),
                       #ylab = "X<sub>t</sub>",
                       group = "FZS") %>%
       dygraphs::dyUnzoom()
@@ -127,11 +132,12 @@ runFTSdata <- function() {
       req(input$Date[1])
       req(input$Date[2])
       req(input$dropdown)
+      req(input$dropdown3)
       req(dataInput())
 
       dat2 = dataInput()#[-1, ]
       plot_data2 = xts::xts(dat2[paste(input$dropdown2)], dat2$ref_date)
-      dygraphs::dygraph(plot_data2, main = paste(input$ticker, input$dropdown2, "(daily)"),
+      dygraphs::dygraph(plot_data2, main = paste(input$ticker, input$dropdown2, input$dropdown3),
                         #ylab = "Y<sub>t</sub>",
                         xlab = "Daily observations (t)", group = "FZS") %>%
         dygraphs::dyRangeSelector(height = 20) %>%

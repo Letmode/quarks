@@ -1,8 +1,8 @@
-## Patch release (version 1.1.5)
+## Patch release (version 1.1.6)
 This is a patch release.
 
 - minor improvements of the ShinyApp (runFTS) for downloading data from Yahoo Finance
-- fixed some minor bugs
+  * added the option to select data frequency
 
 ## Test environments
 * local R installation, R 4.4.0
