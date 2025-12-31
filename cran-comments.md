@@ -5,7 +5,7 @@ This is a patch release.
   * added the option to select data frequency
 
 ## Test environments
-* local R installation, R 4.4.0
+* local R installation, R 4.5.1
 * win-builder (devel)
 * r-hub
 
@@ -13,9 +13,5 @@ This is a patch release.
 
 0 errors | 0 warnings | 0 notes
 
-## Comments
-
-The maintainer adress has changed from 'sebastian.let@t-online.de' to 
-'sebastian.let@yahoo.com'.
 
 
